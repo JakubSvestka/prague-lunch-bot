@@ -18,7 +18,7 @@ const send = async (menus: Menu[]): Promise<boolean> => {
                 type: "section",
                 text: {
                     type: "mrkdwn",
-                    text: "Here are today’s lunch menus from favorite spots around office.\nReact with :+1: in the thread if you’re planning to go — maybe someone will join you! Enjoy!"
+                    text: "Here are today’s lunch menus from favorite spots around office. Enjoy!"
                 }
             },
             { type: "divider" },
@@ -35,7 +35,6 @@ const send = async (menus: Menu[]): Promise<boolean> => {
                 menu.name,
                 threadTs
             );
-            //await addSlackReaction(menuMsg.ts, "+1");
         }
 
         console.log("Menus posted in thread successfully.");

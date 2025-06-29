@@ -2,7 +2,7 @@ name: Post menus
 
 on:
   schedule:
-    - cron: '8 31 * * *'  # Mon–Fri at 08:31 in UTC
+    - cron: '08 31 * * *'  # Mon–Fri at 08:31 in UTC
   workflow_dispatch:
 
 jobs:
