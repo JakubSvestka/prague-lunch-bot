@@ -2,7 +2,6 @@ import dotenv from "dotenv"
 import minimist from "minimist"
 import {send} from "./utils/slack";
 import {fetchMenus} from "./scrappers";
-import {Menu} from "./types";
 import printMenusToConsole from "./utils/menuPrint";
 
 const env = process.env.NODE_ENV || 'development'
