@@ -9,15 +9,13 @@ export async function fetchPivokarlin(scrapper: Scrapper): Promise<Menu> {
 
     // Find all day columns
     const dayBlocks = $("#tab-poledni-nabidka .vc_col-sm-6")
-    const todayRegex = new RegExp(`\\b${dayjs().add(4, 'day').format("D\\.[\s*]MMMM")}`, "i")
+    const todayRegex = new RegExp(`\\b${dayjs().format("D\\.[\\s*]")}`, "i")
     const items: MenuItem[] = []
 
     dayBlocks.each((_, el) => {
         const dateText = $(el).find("h5").text().trim().replace(/\s+/g, " ")
         if (!todayRegex.test(dateText)) {
-            console.warn(`❌ ${scrapper.name}: menu not found.`)
-
-            throw new Error()
+            return
         }
 
         $(el)
