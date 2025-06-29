@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      - name: Post all menus to Slack
+      - name: Post menus to Slack
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
