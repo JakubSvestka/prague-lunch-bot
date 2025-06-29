@@ -15,7 +15,9 @@ export async function fetchPivokarlin(scrapper: Scrapper): Promise<Menu> {
     dayBlocks.each((_, el) => {
         const dateText = $(el).find("h5").text().trim().replace(/\s+/g, " ")
         if (!todayRegex.test(dateText)) {
-            return
+            console.warn(`❌ ${scrapper.name}: menu not found.`)
+
+            throw new Error()
         }
 
         $(el)
