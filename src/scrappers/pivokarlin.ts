@@ -4,10 +4,9 @@ import {Menu, MenuItem, Scrapper} from "../types"
 import axios from "../utils/axios"
 
 export async function fetchPivokarlin(scrapper: Scrapper): Promise<Menu> {
+    console.log(scrapper)
     const res = await axios.get(scrapper.url)
     const $ = cheerio.load(res.data)
-
-    console.log(res)
 
     // Find all day columns
     const dayBlocks = $("#tab-poledni-nabidka .vc_col-sm-6")
