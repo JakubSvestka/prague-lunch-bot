@@ -36,7 +36,6 @@ const scrappers: Scrapper[] = [
 ]
 
 const fetchMenus = async (): Promise<Menu[]> => {
-    console.log(scrappers)
     const results = await Promise.allSettled(
         scrappers
             .filter(scrapper => scrapper.enabled)
