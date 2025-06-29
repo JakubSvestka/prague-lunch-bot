@@ -2,7 +2,7 @@ name: Daily Menus
 
 on:
   schedule:
-    - cron: '40 8 * * *'  # Mon–Fri at 08:40 in UTC
+    - cron: '30 8 * * *'  # Mon–Fri at 08:30 in UTC
   workflow_dispatch:
 
 jobs:
