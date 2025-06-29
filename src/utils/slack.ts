@@ -4,12 +4,13 @@ import dayjs from "./dayjs";
 
 const send = async (menus: Menu[]): Promise<boolean> => {
     try {
+        const text = `:fork_and_knife: Today’s lunch menus (${dayjs().format("DD. MM. YYYY")})`
         const headerBlocks = [
             {
                 type: "header",
                 text: {
                     type: "plain_text",
-                    text: `:fork_and_knife: Today’s lunch menus (${dayjs().format("DD. MM. YYYY")})`,
+                    text,
                     emoji: true,
                 },
             },
@@ -22,11 +23,18 @@ const send = async (menus: Menu[]): Promise<boolean> => {
             },
             { type: "divider" },
         ];
-        const mainMsg = await postSlackMessage(headerBlocks);
+        const mainMsg = await postSlackMessage(
+            headerBlocks,
+            text
+        );
         const threadTs = mainMsg.ts;
 
         for (const menu of menus) {
-            const menuMsg = await postSlackMessage(createMenuMessage(menu), threadTs);
+            const menuMsg = await postSlackMessage(
+                createMenuMessage(menu),
+                menu.name,
+                threadTs
+            );
             //await addSlackReaction(menuMsg.ts, "+1");
         }
 
@@ -40,11 +48,12 @@ const send = async (menus: Menu[]): Promise<boolean> => {
     }
 }
 
-async function postSlackMessage(blocks: any[], threadTs?: string) {
+async function postSlackMessage(blocks: any[], text: string, threadTs?: string) {
     const res = await axios.post(
         "https://slack.com/api/chat.postMessage",
         {
             channel: process.env.SLACK_CHANNEL,
+            text,
             blocks,
             thread_ts: threadTs,
             unfurl_links: false,
