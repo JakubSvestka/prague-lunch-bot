@@ -22,7 +22,10 @@ export async function fetchPivokarlin(scrapper: Scrapper): Promise<Menu> {
             .find(".nectar_food_menu_item")
             .each((_, itemEl) => {
                 const fullName = $(itemEl).find(".item_name h4").text().trim()
-                const name = fullName.replace(/\s[0-9]{1,2}[a-z]?([,][0-9]{1,2}[a-z]?)*$/, "").trim()
+                const name = fullName
+                    .replace(/\s[0-9]{1,2}[a-z]?([,][0-9]{1,2}[a-z]?)*$/, "")
+                    .replace(/\d+(g|(ks))/, "")
+                    .trim()
                 const priceText = $(itemEl).find(".item_price h4").text().trim().replace(",-", "").trim()
                 const price = parseInt(priceText, 10)
 
