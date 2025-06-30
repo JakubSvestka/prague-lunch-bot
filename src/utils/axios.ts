@@ -12,9 +12,17 @@ axiosRetry(http, {
         return retryCount * 1000;
     },
     onRetry: async (retryCount, error, requestConfig) => {
-        console.warn("Retrying because of: " + error.message);
+        console.warn(`🔁 Retry ${retryCount}: ${error.message}`);
     },
     retryCondition: (error) => {
+        console.warn("🛑 Checking retry for error:", {
+            message: error.message,
+            code: error.code,
+            isNetworkError: axiosRetry.isNetworkOrIdempotentRequestError(error),
+            method: error.config?.method,
+            url: error.config?.url,
+        });
+
         return axiosRetry.isNetworkOrIdempotentRequestError(error) || error.code === 'ECONNABORTED';
     },
 });
