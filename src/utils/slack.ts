@@ -4,7 +4,8 @@ import dayjs from "./dayjs";
 
 const send = async (menus: Menu[]): Promise<boolean> => {
     try {
-        const text = `:fork_and_knife: Today’s lunch menus (${dayjs().format("DD. MM. YYYY")})`
+        dayjs.locale('en')
+        const text = `🥗 ${dayjs().format("dddd")} Lunch Picks - ${dayjs().format("DD. MM. YYYY")}`
         const headerBlocks = [
             {
                 type: "header",
