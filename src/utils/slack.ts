@@ -1,6 +1,6 @@
-import {Menu} from "../types";
-import axios from "./axios";
-import dayjs from "./dayjs";
+import {Menu} from "../types"
+import axios from "./axios"
+import dayjs from "./dayjs"
 
 const send = async (menus: Menu[]): Promise<boolean> => {
     try {
@@ -23,26 +23,26 @@ const send = async (menus: Menu[]): Promise<boolean> => {
                 }
             },
             { type: "divider" },
-        ];
+        ]
         const mainMsg = await postSlackMessage(
             headerBlocks,
             text
-        );
-        const threadTs = mainMsg.ts;
+        )
+        const threadTs = mainMsg.ts
 
         for (const menu of menus) {
             const menuMsg = await postSlackMessage(
                 createMenuMessage(menu),
                 menu.name,
                 threadTs
-            );
+            )
         }
 
-        console.log("Menus posted in thread successfully.");
+        console.log("Menus posted in thread successfully.")
 
         return true
     } catch (error) {
-        console.error("Error posting menus:", error);
+        console.error("Error posting menus:", error)
 
         return false
     }
@@ -60,13 +60,13 @@ async function postSlackMessage(blocks: any[], text: string, threadTs?: string) 
             unfurl_media: false,
         },
         { headers: { Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}` } }
-    );
+    )
 
     if (!res.data.ok) {
-        throw new Error(`Slack API error: ${res.data.error}`);
+        throw new Error(`Slack API error: ${res.data.error}`)
     }
 
-    return res.data;
+    return res.data
 }
 
 async function addSlackReaction(ts: string, emojiName: string) {
@@ -74,13 +74,13 @@ async function addSlackReaction(ts: string, emojiName: string) {
         "https://slack.com/api/reactions.add",
         { channel: process.env.SLACK_CHANNEL, timestamp: ts, name: emojiName },
         { headers: { Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}` } }
-    );
+    )
 
     if (!res.data.ok) {
-        console.warn(`Failed to add reaction: ${res.data.error}`);
+        console.warn(`Failed to add reaction: ${res.data.error}`)
     }
 
-    return res.data;
+    return res.data
 }
 
 const createMenuMessage = (menu: Menu) => {
@@ -93,7 +93,7 @@ const createMenuMessage = (menu: Menu) => {
             text: `${menu.name}`,
             emoji: true,
         },
-    });
+    })
     blocks.push({
         type: "context",
         elements: [
@@ -102,7 +102,7 @@ const createMenuMessage = (menu: Menu) => {
                 text: `<${menu.url}|🌐 Visit web> \t <${menu.locationUrl}|📍 Location>\t`,
             },
         ],
-    });
+    })
 
     for (const [index, item] of menu.items.entries()) {
         blocks.push({
@@ -118,10 +118,10 @@ const createMenuMessage = (menu: Menu) => {
                     "text": item.description.trim()
                 } : null
             ].filter(Boolean)
-        });
+        })
 
         if (index < menu.items.length - 1) {
-            blocks.push({ type: "divider" });
+            blocks.push({ type: "divider" })
         }
     }
 
@@ -130,4 +130,4 @@ const createMenuMessage = (menu: Menu) => {
 
 export {
     send
-};
+}
