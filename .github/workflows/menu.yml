@@ -8,10 +8,6 @@ on:
 jobs:
   post-menus:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        attempt: [1, 2, 3]
     steps:
       - uses: actions/checkout@v4
 
@@ -31,8 +27,21 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      - name: Post menus to Slack - attempt ${{ matrix.attempt }}
+      - name: Post menus to Slack
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
-        run: npm run post
+        run: |
+          for i in {1..5}; do
+            echo "🟡 Attempt $i to post menus"
+            if npm run post; then
+              echo "✅ Success on attempt $i"
+              break
+            elif [ "$i" -eq 3 ]; then
+              echo "❌ All attempts failed"
+              exit 1
+            else
+              echo "🔁 Attempt $i failed, retrying after 5s..."
+              sleep 5
+            fi
+          done
