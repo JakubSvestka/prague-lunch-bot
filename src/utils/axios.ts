@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {type AxiosError, type AxiosRequestConfig} from 'axios';
 import axiosRetry from 'axios-retry';
 
 const http = axios.create({
@@ -7,8 +7,13 @@ const http = axios.create({
 
 // Attach retry logic to the instance
 axiosRetry(http, {
-    retries: 3, // total number of attempts (1 original + 2 retries)
-    retryDelay: axiosRetry.exponentialDelay, // or a custom delay function
+    retries: 10, // total number of attempts (1 original + 2 retries)
+    retryDelay: (retryCount) => {
+        return retryCount * 1000;
+    },
+    onRetry: async (retryCount, error, requestConfig) => {
+        console.warn("Retrying because of: " + error.message);
+    },
     retryCondition: (error) => {
         return axiosRetry.isNetworkOrIdempotentRequestError(error) || error.code === 'ECONNABORTED';
     },
