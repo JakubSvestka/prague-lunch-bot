@@ -26,8 +26,6 @@ axiosRetry(http, {
         console.warn(`🔁 Retry ${retryCount}: ${error.message}`);
     },
     retryCondition: (error) => {
-        console.warn("🛑 Checking retry for error: " + error.message);
-
         return axiosRetry.isNetworkOrIdempotentRequestError(error) || error.code === 'ECONNABORTED';
     },
 });
