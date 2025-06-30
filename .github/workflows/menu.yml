@@ -31,17 +31,4 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
-        run: |
-          for i in {1..5}; do
-            echo "🟡 Attempt $i to post menus"
-            if npm run post; then
-              echo "✅ Success on attempt $i"
-              break
-            elif [ "$i" -eq 3 ]; then
-              echo "❌ All attempts failed"
-              exit 1
-            else
-              echo "🔁 Attempt $i failed, retrying after 5s..."
-              sleep 5
-            fi
-          done
+        run: npm run post

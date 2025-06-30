@@ -4,7 +4,7 @@ import {Menu, MenuItem, Scrapper} from "../types"
 import axios from "../utils/axios"
 
 export async function fetchPivokarlin(scrapper: Scrapper): Promise<Menu> {
-    const res = await axios.get(scrapper.url)
+    const res = await axios.get(`https://menu-bot-proxy.svestka1999.workers.dev/?url=${scrapper.url}`)
     const $ = cheerio.load(res.data)
 
     // Find all day columns

@@ -1,5 +1,4 @@
 import {Menu} from "../types";
-
 const printMenusToConsole = (menus: Menu[]) => {
     for (const menu of menus) {
         console.log(`\n=== ${menu.name} ===`);

@@ -1,16 +1,16 @@
-import axios, {type AxiosError, type AxiosRequestConfig} from 'axios';
+import axios from 'axios';
 import axiosRetry from 'axios-retry';
+
 
 const http = axios.create({
     timeout: 5000, // 5 seconds timeout per request
     headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.9',
+        'Accept-Language': 'cs-CZ,en;q=0.9',
         'Accept-Encoding': 'gzip, deflate, br',
         'Connection': 'keep-alive',
-        'Referer': 'https://www.google.com/',
-        'DNT': '1', // Do Not Track
+        'DNT': '1',
         'Upgrade-Insecure-Requests': '1',
     },
 });
@@ -26,13 +26,7 @@ axiosRetry(http, {
         console.warn(`🔁 Retry ${retryCount}: ${error.message}`);
     },
     retryCondition: (error) => {
-        console.warn("🛑 Checking retry for error:", {
-            message: error.message,
-            code: error.code,
-            isNetworkError: axiosRetry.isNetworkOrIdempotentRequestError(error),
-            method: error.config?.method,
-            url: error.config?.url,
-        });
+        console.warn("🛑 Checking retry for error: " + error.message);
 
         return axiosRetry.isNetworkOrIdempotentRequestError(error) || error.code === 'ECONNABORTED';
     },
