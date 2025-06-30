@@ -42,6 +42,13 @@ const fetchMenus = async (): Promise<Menu[]> => {
             .map(scrapper => scrapper.load(scrapper))
     )
 
+    // Log rejected results with index or more info
+    results.forEach((res, i) => {
+        if (res.status === 'rejected') {
+            console.error(`❌ Scraper ${scrappers[i].name} failed:`, res.reason);
+        }
+    });
+
     return results
         .filter(res => res.status === 'fulfilled')
         .map(res => res.value)
