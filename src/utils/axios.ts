@@ -2,8 +2,7 @@ import axios, {type AxiosError, type AxiosRequestConfig} from 'axios';
 import axiosRetry from 'axios-retry';
 
 const http = axios.create({
-    timeout: 30000, // 30 seconds timeout per request
-    //Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:139.0) Gecko/20100101 Firefox/139.0
+    timeout: 5000, // 5 seconds timeout per request
     headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',

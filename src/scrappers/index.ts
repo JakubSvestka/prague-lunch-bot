@@ -36,22 +36,29 @@ const scrappers: Scrapper[] = [
 ]
 
 const fetchMenus = async (): Promise<Menu[]> => {
-    const results = await Promise.allSettled(
-        scrappers
-            .filter(scrapper => scrapper.enabled)
-            .map(scrapper => scrapper.load(scrapper))
-    )
+    const enabledScrappers = scrappers.filter(scrapper => scrapper.enabled);
 
-    // Log rejected results with index or more info
+    const results = await Promise.allSettled(
+        enabledScrappers.map(scrapper => scrapper.load(scrapper))
+    );
+
+    const failures: string[] = [];
+
     results.forEach((res, i) => {
         if (res.status === 'rejected') {
-            console.error(`❌ Scraper ${scrappers[i].name} failed:`, res.reason);
+            const scrapper = enabledScrappers[i];
+            console.error(`❌ Scraper ${scrapper.name} failed:`, res.reason);
+            failures.push(scrapper.name);
         }
     });
 
+    if (failures.length > 0) {
+        throw new Error(`One or more scrapers failed: ${failures.join(', ')}`);
+    }
+
     return results
-        .filter(res => res.status === 'fulfilled')
-        .map(res => res.value)
+        .filter((res): res is PromiseFulfilledResult<Menu> => res.status === 'fulfilled')
+        .map(res => res.value);
 }
 
 export {
