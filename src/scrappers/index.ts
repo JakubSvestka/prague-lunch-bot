@@ -7,13 +7,6 @@ import {fetchFuelBistro} from "./fuelBistro";
 const scrappers: Scrapper[] = [
     {
         enabled: true,
-        name: "🍺 Pivo Karlín",
-        url: "https://www.pivokarlin.cz/",
-        locationUrl: "https://maps.app.goo.gl/iWD3jubpzKhbMRFk8",
-        load: fetchPivokarlin,
-    },
-    {
-        enabled: true,
         name: "🍣 Asiyo",
         url: "https://www.asiyo.cz/poledni-menu/",
         locationUrl: "https://maps.app.goo.gl/2yzue2EHDx8SSYCa9",
@@ -32,7 +25,14 @@ const scrappers: Scrapper[] = [
         url: "https://fuelbistro.cz/",
         locationUrl: "https://maps.app.goo.gl/DhmZ42BbGxaiRXW68",
         load: fetchFuelBistro,
-    }
+    },
+    {
+        enabled: true,
+        name: "🍺 Pivo Karlín",
+        url: "https://www.pivokarlin.cz/",
+        locationUrl: "https://maps.app.goo.gl/iWD3jubpzKhbMRFk8",
+        load: fetchPivokarlin,
+    },
 ]
 
 const fetchMenus = async (): Promise<Menu[]> => {
