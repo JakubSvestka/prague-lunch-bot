@@ -19,7 +19,7 @@ const send = async (menus: Menu[]): Promise<boolean> => {
                 type: "section",
                 text: {
                     type: "mrkdwn",
-                    text: "Here are today’s lunch menus from favorite spots around office. Enjoy!\nIs your favorite spot missing? Ping me!"
+                    text: "Here are today’s lunch menus from favorite spots around office. Enjoy!\nIs your favorite spot missing? Ping <https://sky.enterprise.slack.com/team/U05HEGVRVCY|me>!"
                 }
             },
             { type: "divider" },
