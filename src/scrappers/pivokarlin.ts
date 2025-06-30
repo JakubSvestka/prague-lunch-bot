@@ -7,6 +7,8 @@ export async function fetchPivokarlin(scrapper: Scrapper): Promise<Menu> {
     const res = await axios.get(scrapper.url)
     const $ = cheerio.load(res.data)
 
+    console.log(res.data)
+
     // Find all day columns
     const dayBlocks = $("#tab-poledni-nabidka .vc_col-sm-6")
     const todayRegex = new RegExp(`\\b${dayjs().format("D\\.[\\s*]")}`, "i")
