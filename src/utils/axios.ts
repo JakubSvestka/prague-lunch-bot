@@ -8,6 +8,7 @@ const http = axios.create({
 // Attach retry logic to the instance
 axiosRetry(http, {
     retries: 10, // total number of attempts (1 original + 2 retries)
+    shouldResetTimeout: true,
     retryDelay: (retryCount) => {
         return retryCount * 1000;
     },
