@@ -120,9 +120,7 @@ const createMenuMessage = (menu: Menu) => {
             ].filter(Boolean)
         })
 
-        if (index < menu.items.length - 1) {
-            blocks.push({ type: "divider" })
-        }
+        blocks.push({ type: "divider" })
     }
 
     return blocks
