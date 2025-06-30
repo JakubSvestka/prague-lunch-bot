@@ -12,9 +12,9 @@ export async function fetchPivokarlin(scrapper: Scrapper): Promise<Menu> {
     const todayRegex = new RegExp(`\\b${dayjs().format("D\\.[\\s*]")}`, "i")
     const items: MenuItem[] = []
 
+    console.log(dayBlocks)
     dayBlocks.each((_, el) => {
         const dateText = $(el).find("h5").text().trim().replace(/\s+/g, " ")
-        console.log(dateText)
         if (!todayRegex.test(dateText)) {
             return
         }
