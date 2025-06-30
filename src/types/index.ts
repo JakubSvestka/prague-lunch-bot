@@ -1,7 +1,8 @@
 export type Scrapper = {
-    enabled: boolean;
+    disabled?: boolean;
     name: string;
     url: string;
+    scrapeUrl?: string;
     locationUrl: string;
     load: (scrapper: Scrapper) => Promise<Menu>;
 };

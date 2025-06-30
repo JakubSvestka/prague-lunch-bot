@@ -33,9 +33,7 @@ export async function fetchFuelBistro(scrapper: Scrapper): Promise<Menu> {
     })
 
     if (items.length === 0) {
-        console.warn(`❌ ${scrapper.name}: menu not found.`)
-
-        throw new Error()
+        throw new Error(`menu not found`)
     }
 
     return {

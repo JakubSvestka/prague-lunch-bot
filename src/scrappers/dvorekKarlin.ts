@@ -11,9 +11,7 @@ export async function fetchDvorekKarlin(scrapper: Scrapper): Promise<Menu> {
     const date = $('.et_pb_section_3 .et_pb_row_3 p').text()
 
     if (!dayjs(date, "DD.MM.YYYY").isToday()) {
-        console.warn(`❌ ${scrapper.name}: menu not found.`)
-
-        throw new Error()
+        throw new Error(`menu not found`)
     }
 
     const paragraphs = $('.et_pb_section_3 .et_pb_row_4 p')

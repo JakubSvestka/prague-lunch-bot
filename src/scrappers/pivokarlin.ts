@@ -36,9 +36,7 @@ export async function fetchPivokarlin(scrapper: Scrapper): Promise<Menu> {
     })
 
     if (!items.length) {
-        console.warn(`❌ ${scrapper.name}: menu not found.`)
-
-        throw new Error()
+        throw new Error(`menu not found`)
     }
 
     return {
