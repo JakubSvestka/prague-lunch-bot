@@ -109,7 +109,7 @@ const createMenuMessage = (menu: Menu) => {
             fields: [
                 {
                     "type": "mrkdwn",
-                    "text": `<https://www.google.com/search?udm=2&q=${item.name}|*${item.name.trim()}*> – ${item.price} Kč
+                    "text": `<https://www.google.com/search?udm=2&q=${item.name}|*${item.name.trim()}*> – ${item.price}\u00A0Kč
                     `
                 },
                 item.description ? {
