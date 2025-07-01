@@ -29,11 +29,22 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
     }
 
 
+    // Soups
+    dayBlock.find(".polevka").each((_, el) => {
+        const name = $(el).find(".polozka").text()
+
+        const priceText = $(el).find(".cena").text().replace(/\s*Kč|,-/g, "").trim()
+        const price = parseInt(priceText, 10)
+
+        items.push({ name: name, price: isNaN(price) ? 0 : price })
+    })
+
     // Main meals
     dayBlock.find(".jidlo").each((_, el) => {
         // 1. 150g peper smash beef burger of the day
         // 3. Teriyaki veal poké bowl
-        const nameRegex = new RegExp(`\\d+\\.\\s*(\\d+g)?\\s*(?<name>.+)`)
+        // Beer and bacon ribs tacos - tři kukuřičné tortilly plněné trhaným vepřovým masem z žeber pečených na pivu a slanině s nakládanou červenou cibulí, podá...
+        const nameRegex = new RegExp(`\\d+\\.\\s*(\\d+g)?\\s*(?<name>[^\-]+)(\\s*-\\s*(?<description>.+))?`)
         const match = ($(el).find(".polozka").text() as string).match(nameRegex)
 
         if (!match) {
@@ -44,7 +55,7 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
         const price = parseInt(priceText, 10)
 
         if (match.groups?.name) {
-            items.push({ name: match.groups?.name, price })
+            items.push({ name: match.groups?.name, price, description: match.groups?.description })
         }
     })
 

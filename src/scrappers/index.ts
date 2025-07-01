@@ -13,6 +13,13 @@ const scrappers: Scrapper[] = [
         load: fetchAsiyo,
     },
     {
+        name: "🎯 Diego pivní bar",
+        url: "http://www.diegopivnibar.cz/cz/",
+        scrapeUrl: "https://www.menicka.cz/7191-diego-pivni-bar.html",
+        locationUrl: "https://maps.app.goo.gl/WaBWra3W2ebzZ73p8",
+        load: fetchMenicka,
+    },
+    {
         name: "🏡 Dvorek Karlín",
         url: "https://www.dvorekkarlin.com/denni-nabidka/",
         locationUrl: "https://maps.app.goo.gl/kivSxE9iMU6rgQj78",
