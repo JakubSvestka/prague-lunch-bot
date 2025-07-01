@@ -31,19 +31,20 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
 
     // Main meals
     dayBlock.find(".jidlo").each((_, el) => {
-        const nameRegex = new RegExp(`\\d+\\.\\s*([\\w\\s]+) \\d+g (.+)`)
+        // 1. 150g peper smash beef burger of the day
+        // 3. Teriyaki veal poké bowl
+        const nameRegex = new RegExp(`\\d+\\.\\s*(\\d+g)?\\s*(?<name>.+)`)
         const match = ($(el).find(".polozka").text() as string).match(nameRegex)
 
         if (!match) {
             return
         }
 
-        const [, name, description] = match
         const priceText = $(el).find(".cena").text().replace(/\s*Kč|,-/g, "").trim()
         const price = parseInt(priceText, 10)
 
-        if (name) {
-            items.push({ name, price, description })
+        if (match.groups?.name) {
+            items.push({ name: match.groups?.name, price })
         }
     })
 
