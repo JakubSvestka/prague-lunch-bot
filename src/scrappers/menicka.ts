@@ -31,6 +31,10 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
 
     // Soups
     dayBlock.find(".polevka").each((_, el) => {
+        if ($(el).text() === "Pro tento den nebylo zadáno menu.") {
+            return
+        }
+
         const name = $(el).find(".polozka").text()
 
         const priceText = $(el).find(".cena").text().replace(/\s*Kč|,-/g, "").trim()
