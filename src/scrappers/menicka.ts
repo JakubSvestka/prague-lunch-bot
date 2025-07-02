@@ -48,7 +48,8 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
         // 1. 150g peper smash beef burger of the day
         // 3. Teriyaki veal poké bowl
         // Beer and bacon ribs tacos - tři kukuřičné tortilly plněné trhaným vepřovým masem z žeber pečených na pivu a slanině s nakládanou červenou cibulí, podá...
-        const nameRegex = new RegExp(`\\d+\\.\\s*(\\d+g)?\\s*(?<name>[^\-]+)(\\s*-\\s*(?<description>.+))?`)
+        // 1. ITALIAN BEEF BURGER OF THE DAY 150g grilovaného hovězího zapékaného s mozzarellou, bazalková majonéza, nakládané rajče, prosciutto chips, salát, opékaná máslová bulka, hranolky smažené v loji, coleslaw
+        const nameRegex = new RegExp(`\\d+\\.\\s*(\\d+g)?\\s*(?<name>(?:(?!\\d+g)[^-])+)((\\s*\\d+g\\s*)|(\\s*-\\s*))?(?<description>.+)?`)
         const match = ($(el).find(".polozka").text() as string).match(nameRegex)
 
         if (!match) {
