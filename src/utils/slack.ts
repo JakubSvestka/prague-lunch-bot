@@ -77,7 +77,7 @@ async function addSlackReaction(ts: string, emojiName: string) {
     )
 
     if (!res.data.ok) {
-        console.warn(`Failed to add reaction: ${res.data.error}`)
+        console.warn(`Failed to add reaction ${emojiName}: ${res.data.error}`)
     }
 
     return res.data
