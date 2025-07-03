@@ -60,7 +60,11 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
         const price = parseInt(priceText, 10)
 
         if (match.groups?.name) {
-            items.push({ name: match.groups?.name, price, description: match.groups?.description })
+            items.push({
+                name: match.groups?.name,
+                price: isNaN(price) ? 0 : price,
+                description: match.groups?.description
+            })
         }
     })
 

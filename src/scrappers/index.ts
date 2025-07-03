@@ -32,6 +32,13 @@ const scrappers: Scrapper[] = [
         load: fetchFuelBistro,
     },
     {
+        name: "🍛️ Gastro Karlín",
+        url: "https://www.gastrokarlin.cz/",
+        scrapeUrl: "https://www.menicka.cz/4323-gastro-karlin.html",
+        locationUrl: "https://maps.app.goo.gl/Hn9WyxNiLziTtHS37",
+        load: fetchMenicka,
+    },
+    {
         name: "🍔 Peter's pub",
         url: "http://www.peterspub.cz/",
         scrapeUrl: "https://www.menicka.cz/4230-peters-pub.html",
