@@ -12,6 +12,7 @@ const http = axios.create({
         'Connection': 'keep-alive',
         'DNT': '1',
         'Upgrade-Insecure-Requests': '1',
+        'Content-type': 'application/json; charset=utf-8',
     },
 });
 
