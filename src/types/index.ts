@@ -17,5 +17,5 @@ export type Menu = {
 export type MenuItem = {
     name: string;
     description?: string;
-    price: number;
+    price: number|null;
 };

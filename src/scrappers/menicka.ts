@@ -40,7 +40,7 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
         const priceText = $(el).find(".cena").text().replace(/\s*Kč|,-/g, "").trim()
         const price = parseInt(priceText, 10)
 
-        items.push({ name: name, price: isNaN(price) ? 0 : price })
+        items.push({ name: name, price: isNaN(price) ? null : price })
     })
 
     // Main meals
@@ -62,7 +62,7 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
         if (match.groups?.name) {
             items.push({
                 name: match.groups?.name,
-                price: isNaN(price) ? 0 : price,
+                price: isNaN(price) ? null : price,
                 description: match.groups?.description
             })
         }
