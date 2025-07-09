@@ -21,16 +21,19 @@ export async function fetchDvorekKarlin(scrapper: Scrapper): Promise<Menu> {
 
     let buffer: string[] = []
     const ignoredParagraphs = ['Polévky', 'Hlavní jídla', 'TÝDENNÍ SPECIÁLY']
+    let isSoup = false
 
     for (const line of paragraphs) {
         if (ignoredParagraphs.includes(line)) {
+            isSoup = line === 'Polévky'
+
             continue
         }
 
         if (line.match(/^\d+,-$/)) {
             const {name, description} = parse(buffer.join("/"))
             const price = parseInt(line.replace(',-', ''), 10)
-            items.push({ name, price, description })
+            items.push({ name, price, description, isSoup })
             buffer = []
         } else {
             buffer.push(line)

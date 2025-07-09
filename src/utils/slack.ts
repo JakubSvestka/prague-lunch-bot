@@ -110,7 +110,7 @@ const createMenuMessage = (menu: Menu) => {
             fields: [
                 {
                     "type": "mrkdwn",
-                    "text": `<https://www.google.com/search?udm=2&q=${item.name}|*${item.name.trim()}*>${item.price ? ` – ${item.price}\u00A0Kč` : ''}`
+                    "text": `<https://www.google.com/search?udm=2&q=${item.name}|*${item.name.trim()}*>${item.price ? ` – ${item.price}\u00A0Kč` : ''}${item.isSoup ? ' :soup:':''}${item.isVegetarian ? ' :vegan_green_logo:':''}`
                 },
                 item.description ? {
                     "type": "mrkdwn",

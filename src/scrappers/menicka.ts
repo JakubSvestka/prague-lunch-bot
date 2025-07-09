@@ -40,11 +40,11 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
         const priceText = $(el).find(".cena").text().replace(/\s*Kč|,-/g, "").trim()
         const price = parseInt(priceText, 10)
 
-        items.push({ name: name, price: isNaN(price) ? null : price })
+        items.push({ name: name, price: isNaN(price) ? null : price, isSoup: true })
     })
 
     // Main meals
-    dayBlock.find(".jidlo").each((_, el) => {
+    dayBlock.find(".jidlo").each((index, el) => {
         // 1. 150g peper smash beef burger of the day
         // 3. Teriyaki veal poké bowl
         // Beer and bacon ribs tacos - tři kukuřičné tortilly plněné trhaným vepřovým masem z žeber pečených na pivu a slanině s nakládanou červenou cibulí, podá...
@@ -63,7 +63,8 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
             items.push({
                 name: match.groups?.name,
                 price: isNaN(price) ? null : price,
-                description: match.groups?.description
+                description: match.groups?.description,
+                isSoup: index === 0 && price < 100,
             })
         }
     })

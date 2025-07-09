@@ -6,7 +6,7 @@ const printMenusToConsole = (menus: Menu[]) => {
         console.log(`📍 ${menu.locationUrl}\n`);
 
         for (const item of menu.items) {
-            console.log(`• ${item.name.trim()}${item.price ? ` – ${item.price}\u00A0Kč` : ''}`);
+            console.log(`• ${item.price ? ` – ${item.price}\u00A0Kč` : ''}${item.isSoup ? ' 🍲':''}${item.isVegetarian ? ' 🌿':''}`);
             if (item.description) {
                 console.log(`  ${item.description}`);
             }

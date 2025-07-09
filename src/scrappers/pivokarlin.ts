@@ -20,11 +20,12 @@ export async function fetchPivokarlin(scrapper: Scrapper): Promise<Menu> {
 
         $(el)
             .find(".nectar_food_menu_item")
-            .each((_, itemEl) => {
+            .each((index, itemEl) => {
                 const fullName = $(itemEl).find(".item_name h4").text().trim()
                 const name = fullName
                     .replace(/\s[0-9]{1,2}[a-z]?([,][0-9]{1,2}[a-z]?)*$/, "")
                     .replace(/\d+(g|(ks))/, "")
+                    .replace(/VEG\s+/, "")
                     .trim()
                 const priceText = $(itemEl).find(".item_price h4").text().trim().replace(",-", "").trim()
                 const price = parseInt(priceText, 10)
@@ -32,7 +33,9 @@ export async function fetchPivokarlin(scrapper: Scrapper): Promise<Menu> {
                 if (name) {
                     items.push({
                         name,
-                        price
+                        price,
+                        isSoup: index === 0 && price < 100,
+                        isVegetarian: fullName.includes("VEG ")
                     })
                 }
             })

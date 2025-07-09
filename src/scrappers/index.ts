@@ -4,6 +4,8 @@ import {fetchAsiyo} from "./asiyo";
 import {fetchDvorekKarlin} from "./dvorekKarlin";
 import {fetchFuelBistro} from "./fuelBistro";
 import {fetchMenicka} from "./menicka";
+import {fetchJidlovice} from "./jidlovice";
+import dayjs from "../utils/dayjs";
 
 const scrappers: Scrapper[] = [
     {
@@ -37,6 +39,13 @@ const scrappers: Scrapper[] = [
         scrapeUrl: "https://www.menicka.cz/4323-gastro-karlin.html",
         locationUrl: "https://maps.app.goo.gl/Hn9WyxNiLziTtHS37",
         load: fetchMenicka,
+    },
+    {
+        name: "🍽️ Jídlovice",
+        url: "https://www.jidlovice.cz/karlin/",
+        scrapeUrl: `https://www.jidlovice.cz/api/v1/branch/2/menu/${dayjs().format('YYYY-MM-DD')}?include_internal_tags=false`,
+        locationUrl: "https://maps.app.goo.gl/fK3T5j2mh5XpfGQS9",
+        load: fetchJidlovice,
     },
     {
         name: "🍔 Peter's pub",

@@ -13,7 +13,7 @@ export async function fetchFuelBistro(scrapper: Scrapper): Promise<Menu> {
     const $ = cheerio.load(res.data)
     const items: MenuItem[] = []
 
-    $(".jidelak1 .polozka").each((_, el) => {
+    $(".jidelak1 .polozka").each((index, el) => {
         const rawText = $(el).text().trim()
 
         if (excluded.some(e => rawText.includes(e))) {
@@ -27,7 +27,8 @@ export async function fetchFuelBistro(scrapper: Scrapper): Promise<Menu> {
             const price = parseInt(match[2], 10)
             items.push({
                 name,
-                price
+                price,
+                isSoup: index < 3 && price < 100,
             })
         }
     })

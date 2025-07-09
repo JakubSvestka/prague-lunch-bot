@@ -16,6 +16,8 @@ export type Menu = {
 
 export type MenuItem = {
     name: string;
-    description?: string;
+    description?: string|null;
     price: number|null;
+    isVegetarian?: boolean;
+    isSoup?: boolean;
 };
