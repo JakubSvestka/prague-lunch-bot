@@ -29,6 +29,7 @@ export async function fetchFuelBistro(scrapper: Scrapper): Promise<Menu> {
                 name,
                 price,
                 isSoup: index < 3 && price < 100,
+                isVegetarian: name.includes("Vegetarian")
             })
         }
     })
