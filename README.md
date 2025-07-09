@@ -13,3 +13,7 @@ npm run publish # publish menus to Slack
 - Fuel Bistro
 - Dvorek Karlín
 - Asiyo
+- Diego pivní bar
+- Gastro Karlín
+- Peter's pub
+- Jídlovice
