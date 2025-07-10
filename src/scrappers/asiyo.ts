@@ -11,9 +11,7 @@ export async function fetchAsiyo(scrapper: Scrapper): Promise<Menu> {
 
     const lines: string[] = $('.b-c.b-text-c.b-s.b-s-t60.b-s-b60.b-cs.cf')
         .find('h1, h2, h3, p')
-        .map((_, el) => $(el).text()
-            .trim()
-        )
+        .map((_, el) => $(el).text().trim())
         .get()
         .filter(line => line !== '')
 

@@ -1,6 +1,6 @@
-# Lunch in Prague Bot
+# Lunch Prague Bot
 
-Provides lunch menus from favorite spots around office via a Slack channel. The workflow job runs every workday at 10:40 CZ time.
+Provides lunch menus from favorite spots around office via a Slack channel. The workflow job runs every workday around 10:00 CZ time.
 
 ## How to run
 ```shell
