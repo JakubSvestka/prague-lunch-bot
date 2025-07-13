@@ -4,6 +4,11 @@ import dayjs from "../utils/dayjs"
 import axios from "../utils/axios"
 import iconv from "iconv-lite"
 
+const NO_MENU_TEXT = [
+    "Pro tento den nebylo zadáno menu.",
+    "Restaurace má tento den zavřeno.",
+]
+
 export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
     const res = await axios.get(
         scrapper.scrapeUrl as string,
@@ -31,7 +36,7 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
 
     // Soups
     dayBlock.find(".polevka").each((_, el) => {
-        if ($(el).text() === "Pro tento den nebylo zadáno menu.") {
+        if (NO_MENU_TEXT.includes($(el).text())) {
             return
         }
 
@@ -74,6 +79,7 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
     }
 
     return {
+        icon: scrapper.icon,
         name: scrapper.name,
         url: scrapper.url,
         locationUrl: scrapper.locationUrl,

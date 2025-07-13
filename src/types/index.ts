@@ -1,5 +1,6 @@
 export type Scrapper = {
     disabled?: boolean;
+    icon: string;
     name: string;
     url: string;
     scrapeUrl?: string;
@@ -8,6 +9,7 @@ export type Scrapper = {
 };
 
 export type Menu = {
+    icon: string;
     name: string;
     url: string;
     locationUrl: string;

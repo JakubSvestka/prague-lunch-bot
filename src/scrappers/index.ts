@@ -9,12 +9,14 @@ import dayjs from "../utils/dayjs";
 
 const scrappers: Scrapper[] = [
     {
+        icon: "sushi",
         name: "🍣 Asiyo",
         url: "https://www.asiyo.cz/poledni-menu/",
         locationUrl: "https://maps.app.goo.gl/2yzue2EHDx8SSYCa9",
         load: fetchAsiyo,
     },
     {
+        icon: "dart",
         name: "🎯 Diego pivní bar",
         url: "http://www.diegopivnibar.cz/cz/",
         scrapeUrl: "https://www.menicka.cz/7191-diego-pivni-bar.html",
@@ -22,18 +24,21 @@ const scrappers: Scrapper[] = [
         load: fetchMenicka,
     },
     {
+        icon: "house_with_garden",
         name: "🏡 Dvorek Karlín",
         url: "https://www.dvorekkarlin.com/denni-nabidka/",
         locationUrl: "https://maps.app.goo.gl/kivSxE9iMU6rgQj78",
         load: fetchDvorekKarlin,
     },
     {
+        icon: "coffee",
         name: "☕️ Fuel Bistro",
         url: "https://fuelbistro.cz/",
         locationUrl: "https://maps.app.goo.gl/DhmZ42BbGxaiRXW68",
         load: fetchFuelBistro,
     },
     {
+        icon: "curry",
         name: "🍛 Gastro Karlín",
         url: "https://www.gastrokarlin.cz/",
         scrapeUrl: "https://www.menicka.cz/4323-gastro-karlin.html",
@@ -41,6 +46,7 @@ const scrappers: Scrapper[] = [
         load: fetchMenicka,
     },
     {
+        icon: "knife_fork_plate",
         name: "🍽️ Jídlovice",
         url: "https://www.jidlovice.cz/karlin/",
         scrapeUrl: `https://www.jidlovice.cz/api/v1/branch/2/menu/${dayjs().format('YYYY-MM-DD')}?include_internal_tags=false`,
@@ -48,6 +54,7 @@ const scrappers: Scrapper[] = [
         load: fetchJidlovice,
     },
     {
+        icon: "burger",
         name: "🍔 Peter's pub",
         url: "http://www.peterspub.cz/",
         scrapeUrl: "https://www.menicka.cz/4230-peters-pub.html",
@@ -55,6 +62,7 @@ const scrappers: Scrapper[] = [
         load: fetchMenicka,
     },
     {
+        icon: "beer",
         name: "🍺 Pivo Karlín",
         url: "https://www.pivokarlin.cz/",
         locationUrl: "https://maps.app.goo.gl/iWD3jubpzKhbMRFk8",
