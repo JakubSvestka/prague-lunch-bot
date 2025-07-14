@@ -11,7 +11,7 @@ export async function fetchJidlovice(scrapper: Scrapper): Promise<Menu> {
     const menu: JidloviceMenu = res.data
     const items: MenuItem[] = []
 
-    if (!dayjs(menu.menu_date, "YYYY-MM-DD").isToday() || menu.is_closed || !menu.available) {
+    if (!dayjs(menu.menu_date, "YYYY-MM-DD").isToday() || menu.is_closed) {
         throw new Error(`menu not found`)
     }
 
