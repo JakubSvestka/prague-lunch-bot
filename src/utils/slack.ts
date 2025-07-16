@@ -36,8 +36,6 @@ const send = async (menus: Menu[]): Promise<boolean> => {
                 menu.name,
                 threadTs
             )
-
-            await addSlackReaction(threadTs, menu.icon)
         }
 
         console.log("Menus posted in thread successfully.")
