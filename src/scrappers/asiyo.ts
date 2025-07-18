@@ -38,8 +38,14 @@ export async function fetchAsiyo(scrapper: Scrapper): Promise<Menu> {
             const match = line.match(new RegExp(`^\\s*(.+?)\\s+(\\d+,-)`, 'i'))
             if (match) {
                 const [, name, price] = match
+                const priceInt = parseInt(price)
 
-                weeklyItems.push({ name: name, price: parseInt(price), description: lines[++i] });
+                weeklyItems.push({
+                    name,
+                    price: priceInt,
+                    description: lines[++i] ,
+                    isSoup: priceInt < 60
+                });
             }
         }
 

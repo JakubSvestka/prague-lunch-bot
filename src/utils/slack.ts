@@ -104,7 +104,11 @@ const createMenuMessage = (menu: Menu) => {
         ],
     })
 
-    for (const [index, item] of menu.items.entries()) {
+    const sortedItems = menu.items
+        .sort((a, b) => a.isSoup ? -1 : 0)
+        .sort((a, b) => a.isVegetarian ? 1 : 0)
+
+    for (const [index, item] of sortedItems.entries()) {
         blocks.push({
             type: "section",
             fields: [
