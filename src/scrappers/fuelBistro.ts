@@ -6,6 +6,7 @@ const excluded = [
     'Domácí ice tea',
     'Espresso tonic',
     'Pilsner Urquell 0,3l',
+    'Matuška',
 ]
 
 export async function fetchFuelBistro(scrapper: Scrapper): Promise<Menu> {
