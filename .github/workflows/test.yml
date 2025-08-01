@@ -1,4 +1,6 @@
 name: Test post
+permissions:
+  contents: read
 
 on:
   schedule:
