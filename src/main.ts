@@ -3,6 +3,7 @@ import minimist from "minimist"
 import {send} from "./utils/slack";
 import {fetchMenus} from "./scrappers";
 import printMenusToConsole from "./utils/menuPrint";
+import generatePage from "./utils/menuPage";
 
 const env = process.env.NODE_ENV || 'development'
 dotenv.config({ path: `.env.${env}` })
@@ -15,6 +16,12 @@ async function main() {
     if ('post-message' in args) {
         menus.forEach((menu) => console.info(`✅ ${menu.name}: loaded ${menu.items.length} items.`))
         const result = await send(menus)
+
+        process.exit(result ? 0 : 1)
+    } else if ('generate-page' in args) {
+        menus.forEach((menu) => console.info(`✅ ${menu.name}: loaded ${menu.items.length} items.`))
+        const result = await generatePage(menus)
+
         process.exit(result ? 0 : 1)
     } else {
         printMenusToConsole(menus)

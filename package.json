@@ -4,12 +4,13 @@
   "main": "index.js",
   "scripts": {
     "show": "npx ts-node src/main.ts",
+    "page": "npx ts-node src/main.ts --generate-page",
     "post": "npx ts-node src/main.ts --post-message"
   },
   "license": "ISC",
   "description": "Scrape daily restaurant menus and post them to a specified Slack channel",
   "dependencies": {
-    "axios": "^1.10.0",
+    "axios": "1.12.0",
     "axios-retry": "^4.5.0",
     "cheerio": "^1.1.0",
     "dayjs": "^1.11.13",
