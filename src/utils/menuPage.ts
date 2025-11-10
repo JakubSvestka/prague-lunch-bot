@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import {Menu} from "../types";
 
 const generatePage = async (menus: Menu[]): Promise<boolean> => {
-    fs.mkdirSync(path.join(__dirname, "../dist"), { recursive: true });
+    fs.mkdirSync(path.join(__dirname, "../../dist"), { recursive: true });
 
     fs.writeFileSync(
         path.join(__dirname, "../../dist/menus.json"),
