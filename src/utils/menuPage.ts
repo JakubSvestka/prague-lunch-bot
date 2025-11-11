@@ -2,13 +2,49 @@ import fs from "fs";
 import path from "path";
 import dayjs from "dayjs";
 import {Menu} from "../types";
+import {OpenAI} from "openai/client";
 
 const generatePage = async (menus: Menu[]): Promise<boolean> => {
+    const client = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+    });
+
+    async function translate(menus: Menu[]): Promise<Menu[]>
+    {
+        const response = await client.chat.completions.create({
+            model: "gpt-4o-mini",
+            response_format: { type: "json_object" }, // ensures valid JSON
+            messages: [
+                {
+                    role: "system",
+                    content: `
+                        You are a translation engine.
+                        You receive a JSON and must return it in the exact same structure.
+                        Do not add, remove, or rename any fields.
+                        Do not add explanations, notes, or new keys.
+                        Return only valid JSON.
+                    `
+                },
+                {
+                    role: "user",
+                    content: `
+                        Translate only the string values in name and description attributes in this JSON to English.
+                        Keep structure and keys identical.
+                        
+                        ${JSON.stringify({menus}, null, 2)}
+                    `
+                }
+            ],
+        });
+
+        return JSON.parse(response?.choices[0]?.message?.content?.trim() ?? "").menus;
+    }
+
     fs.mkdirSync(path.join(__dirname, "../../dist"), { recursive: true });
 
     fs.writeFileSync(
         path.join(__dirname, "../../dist/menus.json"),
-        JSON.stringify({ date: dayjs().format("YYYY-MM-DD"), menus }, null, 2)
+        JSON.stringify({ date: dayjs().format("YYYY-MM-DD"), menus: {cz: menus, en: await translate(menus)}}, null, 2)
     );
 
     fs.copyFileSync(path.join(__dirname, "../../template/index.html"), path.join(__dirname, "../../dist/index.html"));

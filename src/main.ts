@@ -12,18 +12,21 @@ const args = minimist(process.argv.slice(2))
 
 async function main() {
     const menus = await fetchMenus()
+    menus.forEach((menu) => console.info(`✅ ${menu.name}: loaded ${menu.items.length} items.`))
 
     if ('post-message' in args) {
-        menus.forEach((menu) => console.info(`✅ ${menu.name}: loaded ${menu.items.length} items.`))
         const result = await send(menus)
 
-        process.exit(result ? 0 : 1)
-    } else if ('generate-page' in args) {
-        menus.forEach((menu) => console.info(`✅ ${menu.name}: loaded ${menu.items.length} items.`))
+        !result || process.exit(1)
+    }
+
+    if ('generate-page' in args) {
         const result = await generatePage(menus)
 
-        process.exit(result ? 0 : 1)
-    } else {
+        !result || process.exit(1)
+    }
+
+    if ('console' in args) {
         printMenusToConsole(menus)
     }
 

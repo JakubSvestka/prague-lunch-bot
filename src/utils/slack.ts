@@ -22,7 +22,31 @@ const send = async (menus: Menu[]): Promise<boolean> => {
                     text: "Here are today’s lunch menus from favorite spots around office. Enjoy!\nIs your favorite spot missing? Ping <slack:\/\/user?team=E03D4T4JK63&id=U05HEGVRVCY|me>!"
                 }
             },
-            { type: "divider" },
+            {
+                "type": "actions",
+                "elements": [
+                    {
+                        "type": "button",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Open Menu :flag-cz:",
+                            "emoji": true
+                        },
+                        "url": "https://jakubsvestka.github.io/prague-lunch-bot/?lang=cz",
+                        "action_id": "open_menu_button_cz"
+                    },
+                    {
+                        "type": "button",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Open Menu :uk:",
+                            "emoji": true
+                        },
+                        "url": "https://jakubsvestka.github.io/prague-lunch-bot/?lang=en",
+                        "action_id": "open_menu_button_en"
+                    }
+                ]
+            },
         ]
         const mainMsg = await postSlackMessage(
             headerBlocks,

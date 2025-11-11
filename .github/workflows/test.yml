@@ -31,14 +31,11 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      - name: Post menus to Slack
+      - name: Post menus to Slack and generate static page
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_CHANNEL: ${{ secrets.TEST_SLACK_CHANNEL }}
-        run: npm run post
-
-      - name: Generate static page
-        run: npm run page
+        run: npm run all
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

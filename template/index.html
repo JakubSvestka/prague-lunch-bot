@@ -6,24 +6,44 @@
     <title>Prague Lunch Bot</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body class="bg-yellow-100 min-h-screen flex flex-col items-center font-sans text-gray-800">
+<body class="bg-gradient-to-br from-yellow-50 to-amber-100 min-h-screen flex flex-col items-center font-sans text-gray-800">
 
-<header class="bg-white shadow-md rounded-2xl px-6 py-4 mt-8 flex items-center gap-4">
-    <img src="avatar.png" alt="Prague Lunch Bot logo" class="w-12 h-12">
+<!-- Header -->
+<header class="bg-white/80 backdrop-blur-md shadow-md rounded-3xl px-8 py-5 mt-8 flex items-center gap-5 border border-amber-200 relative">
+    <img src="avatar.png" alt="Prague Lunch Bot logo" class="w-14 h-14 rounded-full border border-amber-300">
     <div>
-        <h1 class="text-2xl font-bold">Prague Lunch Bot</h1>
+        <h1 class="text-3xl font-extrabold text-amber-700">Prague Lunch Bot</h1>
         <p class="text-sm text-gray-500" id="date"></p>
     </div>
 </header>
 
-<section class="max-w-2xl text-center mt-6">
-    <p class="text-lg">Here are today’s lunch menus from favorite spots around the office. Enjoy!</p>
+<!-- Intro -->
+<section class="max-w-2xl text-center mt-6 px-4">
+    <p class="text-lg text-gray-700">
+        Here are today’s lunch menus from favorite spots around the office. <br />🍽️ Enjoy your meal!
+    </p>
 </section>
 
-<main class="max-w-3xl w-full mt-8 space-y-8 px-4" id="menu-list"></main>
+<!-- Language Switch -->
+<div id="lang-switch" class="flex gap-2 bg-amber-50 rounded-xl p-1 mt-5 shadow-sm border border-amber-200">
+    <button id="btn-cz"
+            data-lang="cz"
+            class="lang-btn px-3 py-1.5 rounded-lg text-sm font-semibold transition-all hover:bg-amber-200 bg-amber-200 cursor-pointer">
+        🇨🇿 CZ
+    </button>
+    <button id="btn-en"
+            data-lang="en"
+            class="lang-btn px-3 py-1.5 rounded-lg text-sm font-semibold transition-all hover:bg-amber-200 cursor-pointer">
+        🇬🇧 EN
+    </button>
+</div>
 
-<footer class="mt-auto mb-8 text-gray-400 text-sm">
-    Made with 🥗 by Prague Lunch Bot
+<!-- Menu List -->
+<main class="max-w-5xl w-full mt-10 grid gap-6 px-6" id="menu-list"></main>
+
+<!-- Footer -->
+<footer class="my-5 text-gray-500 text-sm">
+    Made with ♥️ by <span class="font-semibold text-amber-600">Prague Lunch Bot</span>
 </footer>
 
 <script>
@@ -32,33 +52,87 @@
             const res = await fetch("menus.json");
             const data = await res.json();
 
+            // Get query param lang (default to cz)
+            const params = new URLSearchParams(window.location.search);
+            const urlLang = params.get("lang");
+
+            const browserLang =
+                (navigator.languages && navigator.languages.length
+                    ? navigator.languages[0]
+                    : navigator.language) || "en";
+            const isBrowserCzech = browserLang.toLowerCase().startsWith("cs");
+
+            const lang =
+                urlLang === "en"
+                    ? "en"
+                    : urlLang === "cz"
+                        ? "cz"
+                        : isBrowserCzech
+                            ? "cz"
+                            : "en"; // fallback
+
+            const buttons = document.getElementsByClassName('lang-btn');
+
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('bg-amber-200');
+            }
+
+            document.getElementById(`btn-${lang}`).classList.add("bg-amber-200")
+
+            // Update date
             document.getElementById("date").textContent =
-                new Date(data.date).toLocaleDateString("en-GB", { weekday: "long", day: "2-digit", month: "2-digit", year: "numeric" });
+                new Date(data.date).toLocaleDateString("en-GB", {
+                    weekday: "long",
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric"
+                });
 
             const menuList = document.getElementById("menu-list");
+            menuList.innerHTML = ""; // clear
 
-            data.menus.forEach(menu => {
+            data.menus[lang].forEach(menu => {
                 const card = document.createElement("div");
-                card.className = "bg-white rounded-2xl shadow-md p-6";
+                card.className = "bg-white rounded-2xl shadow hover:shadow-lg transition-shadow p-6 border border-amber-100 flex flex-col";
 
                 card.innerHTML = `
-            <h2 class="text-xl font-semibold mb-2">${menu.name}</h2>
-            <p class="text-sm mb-4">
-              <a href="${menu.url}" target="_blank" class="text-blue-600 underline">🌐 Visit web</a> &nbsp;|&nbsp;
-              <a href="${menu.locationUrl}" target="_blank" class="text-blue-600 underline">📍 Location</a>
-            </p>
-            <ul class="space-y-2">
-              ${menu.items.map(i => `
-                <li class="flex justify-between border-b pb-1">
-                  <span>${i.isSoup ? "🥣 " : ""}${i.isVegetarian ? "🌿 " : ""}${i.name}</span>
-                  <span class="font-medium">${i.price ? `${i.price} Kč` : ""}</span>
-                </li>
-              `).join("")}
-            </ul>
-          `;
+        <h2 class="text-xl font-bold mb-3 text-amber-700">${menu.name}</h2>
+        <div class="flex flex-wrap gap-3 text-sm text-gray-600 mb-4">
+          <a href="${menu.url}" target="_blank" class="hover:text-amber-600 flex items-center gap-1">
+            🌐 <span>Visit web</span>
+          </a>
+          <a href="${menu.locationUrl}" target="_blank" class="hover:text-amber-600 flex items-center gap-1">
+            📍 <span>Location</span>
+          </a>
+        </div>
+        <ul class="space-y-2 mt-auto">
+          ${menu.items.map(i => `
+            <li class="border-b border-gray-100 pb-2 hover:bg-gray-50 hover:border-gray-300 transition-colors">
+              <div class="flex justify-between items-center">
+                <span class="flex items-center gap-2 font-medium">
+                  ${i.isSoup ? '<span class="text-amber-500">🥣</span>' : ''}
+                  ${i.isVegetarian ? '<span class="text-green-600">🌿</span>' : ''}
+                  ${i.name}
+                </span>
+                <span class="text-gray-700">${i.price ? `${i.price} Kč` : ''}</span>
+              </div>
+              ${i.description ? `<p class="text-sm text-gray-500 mt-1 ml-6">${i.description}</p>` : ""}
+            </li>
+          `).join("")}
+        </ul>
+      `;
                 menuList.appendChild(card);
             });
+
+            // Language switch button
+            document.getElementById("lang-switch").addEventListener("click", (e) => {
+                const newUrl = new URL(window.location.href);
+                newUrl.searchParams.set("lang", e.target.dataset.lang);
+                window.location.href = newUrl.toString();
+            });
+
         } catch (err) {
+            alert("Failed to load menus 🥲");
             console.error("Failed to load menus:", err);
         }
     }
