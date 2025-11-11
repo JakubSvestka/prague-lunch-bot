@@ -9,6 +9,7 @@ import dayjs from "../utils/dayjs";
 
 const scrappers: Scrapper[] = [
     {
+        id: "asiyo",
         icon: "sushi",
         name: "🍣 Asiyo",
         url: "https://www.asiyo.cz/poledni-menu/",
@@ -16,6 +17,7 @@ const scrappers: Scrapper[] = [
         load: fetchAsiyo,
     },
     {
+        id: "diego_pivni_bar",
         icon: "dart",
         name: "🎯 Diego pivní bar",
         url: "http://www.diegopivnibar.cz/cz/",
@@ -24,6 +26,7 @@ const scrappers: Scrapper[] = [
         load: fetchMenicka,
     },
     {
+        id: "dvorek_karlin",
         icon: "house_with_garden",
         name: "🏡 Dvorek Karlín",
         url: "https://www.dvorekkarlin.com/denni-nabidka/",
@@ -31,6 +34,7 @@ const scrappers: Scrapper[] = [
         load: fetchDvorekKarlin,
     },
     {
+        id: "fuel_bistro",
         icon: "coffee",
         name: "☕️ Fuel Bistro",
         url: "https://fuelbistro.cz/",
@@ -38,6 +42,7 @@ const scrappers: Scrapper[] = [
         load: fetchFuelBistro,
     },
     {
+        id: "gastro_karlin",
         icon: "curry",
         name: "🍛 Gastro Karlín",
         url: "https://www.gastrokarlin.cz/",
@@ -46,6 +51,7 @@ const scrappers: Scrapper[] = [
         load: fetchMenicka,
     },
     {
+        id: "jidlovice",
         icon: "knife_fork_plate",
         name: "🍽️ Jídlovice",
         url: "https://www.jidlovice.cz/karlin/",
@@ -54,6 +60,7 @@ const scrappers: Scrapper[] = [
         load: fetchJidlovice,
     },
     {
+        id: "peters_pub",
         icon: "burger",
         name: "🍔 Peter's pub",
         url: "http://www.peterspub.cz/",
@@ -62,6 +69,7 @@ const scrappers: Scrapper[] = [
         load: fetchMenicka,
     },
     {
+        id: "pivo_karlin",
         icon: "beer",
         name: "🍺 Pivo Karlín",
         url: "https://www.pivokarlin.cz/",

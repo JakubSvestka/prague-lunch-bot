@@ -79,6 +79,7 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
     }
 
     return {
+        id: scrapper.id,
         icon: scrapper.icon,
         name: scrapper.name,
         url: scrapper.url,

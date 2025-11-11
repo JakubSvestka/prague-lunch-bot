@@ -55,7 +55,7 @@
 <script>
     async function loadMenus() {
         try {
-            const res = await fetch(`menus.json?${new Date().toJSON().slice(0, 10)}`);
+            const res = await fetch(`menus.json?${new Date().toJSON().slice(0, 10)}&v=2`);
             const data = await res.json();
 
             // Get query param lang (default to cz)
@@ -101,7 +101,7 @@
 
             data.menus[lang].forEach(menu => {
                 const card = document.createElement("div");
-                card.id = menu.name;
+                card.id = menu.id;
                 card.className = "bg-white rounded-2xl shadow hover:shadow-lg transition-shadow p-6 border border-amber-100 flex flex-col";
 
                 const sortedItems = menu.items.sort((a, b) => {
@@ -140,7 +140,7 @@
 
                 // Add link at top
                 const link = document.createElement("a");
-                link.href = `#${menu.name}`;
+                link.href = `#${menu.id}`;
                 link.textContent = menu.name;
                 link.className = "text-amber-700 hover:underline";
                 linksDiv.appendChild(link);
@@ -150,7 +150,7 @@
             document.getElementById("lang-switch").addEventListener("click", (e) => {
                 const newUrl = new URL(window.location.href);
                 newUrl.searchParams.set("lang", e.target.dataset.lang);
-                window.location.href = newUrl.toString();
+                window.location.href = newUrl.toString().split('#')[0];
             });
 
         } catch (err) {

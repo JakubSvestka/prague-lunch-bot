@@ -64,6 +64,7 @@ export async function fetchAsiyo(scrapper: Scrapper): Promise<Menu> {
     }
 
     return {
+        id: scrapper.id,
         icon: scrapper.icon,
         name: scrapper.name,
         url: scrapper.url,

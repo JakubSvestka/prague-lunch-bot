@@ -1,4 +1,5 @@
 export type Scrapper = {
+    id: string,
     disabled?: boolean;
     icon: string;
     name: string;
@@ -9,6 +10,7 @@ export type Scrapper = {
 };
 
 export type Menu = {
+    id: string;
     icon: string;
     name: string;
     url: string;
