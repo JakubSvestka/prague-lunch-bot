@@ -3,6 +3,7 @@ import path from "path";
 import dayjs from "dayjs";
 import {Menu} from "../types";
 import {OpenAI} from "openai/client";
+import {createHash} from "node:crypto";
 
 const generatePage = async (menus: Menu[]): Promise<boolean> => {
     const client = new OpenAI({
@@ -41,12 +42,20 @@ const generatePage = async (menus: Menu[]): Promise<boolean> => {
 
     fs.mkdirSync(path.join(__dirname, "../../dist"), { recursive: true });
 
+    const menusJson = JSON.stringify({ date: dayjs().format("YYYY-MM-DD"), menus: {cz: menus, en: await translate(menus)}}, null, 2);
     fs.writeFileSync(
         path.join(__dirname, "../../dist/menus.json"),
-        JSON.stringify({ date: dayjs().format("YYYY-MM-DD"), menus: {cz: menus, en: await translate(menus)}}, null, 2)
+        menusJson
     );
 
-    fs.copyFileSync(path.join(__dirname, "../../template/index.html"), path.join(__dirname, "../../dist/index.html"));
+    // Compute hash of the JSON
+    const hash = createHash("sha256").update(menusJson).digest("hex");
+
+    const htmlPath = path.join(__dirname, "../../dist/index.html");
+    let html = fs.readFileSync(htmlPath, "utf-8");
+    html = html.replace("{{HASH}}", hash);
+    fs.writeFileSync(path.join(__dirname, "../../dist/index.html"), html, "utf-8");
+
     fs.copyFileSync(path.join(__dirname, "../../assets/avatar_256px.png"), path.join(__dirname, "../../dist/avatar.png"));
 
     console.log("✅ menus.json and HTML copied to dist");

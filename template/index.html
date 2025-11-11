@@ -55,7 +55,7 @@
 <script>
     async function loadMenus() {
         try {
-            const res = await fetch(`menus.json?${new Date().toJSON().slice(0, 10)}&v=2`);
+            const res = await fetch(`menus.json?v={{HASH}}`);
             const data = await res.json();
 
             // Get query param lang (default to cz)
