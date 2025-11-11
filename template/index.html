@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Prague Lunch Bot</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
@@ -20,7 +20,7 @@
 <!-- Intro -->
 <section class="max-w-2xl text-center mt-6 px-4">
     <p class="text-lg text-gray-700">
-        Here are today’s lunch menus from favorite spots around the office. <br />🍽️ Enjoy your meal!
+        Here are today’s lunch menus from favorite spots around the office. <br/>🍽️ Enjoy your meal!
     </p>
 </section>
 
@@ -49,7 +49,7 @@
 <script>
     async function loadMenus() {
         try {
-            const res = await fetch("menus.json", { cache: "no-store" });
+            const res = await fetch("menus.json", {cache: "no-store"});
             const data = await res.json();
 
             // Get query param lang (default to cz)
@@ -95,32 +95,38 @@
                 const card = document.createElement("div");
                 card.className = "bg-white rounded-2xl shadow hover:shadow-lg transition-shadow p-6 border border-amber-100 flex flex-col";
 
+                const sortedItems = menu.items.sort((a, b) => {
+                    const rank = (item) => item.isSoup ? 0 : item.isVegetarian ? 1 : 2;
+
+                    return rank(a) - rank(b);
+                });
+
                 card.innerHTML = `
-        <h2 class="text-xl font-bold mb-3 text-amber-700">${menu.name}</h2>
-        <div class="flex flex-wrap gap-3 text-sm text-gray-600 mb-4">
-          <a href="${menu.url}" target="_blank" class="hover:text-amber-600 flex items-center gap-1">
-            🌐 <span>Visit web</span>
-          </a>
-          <a href="${menu.locationUrl}" target="_blank" class="hover:text-amber-600 flex items-center gap-1">
-            📍 <span>Location</span>
-          </a>
-        </div>
-        <ul class="space-y-2 mt-auto">
-          ${menu.items.map(i => `
-            <li class="border-b border-gray-100 pb-2 hover:bg-gray-50 hover:border-gray-300 transition-colors">
-              <div class="flex justify-between items-center">
-                <span class="flex items-center gap-2 font-medium">
-                  ${i.isSoup ? '<span class="text-amber-500">🥣</span>' : ''}
-                  ${i.isVegetarian ? '<span class="text-green-600">🌿</span>' : ''}
-                  ${i.name}
-                </span>
-                <span class="text-gray-700">${i.price ? `${i.price} Kč` : ''}</span>
-              </div>
-              ${i.description ? `<p class="text-sm text-gray-500 mt-1 ml-6">${i.description}</p>` : ""}
-            </li>
-          `).join("")}
-        </ul>
-      `;
+                <h2 class="text-xl font-bold mb-3 text-amber-700">${menu.name}</h2>
+                <div class="flex flex-wrap gap-3 text-sm text-gray-600 mb-4">
+                  <a href="${menu.url}" target="_blank" class="hover:text-amber-600 flex items-center gap-1">
+                    🌐 <span>Visit web</span>
+                  </a>
+                  <a href="${menu.locationUrl}" target="_blank" class="hover:text-amber-600 flex items-center gap-1">
+                    📍 <span>Location</span>
+                  </a>
+                </div>
+                <ul class="space-y-2 mt-auto">
+                  ${sortedItems.map(i => `
+                    <li class="border-b border-gray-100 pb-2 hover:bg-gray-50 hover:border-gray-300 transition-colors">
+                      <div class="flex justify-between items-center">
+                        <span class="flex items-center gap-2 font-medium">
+                          ${i.isSoup ? '<span class="text-amber-500">🥣</span>' : ''}
+                          ${i.isVegetarian ? '<span class="text-green-600">🌿</span>' : ''}
+                          ${i.name}
+                        </span>
+                        <span class="text-gray-700">${i.price ? `${i.price} Kč` : ''}</span>
+                      </div>
+                      ${i.description ? `<p class="text-sm text-gray-500 mt-1 ml-6">${i.description}</p>` : ""}
+                    </li>
+                  `).join("")}
+                </ul>
+              `;
                 menuList.appendChild(card);
             });
 

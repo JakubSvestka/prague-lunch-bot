@@ -1,4 +1,3 @@
-import * as cheerio from "cheerio"
 import {Menu, MenuItem, Scrapper} from "../types"
 import dayjs from "../utils/dayjs"
 import axios from "../utils/axios"
@@ -22,7 +21,7 @@ export async function fetchJidlovice(scrapper: Scrapper): Promise<Menu> {
     for (const item of sortedItems) {
         items.push({
             name: `${normalize(item.meal.name)}`,
-            description: item.meal.description ? `${normalize(item.meal.description)}\n*${normalize(item.meal.name_en)}*\n${normalize(item.meal.description_en ?? "")}` : null,
+            description: item.meal.description ? normalize(item.meal.description) : null,
             price: item.meal.price,
             isVegetarian: isVegetarian(item.meal),
             isSoup: item.meal.category_id === SOUP_CATEGORY_ID
