@@ -51,7 +51,7 @@ const generatePage = async (menus: Menu[]): Promise<boolean> => {
     // Compute hash of the JSON
     const hash = createHash("sha256").update(menusJson).digest("hex");
 
-    const htmlPath = path.join(__dirname, "../../templates/index.html");
+    const htmlPath = path.join(__dirname, "../../template/index.html");
     let html = fs.readFileSync(htmlPath, "utf-8");
     html = html.replace("{{HASH}}", hash);
     fs.writeFileSync(path.join(__dirname, "../../dist/index.html"), html, "utf-8");
