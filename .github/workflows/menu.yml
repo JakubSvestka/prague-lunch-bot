@@ -29,8 +29,16 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      - name: Post menus to Slack
+      - name: Post menus to Slack and generate static page
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
-        run: npm run post
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: npm run all
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true

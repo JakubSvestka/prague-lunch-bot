@@ -3,19 +3,22 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "show": "npx ts-node src/main.ts",
-    "post": "npx ts-node src/main.ts --post-message"
+    "show": "npx ts-node src/main.ts --console",
+    "page": "npx ts-node src/main.ts --generate-page",
+    "post": "npx ts-node src/main.ts --post-message",
+    "all": "npx ts-node src/main.ts --post-message --generate-page"
   },
   "license": "ISC",
   "description": "Scrape daily restaurant menus and post them to a specified Slack channel",
   "dependencies": {
-    "axios": "^1.10.0",
+    "axios": "1.12.0",
     "axios-retry": "^4.5.0",
     "cheerio": "^1.1.0",
     "dayjs": "^1.11.13",
     "dotenv": "^17.2.1",
     "iconv-lite": "^0.6.3",
-    "minimist": "^1.2.8"
+    "minimist": "^1.2.8",
+    "openai": "^6.8.1"
   },
   "devDependencies": {
     "@types/cheerio": "^1.0.0",
