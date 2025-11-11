@@ -17,13 +17,13 @@ async function main() {
     if ('post-message' in args) {
         const result = await send(menus)
 
-        !result || process.exit(1)
+        result || process.exit(1)
     }
 
     if ('generate-page' in args) {
         const result = await generatePage(menus)
 
-        !result || process.exit(1)
+        result || process.exit(1)
     }
 
     if ('console' in args) {

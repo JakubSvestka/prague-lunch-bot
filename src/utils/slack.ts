@@ -29,7 +29,7 @@ const send = async (menus: Menu[]): Promise<boolean> => {
                         "type": "button",
                         "text": {
                             "type": "plain_text",
-                            "text": "Open Menu :flag-cz:",
+                            "text": "Open :flag-cz:",
                             "emoji": true
                         },
                         "url": "https://jakubsvestka.github.io/prague-lunch-bot/?lang=cz",
@@ -39,7 +39,7 @@ const send = async (menus: Menu[]): Promise<boolean> => {
                         "type": "button",
                         "text": {
                             "type": "plain_text",
-                            "text": "Open Menu :uk:",
+                            "text": "Open :uk:",
                             "emoji": true
                         },
                         "url": "https://jakubsvestka.github.io/prague-lunch-bot/?lang=en",
