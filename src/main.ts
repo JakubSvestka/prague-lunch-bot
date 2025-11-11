@@ -14,14 +14,14 @@ async function main() {
     const menus = await fetchMenus()
     menus.forEach((menu) => console.info(`✅ ${menu.name}: loaded ${menu.items.length} items.`))
 
-    if ('post-message' in args) {
-        const result = await send(menus)
+    if ('generate-page' in args) {
+        const result = await generatePage(menus)
 
         result || process.exit(1)
     }
 
-    if ('generate-page' in args) {
-        const result = await generatePage(menus)
+    if ('post-message' in args) {
+        const result = await send(menus)
 
         result || process.exit(1)
     }
