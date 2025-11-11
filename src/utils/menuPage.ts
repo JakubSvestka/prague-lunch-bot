@@ -23,17 +23,15 @@ const generatePage = async (menus: Menu[]): Promise<boolean> => {
                         Do not add, remove, or rename any fields.
                         Do not add explanations, notes, or new keys.
                         Return only valid JSON.
+                        
+                        Translate to English only: 
+                         - menus.*.items.*.name
+                         - menus.*.items.*.description
                     `
                 },
                 {
                     role: "user",
-                    content: `
-                        Translate only the string values in name and description in items attributes this JSON to English. 
-                        Do not translate name of a restaurant.
-                        Keep structure and keys identical.
-                        
-                        ${JSON.stringify({menus}, null, 2)}
-                    `
+                    content: JSON.stringify({menus}, null, 2)
                 }
             ],
         });
