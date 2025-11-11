@@ -6,7 +6,12 @@ Provides lunch menus from favorite spots around office via a Slack channel. The 
 ```shell
 npm run show # print menus to the console
 npm run publish # publish menus to Slack
+npm run page # generate an html page
+npm run all # publish + page
 ```
+
+## Environment variables
+See `.env.example`
 
 ## Implemented scrappers
 - Pivo Karlín
