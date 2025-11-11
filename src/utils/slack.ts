@@ -33,7 +33,6 @@ const send = async (menus: Menu[]): Promise<boolean> => {
                             "emoji": true
                         },
                         "url": "https://jakubsvestka.github.io/prague-lunch-bot/?lang=cz",
-                        "action_id": "open_menu_button_cz"
                     },
                     {
                         "type": "button",
@@ -43,7 +42,6 @@ const send = async (menus: Menu[]): Promise<boolean> => {
                             "emoji": true
                         },
                         "url": "https://jakubsvestka.github.io/prague-lunch-bot/?lang=en",
-                        "action_id": "open_menu_button_en"
                     }
                 ]
             },
