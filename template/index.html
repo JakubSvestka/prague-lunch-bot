@@ -38,6 +38,12 @@
     </button>
 </div>
 
+<!-- Restaurant Links -->
+<section class="max-w-2xl mt-6 px-4 text-center">
+    <h2 class="text-lg font-semibold mb-2">Jump to restaurant:</h2>
+    <div id="restaurant-links" class="flex flex-wrap justify-center gap-3"></div>
+</section>
+
 <!-- Menu List -->
 <main class="max-w-5xl w-full mt-10 grid gap-6 px-6" id="menu-list"></main>
 
@@ -89,10 +95,13 @@
                 });
 
             const menuList = document.getElementById("menu-list");
-            menuList.innerHTML = ""; // clear
+            const linksDiv = document.getElementById("restaurant-links");
+            menuList.innerHTML = "";
+            linksDiv.innerHTML = "";
 
             data.menus[lang].forEach(menu => {
                 const card = document.createElement("div");
+                card.id = menu.name;
                 card.className = "bg-white rounded-2xl shadow hover:shadow-lg transition-shadow p-6 border border-amber-100 flex flex-col";
 
                 const sortedItems = menu.items.sort((a, b) => {
@@ -118,16 +127,23 @@
                         <span class="flex items-center gap-2 font-medium">
                           ${i.isSoup ? '<span class="text-amber-500">🥣</span>' : ''}
                           ${i.isVegetarian ? '<span class="text-green-600">🌿</span>' : ''}
-                          ${i.name}
+                          <span class="text-sm md:text-base pr-2">${i.name}</span>
                         </span>
-                        <span class="text-gray-700">${i.price ? `${i.price} Kč` : ''}</span>
+                        <span class="text-gray-700 font-light">${i.price ? `${i.price}&nbsp;Kč` : ''}</span>
                       </div>
-                      ${i.description ? `<p class="text-sm text-gray-500 mt-1 ml-6">${i.description}</p>` : ""}
+                      ${i.description ? `<p class="text-sm md:text-sm text-gray-500 mt-1 ml-6">${i.description}</p>` : ""}
                     </li>
                   `).join("")}
                 </ul>
               `;
                 menuList.appendChild(card);
+
+                // Add link at top
+                const link = document.createElement("a");
+                link.href = `#${menu.name}`;
+                link.textContent = menu.name;
+                link.className = "text-amber-700 hover:underline";
+                linksDiv.appendChild(link);
             });
 
             // Language switch button
