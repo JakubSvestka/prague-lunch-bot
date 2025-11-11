@@ -28,7 +28,8 @@ const generatePage = async (menus: Menu[]): Promise<boolean> => {
                 {
                     role: "user",
                     content: `
-                        Translate only the string values in name and description attributes in this JSON to English.
+                        Translate only the string values in name and description in items attributes this JSON to English. 
+                        Do not translate name of a restaurant.
                         Keep structure and keys identical.
                         
                         ${JSON.stringify({menus}, null, 2)}
