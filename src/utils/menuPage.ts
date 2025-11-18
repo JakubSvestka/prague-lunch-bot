@@ -56,7 +56,13 @@ const generatePage = async (menus: Menu[]): Promise<boolean> => {
     html = html.replace("{{HASH}}", hash);
     fs.writeFileSync(path.join(__dirname, "../../dist/index.html"), html, "utf-8");
 
+    const presentationHtmlPath = path.join(__dirname, "../../template/presentation.html");
+    let presentationHtml = fs.readFileSync(presentationHtmlPath, "utf-8");
+    presentationHtml = presentationHtml.replace("{{HASH}}", hash);
+    fs.writeFileSync(path.join(__dirname, "../../dist/presentation.html"), presentationHtml, "utf-8");
+
     fs.copyFileSync(path.join(__dirname, "../../assets/avatar_256px.png"), path.join(__dirname, "../../dist/avatar.png"));
+    fs.copyFileSync(path.join(__dirname, "../../assets/sky_logo.png"), path.join(__dirname, "../../dist/sky_logo.png"));
 
     console.log("✅ menus.json and HTML copied to dist");
 
