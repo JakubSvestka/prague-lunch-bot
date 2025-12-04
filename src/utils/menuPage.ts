@@ -63,6 +63,7 @@ const generatePage = async (menus: Menu[]): Promise<boolean> => {
 
     fs.copyFileSync(path.join(__dirname, "../../assets/avatar_256px.png"), path.join(__dirname, "../../dist/avatar.png"));
     fs.copyFileSync(path.join(__dirname, "../../assets/sky_logo.png"), path.join(__dirname, "../../dist/sky_logo.png"));
+    fs.copyFileSync(path.join(__dirname, "../../assets/tailwindcss.css"), path.join(__dirname, "../../dist/tailwindcss.css"));
 
     console.log("✅ menus.json and HTML copied to dist");
 
