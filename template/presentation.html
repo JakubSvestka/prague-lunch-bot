@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Prague Lunch Bot</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="./bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <style>
         body {
@@ -18,15 +17,6 @@
         .menu-slide {
             height: 75vh;
             overflow: hidden;
-        }
-        .columns-2 {
-            column-count: 2;
-            column-gap: 3rem;
-        }
-        @media (max-width: 576px) {
-            .columns-2 {
-                column-count: 1;
-            }
         }
     </style>
 </head>
@@ -54,7 +44,7 @@
 </header>
 
 <!-- Slide container -->
-<main id="slides-container" class="container mt-5 px-4"></main>
+<main id="slides-container" class="mt-1 p-5"></main>
 
 <!-- JS -->
 <script>
@@ -115,24 +105,24 @@
             });
 
             let itemHtml = sortedItems.map(i => `
-                <li class="pb-3 mb-3 border-bottom">
+                <div class="col-4 p-3">
                     <div class="d-flex justify-content-between">
-                        <span class="d-flex align-items-center gap-3 fs-4 fw-medium">
+                        <span class="d-flex align-items-center gap-3 fs-2 fw-bold">
                             ${i.isSoup ? '<span style="font-size:2rem;color:#00AEEF;">🥣</span>' : ''}
                             ${i.isVegetarian ? '<span class="text-success" style="font-size:2rem;">🌿</span>' : ''}
                             <span>${i.name}</span>
                         </span>
-                        <span class="fs-4 text-secondary">${i.price ? `${i.price}&nbsp;Kč` : ''}</span>
+                        <span class="fs-2 fw-bolder text-secondary">${i.price ? `${i.price}&nbsp;Kč` : ''}</span>
                     </div>
-                    ${i.description ? `<p class="text-muted mt-2 ms-5 fs-5">${i.description}</p>` : ''}
-                </li>
+                    ${i.description ? `<p class="text-muted mt-2 fs-4">${i.description}</p>` : ''}
+                </div>
             `).join('');
 
             slide.innerHTML = `
                 <h2 class="text-center fw-bold display-5 mb-4" style="color:#0072CE;">${menu.name}</h2>
-                <ul class="fs-4 columns-2">
+                <div class="row">
                     ${itemHtml}
-                </ul>
+                </div>
             `;
 
             container.appendChild(slide);

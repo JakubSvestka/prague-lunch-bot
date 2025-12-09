@@ -42,7 +42,7 @@ const generatePage = async (menus: Menu[]): Promise<boolean> => {
 
     fs.mkdirSync(path.join(__dirname, "../../dist"), { recursive: true });
 
-    const menusJson = JSON.stringify({ date: dayjs().format("YYYY-MM-DD"), menus: {cz: menus, en: await translate(menus)}}, null, 2);
+    const menusJson = JSON.stringify({ date: dayjs().format("YYYY-MM-DD"), menus: {cz: menus, en: menus}}, null, 2);
     fs.writeFileSync(
         path.join(__dirname, "../../dist/menus.json"),
         menusJson
@@ -63,7 +63,6 @@ const generatePage = async (menus: Menu[]): Promise<boolean> => {
 
     fs.copyFileSync(path.join(__dirname, "../../assets/avatar_256px.png"), path.join(__dirname, "../../dist/avatar.png"));
     fs.copyFileSync(path.join(__dirname, "../../assets/sky_logo.png"), path.join(__dirname, "../../dist/sky_logo.png"));
-    fs.copyFileSync(path.join(__dirname, "../../assets/bootstrap.min.css"), path.join(__dirname, "../../dist/bootstrap.min.css"));
 
     console.log("✅ menus.json and HTML copied to dist");
 
