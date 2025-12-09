@@ -42,7 +42,7 @@ const generatePage = async (menus: Menu[]): Promise<boolean> => {
 
     fs.mkdirSync(path.join(__dirname, "../../dist"), { recursive: true });
 
-    const menusJson = JSON.stringify({ date: dayjs().format("YYYY-MM-DD"), menus: {cz: menus, en: menus}}, null, 2);
+    const menusJson = JSON.stringify({ date: dayjs().format("YYYY-MM-DD"), menus: {cz: menus, en: await translate(menus)}}, null, 2);
     fs.writeFileSync(
         path.join(__dirname, "../../dist/menus.json"),
         menusJson
