@@ -24,4 +24,5 @@ export type MenuItem = {
     price: number|null;
     isVegetarian?: boolean;
     isSoup?: boolean;
+    hideInPresentation?: boolean;
 };

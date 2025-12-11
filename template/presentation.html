@@ -104,19 +104,24 @@
                 return rank(a) - rank(b);
             });
 
-            let itemHtml = sortedItems.map(i => `
-                <div class="col-4 p-3">
-                    <div class="d-flex justify-content-between">
-                        <span class="d-flex align-items-center gap-3 fs-2 fw-bold">
-                            ${i.isSoup ? '<span style="font-size:2rem;color:#00AEEF;">🥣</span>' : ''}
-                            ${i.isVegetarian ? '<span class="text-success" style="font-size:2rem;">🌿</span>' : ''}
-                            <span>${i.name}</span>
-                        </span>
-                        <span class="fs-2 fw-bolder text-secondary">${i.price ? `${i.price}&nbsp;Kč` : ''}</span>
+            let colClass = sortedItems.length > 6 ? "col-4" : "col-6";
+            let descriptionMaxLength = 100;
+
+            let itemHtml = sortedItems
+                .filter(i => i?.hideInPresentation !== true)
+                .map(i => `
+                    <div class="${colClass} p-3">
+                        <div class="d-flex justify-content-between">
+                            <span class="d-flex align-items-center gap-3 fs-3 fw-bold">
+                                ${i.isSoup ? '<span style="font-size:2rem;color:#00AEEF;">🥣</span>' : ''}
+                                ${i.isVegetarian ? '<span class="text-success" style="font-size:2rem;">🌿</span>' : ''}
+                                <span>${i.name}</span>
+                            </span>
+                            <span class="fs-2 fw-bolder text-secondary">${i.price ? `${i.price}&nbsp;Kč` : ''}</span>
+                        </div>
+                        ${i.description ? `<p class="text-muted mt-2 fs-4">${i.description.length > descriptionMaxLength ? i.description.substring(0, descriptionMaxLength) + '…' : i.description}</p>` : ''}
                     </div>
-                    ${i.description ? `<p class="text-muted mt-2 fs-4">${i.description}</p>` : ''}
-                </div>
-            `).join('');
+                `).join('');
 
             slide.innerHTML = `
                 <h2 class="text-center fw-bold display-5 mb-4" style="color:#0072CE;">${menu.name}</h2>

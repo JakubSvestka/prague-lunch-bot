@@ -24,7 +24,8 @@ export async function fetchJidlovice(scrapper: Scrapper): Promise<Menu> {
             description: item.meal.description ? normalize(item.meal.description) : null,
             price: item.meal.price,
             isVegetarian: isVegetarian(item.meal),
-            isSoup: item.meal.category_id === SOUP_CATEGORY_ID
+            isSoup: item.meal.category_id === SOUP_CATEGORY_ID,
+            hideInPresentation: !item.is_from_main_menu
         })
     }
 
