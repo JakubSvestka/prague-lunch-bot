@@ -1,0 +1,679 @@
+{
+  "date": "2025-12-12",
+  "menus": {
+    "cz": [
+      {
+        "id": "asiyo",
+        "icon": "sushi",
+        "name": "🍣 Asiyo",
+        "url": "https://www.asiyo.cz/poledni-menu/",
+        "locationUrl": "https://maps.app.goo.gl/2yzue2EHDx8SSYCa9",
+        "items": [
+          {
+            "name": "COM RANG",
+            "price": 205,
+            "description": "Smažená rýže s hovězím masem, kimchi. Červená cibule, jarní cibulka, smažená cibulka, sójová omáčka, rybí omáčka, ústřicová omáčka, chilli."
+          },
+          {
+            "name": "DIM SUM KNEDLÍČKY",
+            "price": 105,
+            "description": "Knedlíčky plněné krevetami (3ks), připravované na páře. Podáváme se sójovou omáčkou.",
+            "isSoup": false
+          },
+          {
+            "name": "BAKHINSKÁ POLÉVKA",
+            "price": 50,
+            "description": "Vývar s kuřecím masem, vajíčko, paprika, houby, mrkev.",
+            "isSoup": true
+          },
+          {
+            "name": "LON KHO TAU",
+            "price": 220,
+            "description": "Pečený vepřový bůček, vejce, kokosové mléko, sójová omáčka, chilli. Podáváme s jasmínovou rýží.",
+            "isSoup": false
+          }
+        ]
+      },
+      {
+        "id": "diego_pivni_bar",
+        "icon": "dart",
+        "name": "🎯 Diego pivní bar",
+        "url": "http://www.diegopivnibar.cz/cz/",
+        "locationUrl": "https://maps.app.goo.gl/WaBWra3W2ebzZ73p8",
+        "items": [
+          {
+            "name": "Krém z pečené mrkve se zázvorem a koriandrem",
+            "price": 45,
+            "isSoup": true
+          },
+          {
+            "name": "Quesadilla pollo tinga ",
+            "price": 189,
+            "description": "tortilla plněná pečeným kuřecím masem s chipotle papričkami s grilovanou zeleninou, sýrem podává se s nachos a salsou mexicana",
+            "isSoup": false
+          },
+          {
+            "name": "Chipotle honey ribs ",
+            "price": 205,
+            "description": "pečená vepřová žebra na medu a chipotle papričkách, podává se s hranolkami a salátem coleslaw",
+            "isSoup": false
+          },
+          {
+            "name": "Burrito de guacamole ",
+            "price": 179,
+            "description": "tortilla plněná sýrem, fazolemi, a naší salsou z avokáda guacamole, podává se s nachos a salsou mexicana",
+            "isSoup": false
+          }
+        ]
+      },
+      {
+        "id": "dvorek_karlin",
+        "icon": "house_with_garden",
+        "name": "🏡 Dvorek Karlín",
+        "url": "https://www.dvorekkarlin.com/denni-nabidka/",
+        "locationUrl": "https://maps.app.goo.gl/kivSxE9iMU6rgQj78",
+        "items": [
+          {
+            "name": "Hovězí vývar",
+            "price": 70,
+            "description": "maso, nudle, zelenina",
+            "isSoup": true
+          },
+          {
+            "name": "Hráškový krém",
+            "price": 75,
+            "description": "máslo, brambory, smetana, česnek, slanina",
+            "isSoup": true
+          },
+          {
+            "name": "Kuřecí kung pao",
+            "price": 225,
+            "description": "jasmínová rýže, kuřecí prso, paprika, červená cibule, sójová omáčka, čínské víno, arašídy, jarní cibulka, chilli, koriandr",
+            "isSoup": false
+          },
+          {
+            "name": "Plněné bramborové knedlíky",
+            "price": 225,
+            "description": "uzená krkovice, česnek, kmín, kysané zelí, smažená cibulka, petrželka",
+            "isSoup": false
+          },
+          {
+            "name": "Hovězí guláš",
+            "price": 229,
+            "description": "náš karlovarský knedlík, hovězí krk, rajský protlak, česnek, pivo, majoránka, křen, cibule, petrželka",
+            "isSoup": false
+          },
+          {
+            "name": "Vepřová panenka sous-vide na salátu",
+            "price": 219,
+            "description": "mix salátů, pečené grenaille, cherry rajčata, balsamico dresink, mix ořechů",
+            "isSoup": false
+          },
+          {
+            "name": "Smažený sýr gouda",
+            "price": 215,
+            "description": "vařené grenaille, zeleninový salátek, naše tatarka, pažitka",
+            "isSoup": false
+          },
+          {
+            "name": "Swiss burger s hovězím masem, raclette sýrem a karamelizovanou cibulkou",
+            "price": 395,
+            "description": "máslová bulka, 200g hovězí mletý karabáček, špek, slanina, náš kečup, omáčka s kyselou okurkou, hranolky",
+            "isSoup": false
+          },
+          {
+            "name": "Salát s krémovým kozím sýrem, fíkem a parmskou šunkou",
+            "price": 295,
+            "description": "rukola, polníček, mix salát, parmská šunka, pečená dýně, cherry rajče, balsamico, olivový olej, opečený italský chléb",
+            "isSoup": false
+          },
+          {
+            "name": "Francouzská čokoládová pěna s borůvkami a ořechovým crumble",
+            "price": 180,
+            "description": "hořká čokoláda, smetana, vejce, rum, máta",
+            "isSoup": false
+          }
+        ]
+      },
+      {
+        "id": "gastro_karlin",
+        "icon": "curry",
+        "name": "🍛 Gastro Karlín",
+        "url": "https://www.gastrokarlin.cz/",
+        "locationUrl": "https://maps.app.goo.gl/Hn9WyxNiLziTtHS37",
+        "items": [
+          {
+            "name": "Selská",
+            "price": null,
+            "isSoup": true
+          },
+          {
+            "name": "Kuřecí prsa na paprice, houskový knedlík / jasmínová rýže",
+            "price": null,
+            "isSoup": false
+          },
+          {
+            "name": "Vepřový kotlet na pepři s restovanou cibulkou, opečený brambor",
+            "price": null,
+            "isSoup": false
+          },
+          {
+            "name": "Smažený kuřecí špíz se sýrem, brambor, tatarská omáčka",
+            "price": null,
+            "isSoup": false
+          },
+          {
+            "name": "Zapečené flíčky s uzeným masem, okurka",
+            "price": null,
+            "isSoup": false
+          }
+        ]
+      },
+      {
+        "id": "jidlovice",
+        "icon": "knife_fork_plate",
+        "name": "🍽️ Jídlovice",
+        "url": "https://www.jidlovice.cz/karlin/",
+        "locationUrl": "https://maps.app.goo.gl/fK3T5j2mh5XpfGQS9",
+        "items": [
+          {
+            "name": "Kuřecí vývar s játrovou rýží",
+            "description": "s pečenou zeleninou a libečkem",
+            "price": 59,
+            "isVegetarian": false,
+            "isSoup": true,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Italská tomatová s bazalkovým pestem",
+            "description": null,
+            "price": 59,
+            "isVegetarian": true,
+            "isSoup": true,
+            "hideInPresentation": true
+          },
+          {
+            "name": "Kuřecí fajita",
+            "description": "s grilovanou zeleninou a fazolemi s pšeničnou tortillou, avokádovým guacamole, dipem ze zakysané smetany a listy koriandru",
+            "price": 189,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Vepřová panenka",
+            "description": "se zelenými fazolkami se slaninou, americkým bramborem a pepřovou omáčkou",
+            "price": 199,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Vepřový řízek tonkatsu",
+            "description": "v panko strouhance s koriandrovým pyré, marinovanou zeleninou a asijskou majonézou",
+            "price": 185,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Kuřecí řízek",
+            "description": "s naším bramborovým salátem nebo bramborovou kaší",
+            "price": 179,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Hovězí svíčková omáčka",
+            "description": "s brusinkami a smetanou a naším houskovým knedlíkem",
+            "price": 195,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Holandský řízek",
+            "description": "s naším bramborovým salátem nebo bramborovou kaší",
+            "price": 179,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Maďarský guláš s pečenými paprikami",
+            "description": "červenou cibulkou, naším houskovým knedlíkem/rýží",
+            "price": 189,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Kuřecí roláda plněná houbovou nádivkou",
+            "description": "s domácími špeclemi s vypraženým špekem, krémovou omáčkou z lesních hříbků, lanýžovým olejem a baby špenátem",
+            "price": 185,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Penne s telecím ragú",
+            "description": "s hoblinkami parmazánu, listy rukoly a bazalkovým pestem",
+            "price": 185,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Karotkové placky s červenou čočkou a kari madras",
+            "description": "s pečenými brambory grenaille, batáty a červenou řepou s pažitkovým dipem a listy rukoly",
+            "price": 179,
+            "isVegetarian": true,
+            "isSoup": false,
+            "hideInPresentation": false
+          }
+        ]
+      },
+      {
+        "id": "pivo_karlin",
+        "icon": "beer",
+        "name": "🍺 Pivo Karlín",
+        "url": "https://www.pivokarlin.cz/",
+        "locationUrl": "https://maps.app.goo.gl/iWD3jubpzKhbMRFk8",
+        "items": [
+          {
+            "name": "Rajská polévka s bazalkovým pestem",
+            "price": 55,
+            "isSoup": true,
+            "isVegetarian": false
+          },
+          {
+            "name": "Medailonky z panenky, krokety s lanýžovým olejem a parmazánem",
+            "price": 275,
+            "isSoup": false,
+            "isVegetarian": false
+          },
+          {
+            "name": "Grilované kuřecí prso, ratatouille s rajčaty a tymiánem, zakysaná smetana",
+            "price": 199,
+            "isSoup": false,
+            "isVegetarian": false
+          },
+          {
+            "name": "Ovarové koleno, hořčicová omáčka s medem, brambory s kroupami a majoránkou",
+            "price": 199,
+            "isSoup": false,
+            "isVegetarian": false
+          },
+          {
+            "name": "Kuřecí wok s kešu ořechy a zeleninou, jasmínová rýže, mungo klíčky",
+            "price": 199,
+            "isSoup": false,
+            "isVegetarian": false
+          },
+          {
+            "name": "Mrkvové karbanátky, smetanová bramborová kaše, tahini jogurt",
+            "price": 198,
+            "isSoup": false,
+            "isVegetarian": true
+          },
+          {
+            "name": "Sekaná v housce, sázené vejce, zelný salát s křenem, brambora",
+            "price": 199,
+            "isSoup": false,
+            "isVegetarian": false
+          },
+          {
+            "name": "Salát coleslaw",
+            "price": 45,
+            "isSoup": false,
+            "isVegetarian": false
+          },
+          {
+            "name": "Kokosová buchta",
+            "price": 45,
+            "isSoup": false,
+            "isVegetarian": false
+          }
+        ]
+      }
+    ],
+    "en": [
+      {
+        "id": "asiyo",
+        "icon": "sushi",
+        "name": "🍣 Asiyo",
+        "url": "https://www.asiyo.cz/poledni-menu/",
+        "locationUrl": "https://maps.app.goo.gl/2yzue2EHDx8SSYCa9",
+        "items": [
+          {
+            "name": "FRIED RICE",
+            "price": 205,
+            "description": "Fried rice with beef, kimchi. Red onion, spring onion, fried onion, soy sauce, fish sauce, oyster sauce, chili."
+          },
+          {
+            "name": "DIM SUM DUMPLINGS",
+            "price": 105,
+            "description": "Dumplings filled with shrimp (3 pcs), steamed. Served with soy sauce.",
+            "isSoup": false
+          },
+          {
+            "name": "BAKHINSKÁ SOUP",
+            "price": 50,
+            "description": "Broth with chicken, egg, bell pepper, mushrooms, carrot.",
+            "isSoup": true
+          },
+          {
+            "name": "LON KHO TAU",
+            "price": 220,
+            "description": "Roasted pork belly, egg, coconut milk, soy sauce, chili. Served with jasmine rice.",
+            "isSoup": false
+          }
+        ]
+      },
+      {
+        "id": "diego_pivni_bar",
+        "icon": "dart",
+        "name": "🎯 Diego Beer Bar",
+        "url": "http://www.diegopivnibar.cz/cz/",
+        "locationUrl": "https://maps.app.goo.gl/WaBWra3W2ebzZ73p8",
+        "items": [
+          {
+            "name": "Cream of Roasted Carrot with Ginger and Coriander",
+            "price": 45,
+            "isSoup": true
+          },
+          {
+            "name": "Quesadilla Pollo Tinga",
+            "price": 189,
+            "description": "Tortilla filled with roasted chicken with chipotle peppers and grilled vegetables, cheese served with nachos and salsa mexicana.",
+            "isSoup": false
+          },
+          {
+            "name": "Chipotle Honey Ribs",
+            "price": 205,
+            "description": "Roasted pork ribs in honey and chipotle peppers, served with fries and coleslaw.",
+            "isSoup": false
+          },
+          {
+            "name": "Guacamole Burrito",
+            "price": 179,
+            "description": "Tortilla filled with cheese, beans, and our avocado guacamole salsa, served with nachos and salsa mexicana.",
+            "isSoup": false
+          }
+        ]
+      },
+      {
+        "id": "dvorek_karlin",
+        "icon": "house_with_garden",
+        "name": "🏡 Dvorek Karlín",
+        "url": "https://www.dvorekkarlin.com/denni-nabidka/",
+        "locationUrl": "https://maps.app.goo.gl/kivSxE9iMU6rgQj78",
+        "items": [
+          {
+            "name": "Beef Broth",
+            "price": 70,
+            "description": "Meat, noodles, vegetables",
+            "isSoup": true
+          },
+          {
+            "name": "Pea Cream",
+            "price": 75,
+            "description": "Butter, potatoes, cream, garlic, bacon",
+            "isSoup": true
+          },
+          {
+            "name": "Chicken Kung Pao",
+            "price": 225,
+            "description": "Jasmine rice, chicken breast, bell pepper, red onion, soy sauce, Chinese wine, peanuts, spring onion, chili, coriander",
+            "isSoup": false
+          },
+          {
+            "name": "Stuffed Potato Dumplings",
+            "price": 225,
+            "description": "Smoked pork neck, garlic, caraway, sauerkraut, fried onion, parsley",
+            "isSoup": false
+          },
+          {
+            "name": "Beef Goulash",
+            "price": 229,
+            "description": "Our Karlovy Vary dumpling, beef neck, tomato paste, garlic, beer, marjoram, horseradish, onion, parsley",
+            "isSoup": false
+          },
+          {
+            "name": "Pork Tenderloin Sous-Vide on Salad",
+            "price": 219,
+            "description": "Mixed salad, roasted grenaille, cherry tomatoes, balsamic dressing, mixed nuts",
+            "isSoup": false
+          },
+          {
+            "name": "Fried Gouda Cheese",
+            "price": 215,
+            "description": "Boiled grenaille, vegetable salad, our tartar sauce, chives",
+            "isSoup": false
+          },
+          {
+            "name": "Swiss Burger with Beef, Raclette Cheese and Caramelized Onion",
+            "price": 395,
+            "description": "Butter bun, 200g ground beef patty, bacon, our ketchup, sauce with pickles, fries",
+            "isSoup": false
+          },
+          {
+            "name": "Salad with Creamy Goat Cheese, Fig, and Parma Ham",
+            "price": 295,
+            "description": "Arugula, lamb’s lettuce, mixed salad, Parma ham, roasted pumpkin, cherry tomato, balsamic, olive oil, toasted Italian bread",
+            "isSoup": false
+          },
+          {
+            "name": "French Chocolate Mousse with Blueberries and Nut Crumble",
+            "price": 180,
+            "description": "Dark chocolate, cream, egg, rum, mint",
+            "isSoup": false
+          }
+        ]
+      },
+      {
+        "id": "gastro_karlin",
+        "icon": "curry",
+        "name": "🍛 Gastro Karlín",
+        "url": "https://www.gastrokarlin.cz/",
+        "locationUrl": "https://maps.app.goo.gl/Hn9WyxNiLziTtHS37",
+        "items": [
+          {
+            "name": "Peasant",
+            "price": null,
+            "isSoup": true
+          },
+          {
+            "name": "Chicken Breast with Paprika, Bread Dumpling / Jasmine Rice",
+            "price": null,
+            "isSoup": false
+          },
+          {
+            "name": "Pork Chop with Pepper and Sautéed Onions, Roasted Potato",
+            "price": null,
+            "isSoup": false
+          },
+          {
+            "name": "Fried Chicken Skewer with Cheese, Potato, Tartar Sauce",
+            "price": null,
+            "isSoup": false
+          },
+          {
+            "name": "Baked Flecks with Smoked Meat, Cucumber",
+            "price": null,
+            "isSoup": false
+          }
+        ]
+      },
+      {
+        "id": "jidlovice",
+        "icon": "knife_fork_plate",
+        "name": "🍽️ Jídlovice",
+        "url": "https://www.jidlovice.cz/karlin/",
+        "locationUrl": "https://maps.app.goo.gl/fK3T5j2mh5XpfGQS9",
+        "items": [
+          {
+            "name": "Chicken Broth with Liver Rice",
+            "description": "with roasted vegetables and lovage",
+            "price": 59,
+            "isVegetarian": false,
+            "isSoup": true,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Italian Tomato with Basil Pesto",
+            "description": null,
+            "price": 59,
+            "isVegetarian": true,
+            "isSoup": true,
+            "hideInPresentation": true
+          },
+          {
+            "name": "Chicken Fajita",
+            "description": "with grilled vegetables and beans with wheat tortilla, avocado guacamole, sour cream dip, and coriander leaves",
+            "price": 189,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Pork Tenderloin",
+            "description": "with green beans with bacon, American potato and pepper sauce",
+            "price": 199,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Pork Schnitzel Tonkatsu",
+            "description": "in panko breadcrumbs with coriander puree, marinated vegetables, and Asian mayonnaise",
+            "price": 185,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Chicken Schnitzel",
+            "description": "with our potato salad or mashed potatoes",
+            "price": 179,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Beef Svíčková Sauce",
+            "description": "with cranberries and cream and our bread dumpling",
+            "price": 195,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Dutch Schnitzel",
+            "description": "with our potato salad or mashed potatoes",
+            "price": 179,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Hungarian Goulash with Roasted Peppers",
+            "description": "with red onion, our bread dumpling/rice",
+            "price": 189,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Chicken Roll Stuffed with Mushroom Filling",
+            "description": "with homemade spätzle with crispy bacon, creamy sauce from forest mushrooms, truffle oil, and baby spinach",
+            "price": 185,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Penne with Veal Ragout",
+            "description": "with shavings of parmesan, arugula leaves, and basil pesto",
+            "price": 185,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false
+          },
+          {
+            "name": "Carrot Fritters with Red Lentils and Madras Curry",
+            "description": "with roasted grenaille potatoes, sweet potatoes, and beetroot with chive dip and arugula leaves",
+            "price": 179,
+            "isVegetarian": true,
+            "isSoup": false,
+            "hideInPresentation": false
+          }
+        ]
+      },
+      {
+        "id": "pivo_karlin",
+        "icon": "beer",
+        "name": "🍺 Pivo Karlín",
+        "url": "https://www.pivokarlin.cz/",
+        "locationUrl": "https://maps.app.goo.gl/iWD3jubpzKhbMRFk8",
+        "items": [
+          {
+            "name": "Tomato Soup with Basil Pesto",
+            "price": 55,
+            "isSoup": true,
+            "isVegetarian": false
+          },
+          {
+            "name": "Tenderloin Medallions, Croquettes with Truffle Oil and Parmesan",
+            "price": 275,
+            "isSoup": false,
+            "isVegetarian": false
+          },
+          {
+            "name": "Grilled Chicken Breast, Ratatouille with Tomatoes and Thyme, Sour Cream",
+            "price": 199,
+            "isSoup": false,
+            "isVegetarian": false
+          },
+          {
+            "name": "Pork Hock, Mustard Sauce with Honey, Potatoes with Barley and Marjoram",
+            "price": 199,
+            "isSoup": false,
+            "isVegetarian": false
+          },
+          {
+            "name": "Chicken Wok with Cashews and Vegetables, Jasmine Rice, Mung Bean Sprouts",
+            "price": 199,
+            "isSoup": false,
+            "isVegetarian": false
+          },
+          {
+            "name": "Carrot Patties, Creamy Mashed Potatoes, Tahini Yogurt",
+            "price": 198,
+            "isSoup": false,
+            "isVegetarian": true
+          },
+          {
+            "name": "Meatloaf in a Bun, Fried Egg, Cabbage Salad with Horseradish, Potato",
+            "price": 199,
+            "isSoup": false,
+            "isVegetarian": false
+          },
+          {
+            "name": "Coleslaw Salad",
+            "price": 45,
+            "isSoup": false,
+            "isVegetarian": false
+          },
+          {
+            "name": "Coconut Cake",
+            "price": 45,
+            "isSoup": false,
+            "isVegetarian": false
+          }
+        ]
+      }
+    ]
+  }
+}
