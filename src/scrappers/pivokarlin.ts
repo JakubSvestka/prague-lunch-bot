@@ -24,7 +24,7 @@ export async function fetchPivokarlin(scrapper: Scrapper): Promise<Menu> {
                 const fullName = $(itemEl).find(".item_name h4").text().trim()
                 const name = fullName
                     .replace("/\*/g", "")
-                    .replace(/\s[0-9]{1,2}[a-z]?([,][0-9]{1,2}[a-z]?)*$/, "")
+                    .replace(/\s\*?[0-9]{1,2}[a-z]?([,][0-9]{1,2}[a-z]?)*$/, "")
                     .replace(/\d+(g|(ks))/, "")
                     .replace(/VEG\s+/, "")
                     .trim()

@@ -122,12 +122,12 @@
                 </div>
                 <ul class="space-y-2 mt-auto">
                   ${sortedItems.map(i => `
-                    <li class="border-b border-gray-100 pb-2 hover:bg-gray-50 hover:border-gray-300 transition-colors">
+                    <li class="border-b border-gray-100 pb-2 hover:bg-gray-50 hover:border-gray-300 transition-colors group">
                       <div class="flex justify-between items-center">
                         <span class="flex items-center gap-2 font-medium">
                           ${i.isSoup ? '<span class="text-amber-500">🥣</span>' : ''}
                           ${i.isVegetarian ? '<span class="text-green-600">🌿</span>' : ''}
-                          <span class="text-sm md:text-base pr-2">${i.name}</span>
+                          <span class="text-sm md:text-base pr-2">${i.name} <a href="https://www.google.com/search?udm=2&q=${i.name}" class="hidden group-hover:inline" target="_blank">📷</a></span>
                         </span>
                         <span class="text-gray-700 font-light">${i.price ? `${i.price}&nbsp;Kč` : ''}</span>
                       </div>
