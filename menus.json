@@ -1,0 +1,131 @@
+{
+  "date": "2025-12-26",
+  "menus": {
+    "cz": [
+      {
+        "id": "asiyo",
+        "icon": "sushi",
+        "name": "🍣 Asiyo",
+        "url": "https://www.asiyo.cz/poledni-menu/",
+        "locationUrl": "https://maps.app.goo.gl/2yzue2EHDx8SSYCa9",
+        "items": [
+          {
+            "name": "KUNG PAO",
+            "price": 220,
+            "description": "Kuřecí kousky v těstíčku, paprika, pórek, jarní cibulka, červená cibule, zázvor, česnek, sójová omáčka, ústřicová omáčka, mirin, kešu, arašídy. Podáváme s jasmínovou rýží."
+          },
+          {
+            "name": "TOM CHIEN XU",
+            "price": 110,
+            "description": "Krevety obalované v těstíčku (2 ks). Podáváme s omáčkou sweet-chilli.",
+            "isSoup": false
+          },
+          {
+            "name": "PHO BO",
+            "price": 50,
+            "description": "Silný vývar s hovězím masem, rýžové nudle, koriandr, jarní cibulka, červená cibule, limetka, česnek a chilli.",
+            "isSoup": true
+          },
+          {
+            "name": "BIBIMBAP",
+            "price": 205,
+            "description": "Marinované hovězí plátky, korejská chilli omáčka, vejce, kimchi, mrkev, sójové klíčky, okurka, sezam. Podáváme s jasmínovou rýží.",
+            "isSoup": false
+          }
+        ]
+      },
+      {
+        "id": "diego_pivni_bar",
+        "icon": "dart",
+        "name": "🎯 Diego pivní bar",
+        "url": "http://www.diegopivnibar.cz/cz/",
+        "locationUrl": "https://maps.app.goo.gl/WaBWra3W2ebzZ73p8",
+        "items": [
+          {
+            "name": "Dnes máme otevřeno od 16",
+            "price": null,
+            "description": "24",
+            "isSoup": false
+          }
+        ]
+      },
+      {
+        "id": "peters_pub",
+        "icon": "burger",
+        "name": "🍔 Peter's pub",
+        "url": "http://www.peterspub.cz/",
+        "locationUrl": "https://maps.app.goo.gl/b6dyMJXK1q8VEG897",
+        "items": [
+          {
+            "name": "Dnes máme zavřeno, děkujeme za pochopení. Těšíme se na Vás opět v novém roce. ",
+            "price": null,
+            "isSoup": false
+          }
+        ]
+      }
+    ],
+    "en": [
+      {
+        "id": "asiyo",
+        "icon": "sushi",
+        "name": "🍣 Asiyo",
+        "url": "https://www.asiyo.cz/poledni-menu/",
+        "locationUrl": "https://maps.app.goo.gl/2yzue2EHDx8SSYCa9",
+        "items": [
+          {
+            "name": "KUNG PAO",
+            "price": 220,
+            "description": "Chicken pieces in batter, bell pepper, leeks, spring onion, red onion, ginger, garlic, soy sauce, oyster sauce, mirin, cashews, peanuts. Served with jasmine rice."
+          },
+          {
+            "name": "TOM CHIEN XU",
+            "price": 110,
+            "description": "Shrimp coated in batter (2 pcs). Served with sweet-chili sauce.",
+            "isSoup": false
+          },
+          {
+            "name": "PHO BO",
+            "price": 50,
+            "description": "Strong broth with beef, rice noodles, coriander, spring onion, red onion, lime, garlic, and chili.",
+            "isSoup": true
+          },
+          {
+            "name": "BIBIMBAP",
+            "price": 205,
+            "description": "Marinated beef slices, Korean chili sauce, egg, kimchi, carrot, soybeans, cucumber, sesame. Served with jasmine rice.",
+            "isSoup": false
+          }
+        ]
+      },
+      {
+        "id": "diego_pivni_bar",
+        "icon": "dart",
+        "name": "🎯 Diego Bier Bar",
+        "url": "http://www.diegopivnibar.cz/cz/",
+        "locationUrl": "https://maps.app.goo.gl/WaBWra3W2ebzZ73p8",
+        "items": [
+          {
+            "name": "Today we are open from 16",
+            "price": null,
+            "description": "24",
+            "isSoup": false
+          }
+        ]
+      },
+      {
+        "id": "peters_pub",
+        "icon": "burger",
+        "name": "🍔 Peter's Pub",
+        "url": "http://www.peterspub.cz/",
+        "locationUrl": "https://maps.app.goo.gl/b6dyMJXK1q8VEG897",
+        "items": [
+          {
+            "name": "We are closed today, thank you for your understanding. We look forward to seeing you again in the new year.",
+            "price": null,
+            "isSoup": false
+          }
+        ]
+      }
+    ]
+  }
+}
