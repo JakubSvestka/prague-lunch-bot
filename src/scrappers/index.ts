@@ -38,6 +38,7 @@ const scrappers: Scrapper[] = [
         icon: "coffee",
         name: "☕️ Fuel Bistro",
         url: "https://fuelbistro.cz/",
+        scrapeUrl: "https://www.fuelbistro.cz/menu",
         locationUrl: "https://maps.app.goo.gl/DhmZ42BbGxaiRXW68",
         load: fetchFuelBistro,
     },
@@ -85,13 +86,10 @@ const fetchMenus = async (): Promise<Menu[]> => {
         enabledScrappers.map(scrapper => scrapper.load(scrapper))
     );
 
-    const failures: string[] = [];
-
     results.forEach((res, i) => {
         if (res.status === 'rejected') {
             const scrapper = enabledScrappers[i];
             console.warn(`❌ Scraper ${scrapper.name} failed:`, res.reason?.message || res.reason);
-            failures.push(scrapper.name);
         }
     });
 

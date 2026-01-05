@@ -2,37 +2,43 @@ import * as cheerio from "cheerio"
 import {Menu, MenuItem, Scrapper} from "../types"
 import axios from "../utils/axios"
 
-const excluded = [
-    'Domácí ice tea',
-    'Espresso tonic',
-    'Pilsner Urquell 0,3l',
-    'Matuška',
-]
-
 export async function fetchFuelBistro(scrapper: Scrapper): Promise<Menu> {
-    const res = await axios.get(scrapper.url)
+    const res = await axios.get(scrapper.scrapeUrl ?? scrapper.url)
     const $ = cheerio.load(res.data)
     const items: MenuItem[] = []
 
-    $(".jidelak1 .polozka").each((index, el) => {
-        const rawText = $(el).text().trim()
+    $("span:contains('TÝDENNÍ MENU')")
+        .closest("div.accordion")
+        .find("div.block.block-listitem")
+        .each((index, el) => {
+            const name = fixCase(
+                $(el)
+                    .find(".listitem-cell")
+                    .first()
+                    .text()
+                    .replace(/\s+/g, " ")
+                    .trim()
+            )
 
-        if (excluded.some(e => rawText.includes(e))) {
-            return
-        }
+            const priceText = $(el)
+                .find(".listitem-cell")
+                .last()
+                .text()
+                .trim()
 
-        // Extract name and price using pattern: "Some dish name / 123,-"
-        const match = rawText.match(/^(.*?)\s*\/\s*(\d+),-$/)
-        if (match) {
-            const name = fixCase(match[1].replace(/\s+/g, " ").trim())
-            const price = parseInt(match[2], 10)
+            const priceMatch = priceText.match(/(\d+),-/)
+            if (!priceMatch || !name) {
+                return
+            }
+
+            const price = parseInt(priceMatch[1], 10)
+
             items.push({
                 name,
                 price,
-                isSoup: index < 3 && price < 100,
-                isVegetarian: name.includes("Vegetarian")
+                isSoup: price < 100,
+                isVegetarian: /vegetari|vegan/i.test(name)
             })
-        }
     })
 
     if (items.length === 0) {
