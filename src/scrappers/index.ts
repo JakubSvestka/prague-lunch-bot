@@ -15,6 +15,7 @@ const scrappers: Scrapper[] = [
         url: "https://www.asiyo.cz/poledni-menu/",
         locationUrl: "https://maps.app.goo.gl/2yzue2EHDx8SSYCa9",
         load: fetchAsiyo,
+        disabled: true,
     },
     {
         id: "diego_pivni_bar",
