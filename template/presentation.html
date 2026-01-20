@@ -18,6 +18,18 @@
             height: 75vh;
             overflow: hidden;
         }
+        .active-slide {
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .emoji-slot {
+            width: 1rem;
+        }
     </style>
 </head>
 
@@ -44,7 +56,7 @@
 </header>
 
 <!-- Slide container -->
-<main id="slides-container" class="mt-1 p-5"></main>
+<main id="slides-container" class="mt-1 p-2 w-100"></main>
 
 <!-- JS -->
 <script>
@@ -63,19 +75,25 @@
         });
         updateSlideIndicator();
 
-        // Reset progress bar
-        document.getElementById('progress-bar').style.width = '100%';
+        const bar = document.getElementById('progress-bar');
 
+        // Stop previous timer
         if (progressInterval) clearInterval(progressInterval);
+
+        // Reset progress bar cleanly
+        bar.style.transition = 'none';
+        bar.style.width = '100%';
+        bar.offsetHeight; // 👈 forces reflow
+        bar.style.transition = 'width 0.1s linear';
 
         let elapsed = 0;
         progressInterval = setInterval(() => {
             elapsed += 0.1;
             const percent = Math.max(0, ((slideDuration - elapsed) / slideDuration) * 100);
-            document.getElementById('progress-bar').style.width = percent + '%';
+            bar.style.width = percent + '%';
 
             if (elapsed >= slideDuration) {
-                document.getElementById('progress-bar').style.width = '0%';
+                clearInterval(progressInterval);
                 currentSlide = (currentSlide + 1) % slides.length;
                 showSlide(currentSlide);
             }
@@ -97,34 +115,39 @@
 
         data.menus.en.forEach(menu => {
             const slide = document.createElement("div");
-            slide.className = "slide bg-white rounded-4 shadow p-5 border menu-slide";
+            slide.className = "slide bg-white rounded-4 shadow px-3 pt-3 border menu-slide";
 
             const sortedItems = menu.items.sort((a, b) => {
                 const rank = i => i.isSoup ? 0 : i.isVegetarian ? 1 : 2;
                 return rank(a) - rank(b);
             });
 
-            let colClass = sortedItems.length > 6 ? "col-4" : "col-6";
-            let descriptionMaxLength = 100;
+            let colClass = sortedItems.length > 6 ? "col-6" : "col-12";
 
             let itemHtml = sortedItems
                 .filter(i => i?.hideInPresentation !== true)
                 .map(i => `
-                    <div class="${colClass} p-3">
-                        <div class="d-flex justify-content-between">
-                            <span class="d-flex align-items-center gap-3 fs-3 fw-bold">
-                                ${i.isSoup ? '<span style="font-size:2rem;color:#00AEEF;">🥣</span>' : ''}
-                                ${i.isVegetarian ? '<span class="text-success" style="font-size:2rem;">🌿</span>' : ''}
-                                <span>${i.name}</span>
-                            </span>
-                            <span class="fs-2 fw-bolder text-secondary">${i.price ? `${i.price}&nbsp;Kč` : ''}</span>
+                    <div class="${colClass}">
+                        <div class="menu-row border-bottom d-flex align-items-center p-2">
+                            <div class="d-flex align-items-center gap-3 flex-grow-1 min-w-0">
+                                <span class="emoji-slot fs-5">
+                                    ${i.isSoup ? '🥣' : ''}
+                                    ${i.isVegetarian ? '🌿' : ''}
+                                </span>
+                                <span class="fs-5">
+                                    ${i.name}
+                                </span>
+                            </div>
+
+                            <div class="fs-5 text-end fw-bolder text-secondary ms-3">
+                                ${i.price ? `${i.price}&nbsp;Kč` : ''}
+                            </div>
                         </div>
-                        ${i.description ? `<p class="text-muted mt-2 fs-4">${i.description.length > descriptionMaxLength ? i.description.substring(0, descriptionMaxLength) + '…' : i.description}</p>` : ''}
                     </div>
                 `).join('');
 
             slide.innerHTML = `
-                <h2 class="text-center fw-bold display-5 mb-4" style="color:#0072CE;">${menu.name}</h2>
+                <h2 class="text-center fw-bold display-5 m-0 p-0 mb-4" style="color:#0072CE;">${menu.name}</h2>
                 <div class="row">
                     ${itemHtml}
                 </div>
