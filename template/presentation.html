@@ -113,7 +113,7 @@
 
         const container = document.getElementById("slides-container");
 
-        data.menus.en.forEach(menu => {
+        data.menus.cz.forEach((menu, menuIndex) => {
             const slide = document.createElement("div");
             slide.className = "slide bg-white rounded-4 shadow px-3 pt-3 border menu-slide";
 
@@ -126,7 +126,7 @@
 
             let itemHtml = sortedItems
                 .filter(i => i?.hideInPresentation !== true)
-                .map(i => `
+                .map((i, index) => `
                     <div class="${colClass}">
                         <div class="menu-row border-bottom d-flex align-items-center p-2">
                             <div class="d-flex align-items-center gap-3 flex-grow-1 min-w-0">
@@ -134,8 +134,10 @@
                                     ${i.isSoup ? '🥣' : ''}
                                     ${i.isVegetarian ? '🌿' : ''}
                                 </span>
-                                <span class="fs-5">
-                                    ${i.name}
+                                <span class="fs-6 fw-bolder">
+                                    ${i.name} <br />
+
+                                    <span class="fs-6 fw-light">${data.menus.en[menuIndex].items[index].name}</span>
                                 </span>
                             </div>
 
