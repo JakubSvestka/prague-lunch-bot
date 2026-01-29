@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import {Menu} from "../types";
 import {OpenAI} from "openai/client";
 import {createHash} from "node:crypto";
+import {getNameDay} from "namedays-cs";
 
 const generatePage = async (menus: Menu[]): Promise<boolean> => {
     const client = new OpenAI({
@@ -58,7 +59,9 @@ const generatePage = async (menus: Menu[]): Promise<boolean> => {
 
     const presentationHtmlPath = path.join(__dirname, "../../template/presentation.html");
     let presentationHtml = fs.readFileSync(presentationHtmlPath, "utf-8");
-    presentationHtml = presentationHtml.replace("{{HASH}}", hash);
+    presentationHtml = presentationHtml
+        .replace("{{HASH}}", hash)
+        .replace("{{NAMEDAY}}", getNameDay(new Date()).join(' and '));
     fs.writeFileSync(path.join(__dirname, "../../dist/presentation.html"), presentationHtml, "utf-8");
 
     fs.copyFileSync(path.join(__dirname, "../../assets/avatar_256px.png"), path.join(__dirname, "../../dist/avatar.png"));
