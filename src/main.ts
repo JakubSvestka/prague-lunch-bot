@@ -8,10 +8,15 @@ import generatePage from "./utils/menuPage";
 const env = process.env.NODE_ENV || 'development'
 dotenv.config({ path: `.env.${env}` })
 
-const args = minimist(process.argv.slice(2))
+const args = minimist(process.argv.slice(2), {
+    string: ["scrapper"],
+    default: {
+        scrapper: null,
+    },
+})
 
 async function main() {
-    const menus = await fetchMenus()
+    const menus = await fetchMenus(args.scrapper)
     menus.forEach((menu) => console.info(`✅ ${menu.name}: loaded ${menu.items.length} items.`))
 
     if ('generate-page' in args) {

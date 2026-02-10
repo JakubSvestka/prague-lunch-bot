@@ -80,8 +80,10 @@ const scrappers: Scrapper[] = [
     },
 ]
 
-const fetchMenus = async (): Promise<Menu[]> => {
-    const enabledScrappers = scrappers.filter(scrapper => !scrapper.disabled);
+const fetchMenus = async (scrapperId?: string): Promise<Menu[]> => {
+    const enabledScrappers = scrappers
+        .filter((scrapper) => !scrapperId || scrapper.id === scrapperId)
+        .filter(scrapper => !scrapper.disabled);
 
     const results = await Promise.allSettled(
         enabledScrappers.map(scrapper => scrapper.load(scrapper))
