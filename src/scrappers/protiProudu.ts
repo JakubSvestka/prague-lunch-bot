@@ -3,7 +3,7 @@ import {Menu, MenuItem, Scrapper} from "../types"
 import dayjs from "../utils/dayjs"
 import axios from "../utils/axios"
 
-export async function fetchBistroProtiProudu(scrapper: Scrapper): Promise<Menu> {
+export async function fetchProtiProudu(scrapper: Scrapper): Promise<Menu> {
     const res = await axios.get(scrapper.scrapeUrl as string)
     const $ = cheerio.load(res.data)
 
