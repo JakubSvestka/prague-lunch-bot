@@ -6,7 +6,7 @@ import {fetchFuelBistro} from "./fuelBistro";
 import {fetchMenicka} from "./menicka";
 import {fetchJidlovice} from "./jidlovice";
 import dayjs from "../utils/dayjs";
-import {fetchProtiProudu} from "./bistroProtiProudu";
+import {fetchProtiProudu} from "./protiProudu";
 
 const scrappers: Scrapper[] = [
     {
@@ -82,7 +82,7 @@ const scrappers: Scrapper[] = [
     {
         id: "proti_proudu",
         icon: "ocean",
-        name: "🌊 PROTI PROUDU",
+        name: "🌊 Proti proudu",
         url: "https://bistroprotiproudu.cz",
         scrapeUrl: "https://bistroprotiproudu.cz/menu",
         locationUrl: "https://maps.app.goo.gl/XcSJSeoGYGWhgAio8",
