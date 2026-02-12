@@ -6,6 +6,7 @@ import {fetchFuelBistro} from "./fuelBistro";
 import {fetchMenicka} from "./menicka";
 import {fetchJidlovice} from "./jidlovice";
 import dayjs from "../utils/dayjs";
+import {fetchBistroProtiProudu} from "./bistroProtiProudu";
 
 const scrappers: Scrapper[] = [
     {
@@ -77,6 +78,15 @@ const scrappers: Scrapper[] = [
         url: "https://www.pivokarlin.cz/",
         locationUrl: "https://maps.app.goo.gl/iWD3jubpzKhbMRFk8",
         load: fetchPivokarlin,
+    },
+    {
+        id: "bistro_proti_proudu",
+        icon: "ocean",
+        name: "🌊 Bistro proti proudu",
+        url: "https://bistroprotiproudu.cz",
+        scrapeUrl: "https://bistroprotiproudu.cz/menu",
+        locationUrl: "https://maps.app.goo.gl/XcSJSeoGYGWhgAio8",
+        load: fetchBistroProtiProudu,
     },
 ]
 

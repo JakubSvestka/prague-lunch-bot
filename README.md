@@ -22,3 +22,4 @@ See `.env.example`
 - Gastro Karlín
 - Peter's pub
 - Jídlovice
+- Bistro proti proudu
