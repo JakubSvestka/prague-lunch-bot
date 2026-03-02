@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Prague Lunch Bot</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, rgba(0,174,239,0.2), rgba(138,45,165,0.2));
+            min-height: 100vh;
+        }
+        .slide { display: none; }
+        .active-slide { display: block; }
+        .menu-slide {
+            height: 75vh;
+            overflow: hidden;
+        }
+        .active-slide {
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .emoji-slot {
+            width: 1rem;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column align-items-center text-gray-800 user-select-none">
+
+<!-- Header -->
+<header class="w-100 bg-white bg-opacity-75 shadow px-4 py-4" style="backdrop-filter: blur(8px);">
+    <div class="d-flex justify-content-between align-items-start mb-2">
+        <div class="d-flex align-items-center gap-4">
+            <img src="sky_logo.png" alt="Prague Lunch Bot logo" style="width: 120px;">
+            <div>
+                <h1 class="fw-bold display-4 text-primary" style="color:#0072CE!important;">Prague Lunch Bot</h1>
+                <p class="fs-3 fw-semibold text-secondary mb-0" id="date"></p>
+            </div>
+        </div>
+        <div>
+            <p class="fs-2 text-secondary mb-0">
+                Name day: <span class="fw-bold">Anežka</span>
+            </p>
+        </div>
+        <div class="text-end">
+            <div id="slide-indicator" class="fw-bold display-5" style="color:#0072CE;"></div>
+        </div>
+    </div>
+
+    <div class="progress" style="height: 8px;">
+        <div id="progress-bar" class="progress-bar" role="progressbar" style="width:100%; background:#0072CE;"></div>
+    </div>
+</header>
+
+<!-- Slide container -->
+<main id="slides-container" class="mt-1 p-2 w-100"></main>
+
+<!-- JS -->
+<script>
+    let currentSlide = 0;
+    let slides = [];
+    const slideDuration = 15; // seconds
+    let progressInterval;
+
+    function updateSlideIndicator() {
+        document.getElementById('slide-indicator').textContent = `${currentSlide + 1} / ${slides.length}`;
+    }
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("active-slide", i === index);
+        });
+        updateSlideIndicator();
+
+        const bar = document.getElementById('progress-bar');
+
+        // Stop previous timer
+        if (progressInterval) clearInterval(progressInterval);
+
+        // Reset progress bar cleanly
+        bar.style.transition = 'none';
+        bar.style.width = '100%';
+        bar.offsetHeight; // 👈 forces reflow
+        bar.style.transition = 'width 0.1s linear';
+
+        let elapsed = 0;
+        progressInterval = setInterval(() => {
+            elapsed += 0.1;
+            const percent = Math.max(0, ((slideDuration - elapsed) / slideDuration) * 100);
+            bar.style.width = percent + '%';
+
+            if (elapsed >= slideDuration) {
+                clearInterval(progressInterval);
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+        }, 100);
+    }
+
+    async function loadMenus() {
+        const res = await fetch(`menus.json?v=f6cbb8a993c6cdfdce7f84a143fa21669424ed886689652ccf7f3af56c982645`);
+        const data = await res.json();
+
+        document.getElementById("date").textContent = new Date(data.date).toLocaleDateString("en-GB", {
+            weekday: "long",
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        });
+
+        const container = document.getElementById("slides-container");
+
+        data.menus.cz.forEach((menu, menuIndex) => {
+            const slide = document.createElement("div");
+            slide.className = "slide bg-white rounded-4 shadow px-3 pt-3 border menu-slide";
+
+            const sortedItems = menu.items.sort((a, b) => {
+                const rank = i => i.isSoup ? 0 : i.isVegetarian ? 1 : 2;
+                return rank(a) - rank(b);
+            });
+
+            let colClass = sortedItems.length > 6 ? "col-6" : "col-12";
+
+            let itemHtml = sortedItems
+                .filter(i => i?.hideInPresentation !== true)
+                .map((i, index) => `
+                    <div class="${colClass}">
+                        <div class="menu-row border-bottom d-flex align-items-center p-2">
+                            <div class="d-flex align-items-center gap-3 flex-grow-1 min-w-0">
+                                <span class="emoji-slot fs-3 pe-4">
+                                    ${i.isSoup ? '🥣' : ''}
+                                    ${i.isVegetarian ? '🌿' : ''}
+                                </span>
+                                <span class="fs-3 fw-bolder">
+                                    ${i.name} <br />
+
+                                    <span class="fs-4 fw-light">${data.menus.en[menuIndex].items[index].name}</span>
+                                </span>
+                            </div>
+
+                            <div class="fs-5 text-end fw-bolder text-secondary ms-3">
+                                ${i.price ? `${i.price}&nbsp;Kč` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+            slide.innerHTML = `
+                <h2 class="text-center fw-bold display-5 m-0 p-0 mb-4" style="color:#0072CE;">${menu.name}</h2>
+                <div class="row">
+                    ${itemHtml}
+                </div>
+            `;
+
+            container.appendChild(slide);
+        });
+
+        slides = Array.from(document.getElementsByClassName("slide"));
+        if (slides.length > 0) showSlide(0);
+    }
+
+    loadMenus();
+</script>
+
+</body>
+</html>
