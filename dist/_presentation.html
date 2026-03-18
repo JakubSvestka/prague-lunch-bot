@@ -106,7 +106,7 @@
     }
 
     async function loadMenus() {
-        const res = await fetch(`menus.json?v={{HASH}}`);
+        const res = await fetch(`menus.json?v=7f53ddb025cc158e27214058cc0aa32a1ac294ce519acd2d13913ece40b5eca8`);
         const data = await res.json();
 
         document.getElementById("date").textContent = new Date(data.date).toLocaleDateString("en-GB", {

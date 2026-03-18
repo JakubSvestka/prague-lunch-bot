@@ -41,8 +41,6 @@ const generatePage = async (menus: Menu[]): Promise<boolean> => {
         return JSON.parse(response?.choices[0]?.message?.content?.trim() ?? "").menus;
     }
 
-    fs.mkdirSync(path.join(__dirname, "../../dist"), { recursive: true });
-
     const menusJson = JSON.stringify({ date: dayjs().format("YYYY-MM-DD"), menus: {cz: menus, en: await translate(menus)}}, null, 2);
     fs.writeFileSync(
         path.join(__dirname, "../../dist/menus.json"),
@@ -52,20 +50,17 @@ const generatePage = async (menus: Menu[]): Promise<boolean> => {
     // Compute hash of the JSON
     const hash = createHash("sha256").update(menusJson).digest("hex");
 
-    const htmlPath = path.join(__dirname, "../../template/index.html");
+    const htmlPath = path.join(__dirname, "../../dist/_index.html");
     let html = fs.readFileSync(htmlPath, "utf-8");
     html = html.replace("{{HASH}}", hash);
     fs.writeFileSync(path.join(__dirname, "../../dist/index.html"), html, "utf-8");
 
-    const presentationHtmlPath = path.join(__dirname, "../../template/presentation.html");
+    const presentationHtmlPath = path.join(__dirname, "../../dist/_presentation.html");
     let presentationHtml = fs.readFileSync(presentationHtmlPath, "utf-8");
     presentationHtml = presentationHtml
         .replace("{{HASH}}", hash)
         .replace("{{NAMEDAY}}", getNameDay(new Date()).join(' and '));
     fs.writeFileSync(path.join(__dirname, "../../dist/presentation.html"), presentationHtml, "utf-8");
-
-    fs.copyFileSync(path.join(__dirname, "../../assets/avatar_256px.png"), path.join(__dirname, "../../dist/avatar.png"));
-    fs.copyFileSync(path.join(__dirname, "../../assets/sky_logo.png"), path.join(__dirname, "../../dist/sky_logo.png"));
 
     console.log("✅ menus.json and HTML copied to dist");
 

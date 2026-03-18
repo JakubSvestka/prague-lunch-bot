@@ -6,6 +6,7 @@ permissions:
 on:
   schedule:
     - cron: '16 9 * * 1-5'  # Mon–Fri at 10:16 in CZ time
+    - cron: '0 7 * * 1-5'  # Mon–Fri at 08:00 in CZ time
   workflow_dispatch:
 
 jobs:
@@ -30,7 +31,14 @@ jobs:
       - name: Install dependencies
         run: npm i
 
+      - name: Generate static page
+        if: github.event.schedule == '0 7 * * 1-5'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: npm run page
+
       - name: Post menus to Slack and generate static page
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '16 9 * * 1-5'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
@@ -43,3 +51,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           force_orphan: true
+          exclude_assets: '_*'
