@@ -30,6 +30,28 @@
         .emoji-slot {
             width: 1rem;
         }
+
+        .date-time-row {
+            display: flex;
+            align-items: baseline;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .time-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.2rem 0.9rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #0072CE, #00AEEF);
+            color: #fff;
+            box-shadow: 0 10px 24px rgba(0, 114, 206, 0.22);
+            letter-spacing: 0.06em;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+            min-width: 8ch;
+            font-variant-numeric: tabular-nums;
+        }
     </style>
 </head>
 
@@ -42,7 +64,10 @@
             <img src="sky_logo.png" alt="Prague Lunch Bot logo" style="width: 120px;">
             <div>
                 <h1 class="fw-bold display-4 text-primary" style="color:#0072CE!important;">Prague Lunch Bot</h1>
-                <p class="fs-3 fw-semibold text-secondary mb-0" id="date"></p>
+                <div class="date-time-row">
+                    <p class="fs-3 fw-semibold text-secondary mb-0" id="date"></p>
+                    <p class="fs-2 fw-bold mb-0 time-badge" id="time"></p>
+                </div>
             </div>
         </div>
         <div>
@@ -69,6 +94,15 @@
     let slides = [];
     const slideDuration = 15; // seconds
     let progressInterval;
+    const timeFormatter = new Intl.DateTimeFormat("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    });
+
+    function updateClock() {
+        document.getElementById("time").textContent = timeFormatter.format(new Date());
+    }
 
     function updateSlideIndicator() {
         document.getElementById('slide-indicator').textContent = `${currentSlide + 1} / ${slides.length}`;
@@ -167,6 +201,8 @@
         if (slides.length > 0) showSlide(0);
     }
 
+    updateClock();
+    setInterval(updateClock, 1000);
     loadMenus();
 </script>
 
