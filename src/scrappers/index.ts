@@ -76,6 +76,7 @@ const scrappers: Scrapper[] = [
         icon: "beer",
         name: "🍺 Pivo Karlín",
         url: "https://www.pivokarlin.cz/",
+        scrapeUrl: "http://me.jakubsvestka.cz/pivo_karlin.php", // they block some IP addresses
         locationUrl: "https://maps.app.goo.gl/iWD3jubpzKhbMRFk8",
         load: fetchPivokarlin,
     },

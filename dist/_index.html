@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Prague Lunch Bot</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .menu-card {
+            scroll-margin-top: 1rem;
+        }
+
+        .menu-card:target {
+            border-color: rgb(245 158 11);
+            box-shadow: 0 0 0 3px rgb(253 230 138), 0 10px 20px rgba(0, 0, 0, 0.08);
+            background-color: rgb(255 251 235);
+        }
+    </style>
 </head>
 <body class="bg-gradient-to-br from-yellow-50 to-amber-100 min-h-screen flex flex-col items-center font-sans text-gray-800">
 
@@ -113,7 +124,7 @@
             data.menus[lang].forEach(menu => {
                 const card = document.createElement("div");
                 card.id = menu.id;
-                card.className = "bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow p-5 border border-amber-100 mb-5 break-inside-avoid";
+                card.className = "menu-card bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow p-5 border border-amber-100 mb-5 break-inside-avoid";
 
                 const sortedItems = sortItems(menu.items);
 
@@ -131,7 +142,7 @@
                 </div>
                 <ul class="space-y-2">
                   ${sortedItems.map(i => `
-                    <li class="border-b border-gray-100 pb-2 last:border-b-0">
+                    <li class="border-b border-gray-100 pb-2 last:border-b-0 group">
                       <div class="flex justify-between items-start gap-3">
                         <span class="flex items-start gap-2 font-medium min-w-0 flex-1">
                           ${(i.isSoup || i.isVegetarian) ? `
@@ -140,7 +151,7 @@
                               ${i.isVegetarian ? '<span class="text-green-600">🌿</span>' : ''}
                             </span>
                           ` : ""}
-                          <span class="text-sm md:text-base leading-5 ${i.description ? 'font-medium' : 'font-normal'}">${i.name}</span>
+                          <span class="relative pr-6 text-sm md:text-base leading-5 ${i.description ? 'font-medium' : 'font-normal'}">${i.name}<a href="https://www.google.com/search?udm=2&q=${encodeURIComponent(i.name)}" class="absolute right-0 top-0 opacity-0 transition-opacity group-hover:opacity-100 hover:opacity-100" target="_blank" rel="noreferrer">📷</a></span>
                         </span>
                         <span class="text-gray-700 font-light whitespace-nowrap">${i.price ? `${i.price}&nbsp;Kč` : ''}</span>
                       </div>

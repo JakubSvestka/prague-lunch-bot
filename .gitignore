@@ -2,5 +2,6 @@ node_modules
 .idea
 dist/index.html
 dist/presentation.html
+dist/menus.json
 .env.*
 !.env.example
