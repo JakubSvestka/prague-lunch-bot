@@ -46,12 +46,20 @@
     </div>
 </header>
 
-<div class="w-full max-w-[1600px] px-4 md:px-6 mt-4">
+<div id="jump-section" class="w-full max-w-[1600px] px-4 md:px-6 mt-4">
     <section class="w-full text-center md:text-left">
         <h2 class="text-sm font-semibold text-gray-600 mb-2" id="jump-title">Jump to restaurant</h2>
         <div id="restaurant-links" class="flex flex-wrap justify-center md:justify-start gap-2"></div>
     </section>
 </div>
+
+<section id="stale-notice" class="hidden w-full max-w-[1600px] px-4 md:px-6 mt-10">
+    <div class="mx-auto flex max-w-xl flex-col items-center rounded-2xl border border-sky-200 bg-sky-50 px-6 py-10 text-center text-sky-900 shadow-sm">
+        <div class="text-4xl">ℹ️</div>
+        <h2 class="mt-4 text-xl font-bold">Menus are not ready yet for today</h2>
+        <p class="mt-2 text-sm text-sky-800">Please check back later.</p>
+    </div>
+</section>
 
 <main class="w-full max-w-[1600px] mt-6 px-4 md:px-6 columns-1 md:columns-2 xl:columns-3 gap-5 [column-fill:_balance]" id="menu-list"></main>
 
@@ -99,6 +107,15 @@
         return [...items].sort((a, b) => rank(a) - rank(b));
     }
 
+    function formatPragueDate(date) {
+        return new Intl.DateTimeFormat("en-CA", {
+            timeZone: "Europe/Prague",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        }).format(date);
+    }
+
     async function loadMenus() {
         try {
             const res = await fetch("menus.json?v={{HASH}}");
@@ -118,8 +135,21 @@
 
             const menuList = document.getElementById("menu-list");
             const linksDiv = document.getElementById("restaurant-links");
+            const staleNotice = document.getElementById("stale-notice");
+            const jumpSection = document.getElementById("jump-section");
             menuList.innerHTML = "";
             linksDiv.innerHTML = "";
+
+            if (data.date !== formatPragueDate(new Date())) {
+                staleNotice.classList.remove("hidden");
+                jumpSection.classList.add("hidden");
+                menuList.classList.add("hidden");
+                return;
+            } else {
+                staleNotice.classList.add("hidden");
+                jumpSection.classList.remove("hidden");
+                menuList.classList.remove("hidden");
+            }
 
             data.menus[lang].forEach(menu => {
                 const card = document.createElement("div");
