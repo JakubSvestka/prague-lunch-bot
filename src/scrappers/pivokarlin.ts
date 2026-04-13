@@ -9,12 +9,7 @@ export async function fetchPivokarlin(scrapper: Scrapper): Promise<Menu> {
 
     // Find all day columns
     const dayBlocks = $("#tab-poledni-nabidka .vc_col-sm-6")
-    const today = new Date();
-    const formatted = today.toLocaleDateString('cs-CZ', {
-      day: 'numeric',
-      month: 'long'
-    }).replace(' ', '');
-    const todayRegex = new RegExp(`\\b${formatted}\\s*`, "i");
+    const todayRegex = new RegExp(`\\b${dayjs().format("D\\.[\\s*]")}`, "i")
     const items: MenuItem[] = []
 
     dayBlocks.each((_, el) => {
