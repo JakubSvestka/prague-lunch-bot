@@ -38,7 +38,7 @@ jobs:
         run: npm run page
 
       - name: Post menus to Slack and generate static page
-        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 8 * * 1-5'
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 7 * * 1-5'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
