@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Prague Lunch Bot</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .menu-card {
+            scroll-margin-top: 1rem;
+        }
+
+        .menu-card:target {
+            border-color: rgb(245 158 11);
+            box-shadow: 0 0 0 3px rgb(253 230 138), 0 10px 20px rgba(0, 0, 0, 0.08);
+            background-color: rgb(255 251 235);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-yellow-50 to-amber-100 min-h-screen flex flex-col items-center font-sans text-gray-800">
+
+<header class="bg-white/85 backdrop-blur-md shadow-sm px-5 py-4 flex flex-col gap-3 border-b border-amber-200 w-full max-w-[1600px]">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="flex items-center gap-4 min-w-0">
+            <img src="avatar.png" alt="Prague Lunch Bot logo" class="w-14 h-14 rounded-full border border-amber-300">
+            <div class="min-w-0">
+                <h1 class="text-2xl md:text-3xl font-extrabold text-amber-700">Prague Lunch Bot</h1>
+                <p class="text-sm text-gray-500" id="date"></p>
+            </div>
+        </div>
+
+        <div id="lang-switch" class="flex gap-2 bg-amber-50 rounded-xl p-1 shadow-sm border border-amber-200 w-fit self-start md:self-auto">
+            <button id="btn-cz"
+                    data-lang="cz"
+                    type="button"
+                    class="lang-btn inline-flex items-center justify-center rounded-lg border border-transparent px-3 py-1.5 text-sm font-medium text-amber-700 transition-colors cursor-pointer">
+                CZ
+            </button>
+            <button id="btn-en"
+                    data-lang="en"
+                    type="button"
+                    class="lang-btn inline-flex items-center justify-center rounded-lg border border-transparent px-3 py-1.5 text-sm font-medium text-amber-700 transition-colors cursor-pointer">
+                EN
+            </button>
+        </div>
+    </div>
+</header>
+
+<div id="jump-section" class="w-full max-w-[1600px] px-4 md:px-6 mt-4">
+    <section class="w-full text-center md:text-left">
+        <h2 class="text-sm font-semibold text-gray-600 mb-2" id="jump-title">Jump to restaurant</h2>
+        <div id="restaurant-links" class="flex flex-wrap justify-center md:justify-start gap-2"></div>
+    </section>
+</div>
+
+<section id="stale-notice" class="hidden w-full max-w-[1600px] px-4 md:px-6 mt-10">
+    <div class="mx-auto flex max-w-xl flex-col items-center rounded-2xl border border-sky-200 bg-sky-50 px-6 py-10 text-center text-sky-900 shadow-sm">
+        <div class="text-4xl">ℹ️</div>
+        <h2 class="mt-4 text-xl font-bold">Menus are not ready yet for today</h2>
+        <p class="mt-2 text-sm text-sky-800">Please check back later.</p>
+    </div>
+</section>
+
+<main class="w-full max-w-[1600px] mt-6 px-4 md:px-6 columns-1 md:columns-2 xl:columns-3 gap-5 [column-fill:_balance]" id="menu-list"></main>
+
+<footer class="my-6 text-gray-500 text-sm text-center px-4">
+    <div class="flex justify-center mb-2">
+        <img src="https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fjakubsvestka.github.io%2Fprague-lunch-bot%2F&labelColor=%23ffcc5a&countColor=%23bb4d00&style=flat"
+             alt="Counter" />
+    </div>
+    <span id="footer-text">Made with heart by</span>
+    <a class="font-semibold text-amber-600" target="_blank" rel="noreferrer" href="https://github.com/JakubSvestka/prague-lunch-bot">Prague Lunch Bot</a>
+</footer>
+
+<script>
+    function getPreferredLanguage() {
+        const params = new URLSearchParams(window.location.search);
+        const urlLang = params.get("lang");
+
+        if (urlLang === "en" || urlLang === "cz") {
+            return urlLang;
+        }
+
+        const browserLang =
+            (navigator.languages && navigator.languages.length
+                ? navigator.languages[0]
+                : navigator.language) || "en";
+
+        return browserLang.toLowerCase().startsWith("cs") ? "cz" : "en";
+    }
+
+    function setLanguageButtons(lang) {
+        const buttons = document.getElementsByClassName("lang-btn");
+
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove("bg-amber-200", "text-amber-900", "border-amber-300", "shadow-sm");
+            buttons[i].classList.add("hover:bg-amber-100");
+        }
+
+        const activeButton = document.getElementById(`btn-${lang}`);
+        activeButton.classList.remove("hover:bg-amber-100");
+        activeButton.classList.add("bg-amber-200", "text-amber-900", "border-amber-300", "shadow-sm");
+    }
+
+    function sortItems(items) {
+        const rank = (item) => item.isSoup ? 0 : item.isVegetarian ? 1 : 2;
+        return [...items].sort((a, b) => rank(a) - rank(b));
+    }
+
+    function formatPragueDate(date) {
+        return new Intl.DateTimeFormat("en-CA", {
+            timeZone: "Europe/Prague",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        }).format(date);
+    }
+
+    async function loadMenus() {
+        try {
+            const res = await fetch("menus.json?v=51bea4dec14e62a5225fca3ae9db57566dc4de891b299d471fdf7c14a9b7cac7");
+            const data = await res.json();
+            const lang = getPreferredLanguage();
+
+            setLanguageButtons(lang);
+            document.documentElement.lang = "en";
+
+            document.getElementById("date").textContent =
+                new Date(data.date).toLocaleDateString("en-GB", {
+                    weekday: "long",
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric"
+                });
+
+            const menuList = document.getElementById("menu-list");
+            const linksDiv = document.getElementById("restaurant-links");
+            const staleNotice = document.getElementById("stale-notice");
+            const jumpSection = document.getElementById("jump-section");
+            menuList.innerHTML = "";
+            linksDiv.innerHTML = "";
+
+            if (data.date !== formatPragueDate(new Date())) {
+                staleNotice.classList.remove("hidden");
+                jumpSection.classList.add("hidden");
+                menuList.classList.add("hidden");
+                return;
+            } else {
+                staleNotice.classList.add("hidden");
+                jumpSection.classList.remove("hidden");
+                menuList.classList.remove("hidden");
+            }
+
+            data.menus[lang].forEach(menu => {
+                const card = document.createElement("div");
+                card.id = menu.id;
+                card.className = "menu-card bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow p-5 border border-amber-100 mb-5 break-inside-avoid";
+
+                const sortedItems = sortItems(menu.items);
+
+                card.innerHTML = `
+                <div class="flex items-start justify-between gap-3 mb-4">
+                  <h2 class="text-xl font-bold text-amber-700">${menu.name}</h2>
+                  <div class="flex flex-wrap justify-end gap-2 text-sm text-gray-600 shrink-0">
+                    <a href="${menu.url}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 rounded-md border border-amber-200 bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 transition-colors hover:bg-amber-100">
+                      <span>🌐</span><span>Visit web</span>
+                    </a>
+                    <a href="${menu.locationUrl}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 rounded-md border border-amber-200 bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 transition-colors hover:bg-amber-100">
+                      <span>📍</span><span>Location</span>
+                    </a>
+                  </div>
+                </div>
+                <ul class="space-y-2">
+                  ${sortedItems.map(i => `
+                    <li class="border-b border-gray-100 pb-2 last:border-b-0 group">
+                      <div class="flex justify-between items-start gap-3">
+                        <span class="flex items-start gap-2 font-medium min-w-0 flex-1">
+                          ${(i.isSoup || i.isVegetarian) ? `
+                            <span class="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 shrink-0">
+                              ${i.isSoup ? '<span class="text-amber-500">🥣</span>' : ''}
+                              ${i.isVegetarian ? '<span class="text-green-600">🌿</span>' : ''}
+                            </span>
+                          ` : ""}
+                          <span class="relative pr-6 text-sm md:text-base leading-5 ${i.description ? 'font-medium' : 'font-normal'}">${i.name}<a href="https://www.google.com/search?udm=2&q=${encodeURIComponent(i.name)}" class="absolute right-0 top-0 opacity-0 transition-opacity group-hover:opacity-100 hover:opacity-100" target="_blank" rel="noreferrer">📷</a></span>
+                        </span>
+                        <span class="text-gray-700 font-light whitespace-nowrap">${i.price ? `${i.price}&nbsp;Kč` : ''}</span>
+                      </div>
+                      ${i.description ? `<p class="text-sm text-gray-500 mt-1">${i.description}</p>` : ""}
+                    </li>
+                  `).join("")}
+                </ul>
+              `;
+                menuList.appendChild(card);
+
+                const link = document.createElement("a");
+                link.href = `#${menu.id}`;
+                link.textContent = menu.name;
+                link.className = "inline-flex items-center rounded-full border border-amber-200 bg-white px-3 py-1.5 text-sm font-medium text-amber-700 transition-colors hover:bg-amber-50";
+                linksDiv.appendChild(link);
+            });
+
+            document.getElementById("lang-switch").addEventListener("click", (e) => {
+                const button = e.target.closest("[data-lang]");
+
+                if (!button) {
+                    return;
+                }
+
+                const newUrl = new URL(window.location.href);
+                newUrl.searchParams.set("lang", button.dataset.lang);
+                window.location.href = newUrl.toString().split("#")[0];
+            });
+
+        } catch (err) {
+            alert("Failed to load menus");
+            console.error("Failed to load menus:", err);
+        }
+    }
+
+    loadMenus();
+</script>
+</body>
+</html>
