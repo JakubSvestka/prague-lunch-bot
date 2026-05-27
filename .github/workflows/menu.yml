@@ -4,10 +4,13 @@ permissions:
   pages: write
 
 on:
-  schedule:
-    - cron: '0 8 * * 1-5'  # Mon–Fri at 10:00 in CZ time
-    - cron: '0 6 * * 1-5'  # Mon–Fri at 08:00 in CZ time
   workflow_dispatch:
+    inputs:
+      post_on_slack:
+        description: "Post on Slack"
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   post-menus:
@@ -32,13 +35,13 @@ jobs:
         run: npm i
 
       - name: Generate static page
-        if: github.event.schedule == '0 6 * * 1-5'
+        if: ${{ inputs.run_migrations == false }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: npm run page
 
       - name: Post menus to Slack and generate static page
-        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 7 * * 1-5'
+        if: ${{ inputs.run_migrations == true }}
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
