@@ -23,3 +23,6 @@ See `.env.example`
 - Peter's pub
 - Jídlovice
 - Bistro proti proudu
+- La Perla de Karlín
+- Polévkárna
+- U Tunelu

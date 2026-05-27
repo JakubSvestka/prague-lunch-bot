@@ -63,6 +63,15 @@ const scrappers: Scrapper[] = [
         load: fetchJidlovice,
     },
     {
+        id: "la_perla_de_karlin",
+        icon: "paella",
+        name: "🥘 La Perla de Karlín",
+        url: "https://laperladekarlin.cz/",
+        scrapeUrl: "https://www.menicka.cz/9624-la-perla-de-karlin.html",
+        locationUrl: "https://www.google.com/maps/search/La+Perla+de+Karlin,+Saldova+9,+Praha+8",
+        load: fetchMenicka,
+    },
+    {
         id: "peters_pub",
         icon: "burger",
         name: "🍔 Peter's pub",
@@ -88,6 +97,24 @@ const scrappers: Scrapper[] = [
         scrapeUrl: "https://bistroprotiproudu.cz/menu",
         locationUrl: "https://maps.app.goo.gl/XcSJSeoGYGWhgAio8",
         load: fetchProtiProudu,
+    },
+    {
+        id: "polevkarna",
+        icon: "bowl_with_spoon",
+        name: "🥣 Polévkárna",
+        url: "http://www.polevkarna.cz/",
+        scrapeUrl: "https://www.menicka.cz/2416-polevkarna.html",
+        locationUrl: "https://www.google.com/maps/search/Polevkarna,+Sokolovska+86,+Praha+8",
+        load: fetchMenicka,
+    },
+    {
+        id: "u_tunelu",
+        icon: "railway_track",
+        name: "🛤️ U Tunelu",
+        url: "https://www.utunelu.cz/",
+        scrapeUrl: "https://www.menicka.cz/4379-u-tunelu.html",
+        locationUrl: "https://www.google.com/maps/search/U+Tunelu,+Thamova+1,+Praha+8",
+        load: fetchMenicka,
     },
 ]
 
