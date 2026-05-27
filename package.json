@@ -11,8 +11,8 @@
   "license": "ISC",
   "description": "Scrape daily restaurant menus and post them to a specified Slack channel",
   "dependencies": {
-    "axios": "1.15.1",
-    "axios-retry": "^4.5.0",
+    "axios": "1.16.1",
+    "axios-retry": "4.5.0",
     "cheerio": "^1.2.0",
     "crypto": "^1.0.1",
     "dayjs": "^1.11.20",
