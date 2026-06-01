@@ -67,7 +67,7 @@ const generatePage = async (menus: Menu[]): Promise<boolean> => {
     let mapHtml = fs.readFileSync(mapHtmlPath, "utf-8");
     mapHtml = mapHtml
         .replace("{{HASH}}", hash)
-        .replace("{{MAPY_API_KEY}}", process.env.MAPY_API_KEY as string)
+        .replace("{{MAPY_API_KEY}}", process.env.MAPY_API_KEY ?? "")
         .replace("{{RESTAURANTS}}", JSON.stringify(getRestaurants()));
     fs.writeFileSync(path.join(__dirname, "../../dist/map.html"), mapHtml, "utf-8");
 

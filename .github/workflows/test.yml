@@ -38,6 +38,7 @@ jobs:
         if: ${{ inputs.post_on_slack == false }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MAPY_API_KEY: ${{ secrets.MAPY_API_KEY }}
         run: npm run page
 
       - name: Post menus to Slack and generate static page
