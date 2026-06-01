@@ -5,6 +5,7 @@ import {Menu} from "../types";
 import {OpenAI} from "openai/client";
 import {createHash} from "node:crypto";
 import {getNameDay} from "namedays-cs";
+import {getRestaurants} from "../scrappers";
 
 const generatePage = async (menus: Menu[]): Promise<boolean> => {
     const client = new OpenAI({
@@ -61,6 +62,14 @@ const generatePage = async (menus: Menu[]): Promise<boolean> => {
         .replace("{{HASH}}", hash)
         .replace("{{NAMEDAY}}", getNameDay(new Date()).join(' and '));
     fs.writeFileSync(path.join(__dirname, "../../dist/presentation.html"), presentationHtml, "utf-8");
+
+    const mapHtmlPath = path.join(__dirname, "../../dist/_map.html");
+    let mapHtml = fs.readFileSync(mapHtmlPath, "utf-8");
+    mapHtml = mapHtml
+        .replace("{{HASH}}", hash)
+        .replace("{{MAPY_API_KEY}}", process.env.MAPY_API_KEY ?? "")
+        .replace("{{RESTAURANTS}}", JSON.stringify(getRestaurants()));
+    fs.writeFileSync(path.join(__dirname, "../../dist/map.html"), mapHtml, "utf-8");
 
     console.log("✅ menus.json and HTML copied to dist");
 

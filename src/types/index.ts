@@ -1,20 +1,29 @@
+export type Coordinates = {
+    lat: number;
+    lng: number;
+};
+
 export type Scrapper = {
     id: string,
     disabled?: boolean;
     icon: string;
+    icon_name: string;
     name: string;
     url: string;
     scrapeUrl?: string;
     locationUrl: string;
-    load: (scrapper: Scrapper) => Promise<Menu>;
+    coordinates: Coordinates;
+    load?: (scrapper: Scrapper) => Promise<Menu>;
 };
 
 export type Menu = {
     id: string;
     icon: string;
+    icon_name: string;
     name: string;
     url: string;
     locationUrl: string;
+    coordinates: Coordinates;
     items: MenuItem[];
 };
 

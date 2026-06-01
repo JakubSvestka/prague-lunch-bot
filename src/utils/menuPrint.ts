@@ -1,7 +1,7 @@
 import {Menu} from "../types";
 const printMenusToConsole = (menus: Menu[]) => {
     for (const menu of menus) {
-        console.log(`\n=== ${menu.name} ===`);
+        console.log(`\n=== ${menu.icon} ${menu.name} ===`);
         console.log(`🌐 ${menu.url}`);
         console.log(`📍 ${menu.locationUrl}\n`);
 

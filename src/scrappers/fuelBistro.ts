@@ -48,9 +48,11 @@ export async function fetchFuelBistro(scrapper: Scrapper): Promise<Menu> {
     return {
         id: scrapper.id,
         icon: scrapper.icon,
+        icon_name: scrapper.icon_name,
         name: scrapper.name,
         url: scrapper.url,
         locationUrl: scrapper.locationUrl,
+        coordinates: scrapper.coordinates,
         items
     }
 }

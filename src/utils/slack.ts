@@ -42,6 +42,15 @@ const send = async (menus: Menu[]): Promise<boolean> => {
                             "emoji": true
                         },
                         "url": "https://jakubsvestka.github.io/prague-lunch-bot/?lang=en",
+                    },
+                    {
+                        "type": "button",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Map :world_map:",
+                            "emoji": true
+                        },
+                        "url": "https://jakubsvestka.github.io/prague-lunch-bot/map.html",
                     }
                 ]
             },
@@ -55,7 +64,7 @@ const send = async (menus: Menu[]): Promise<boolean> => {
         for (const menu of menus) {
             const menuMsg = await postSlackMessage(
                 createMenuMessage(menu),
-                menu.name,
+                `${menu.icon} ${menu.name}`,
                 threadTs
             )
         }
@@ -112,7 +121,7 @@ const createMenuMessage = (menu: Menu) => {
         type: "header",
         text: {
             type: "plain_text",
-            text: `${menu.name}`,
+            text: `${menu.icon} ${menu.name}`,
             emoji: true,
         },
     })

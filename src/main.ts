@@ -17,7 +17,7 @@ const args = minimist(process.argv.slice(2), {
 
 async function main() {
     const menus = await fetchMenus(args.scrapper)
-    menus.forEach((menu) => console.info(`✅ ${menu.name}: loaded ${menu.items.length} items.`))
+    menus.forEach((menu) => console.info(`✅ ${menu.icon} ${menu.name}: loaded ${menu.items.length} items.`))
 
     if ('generate-page' in args) {
         const result = await generatePage(menus)
