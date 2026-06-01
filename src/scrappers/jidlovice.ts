@@ -4,6 +4,7 @@ import axios from "../utils/axios"
 import {JidloviceMenu, Meal} from "../types/jidlovice";
 
 const SOUP_CATEGORY_ID = 1
+const JAR_CATEGORY_ID = 9
 
 export async function fetchJidlovice(scrapper: Scrapper): Promise<Menu> {
     const res = await axios.get(scrapper.scrapeUrl as string)
@@ -15,6 +16,7 @@ export async function fetchJidlovice(scrapper: Scrapper): Promise<Menu> {
     }
 
     const sortedItems = menu.menu_items
+        .filter(i => i.meal.category_id !== JAR_CATEGORY_ID)
         .sort((a, b) => a.is_from_main_menu ? 1 : -1)  //prioritise daily meals
         .sort((a, b) => a.meal.category_id === SOUP_CATEGORY_ID ? -1 : 1) //soups firstly
 
