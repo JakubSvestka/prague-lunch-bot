@@ -142,7 +142,7 @@ const scrappers: Scrapper[] = [
     },
     {
         id: "happy_nuddles",
-        icon: ":🍜️",
+        icon: "🍜️",
         icon_name: "ramen",
         name: "Happy nuddles",
         url: "https://www.instagram.com/happysushipraha8",
@@ -151,7 +151,7 @@ const scrappers: Scrapper[] = [
     },
     {
         id: "bowlers",
-        icon: ":🥑️",
+        icon: "🥑️",
         icon_name: "avocado",
         name: "Bowlers",
         url: "https://bowlers.choiceqr.com",
