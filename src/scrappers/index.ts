@@ -1,7 +1,6 @@
 import {Menu, Scrapper} from "../types";
 import {fetchPivokarlin} from "./pivokarlin";
 import {fetchAsiyo} from "./asiyo";
-import {fetchDvorekKarlin} from "./dvorekKarlin";
 import {fetchFuelBistro} from "./fuelBistro";
 import {fetchMenicka} from "./menicka";
 import {fetchJidlovice} from "./jidlovice";
@@ -36,10 +35,11 @@ const scrappers: Scrapper[] = [
         icon: "🏡",
         icon_name: "house_with_garden",
         name: "Dvorek Karlín",
-        url: "https://www.dvorekkarlin.com/denni-nabidka/",
+        url: "https://www.dvorekkarlin.com/cs/denni-menu",
+        scrapeUrl: "https://www.menicka.cz/2427-dvorek-karlin.html",
         locationUrl: "https://maps.app.goo.gl/kivSxE9iMU6rgQj78",
         coordinates: { lat: 50.091655, lng: 14.4507984 },
-        load: fetchDvorekKarlin,
+        load: fetchMenicka,
     },
     {
         id: "fuel_bistro",

@@ -54,7 +54,7 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
         // 3. Teriyaki veal poké bowl
         // Beer and bacon ribs tacos - tři kukuřičné tortilly plněné trhaným vepřovým masem z žeber pečených na pivu a slanině s nakládanou červenou cibulí, podá...
         // 1. ITALIAN BEEF BURGER OF THE DAY 150g grilovaného hovězího zapékaného s mozzarellou, bazalková majonéza, nakládané rajče, prosciutto chips, salát, opékaná máslová bulka, hranolky smažené v loji, coleslaw
-        const nameRegex = new RegExp(`\\d+\\.\\s*(\\d+g)?\\s*(?<name>(?:(?!\\d+g)[^-])+)((\\s*\\d+g\\s*)|(\\s*-\\s*))?(?<description>.+)?`)
+        const nameRegex = new RegExp(`\\d+\\.\\s*(\\d+g)?\\s*(?<name>(?:(?!\\d+g)[^-–\/])+)((\\s*\\d+g\\s*)|(\\s*[-–\/]\\s*))?(?<description>.+)?`)
         const match = ($(el).find(".polozka").text() as string).match(nameRegex)
 
         if (!match) {
@@ -63,12 +63,14 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
 
         const priceText = $(el).find(".cena").text().replace(/\s*Kč|,-/g, "").trim()
         const price = parseInt(priceText, 10)
+        const description = (match.groups?.description ?? "")
+            .replaceAll("/", ", ")
 
         if (match.groups?.name) {
             items.push({
                 name: match.groups?.name,
                 price: isNaN(price) ? null : price,
-                description: match.groups?.description,
+                description: description,
                 isSoup: index === 0 && price < 100,
             })
         }

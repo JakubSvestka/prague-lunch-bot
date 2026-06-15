@@ -9,11 +9,15 @@ import {getRestaurants} from "../scrappers";
 
 const generatePage = async (menus: Menu[]): Promise<boolean> => {
     const client = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY,
+        apiKey: process.env.OPENAI_API_KEY ?? "",
     });
 
     async function translate(menus: Menu[]): Promise<Menu[]>
     {
+        if (process.env.OPENAI_API_KEY === undefined) {
+            return menus
+        }
+
         const response = await client.chat.completions.create({
             model: "gpt-4o-mini",
             response_format: { type: "json_object" }, // ensures valid JSON
