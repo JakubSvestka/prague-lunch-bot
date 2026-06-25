@@ -212,6 +212,24 @@ const scrappers: Scrapper[] = [
         locationUrl: "https://www.google.com/maps/search/Sangam+Indian+Restaurant,+Sokolovska+71,+Praha+8",
         coordinates: { lat: 50.0935880, lng: 14.4486270 },
     },
+    {
+        id: "mcdonalds",
+        icon: "🍟",
+        icon_name: "fries",
+        name: "McDonald's",
+        url: "https://www.mcdonalds.cz/",
+        locationUrl: "https://www.google.com/maps/search/McDonald's,+Thamova+183%2F11,+Praha+8",
+        coordinates: { lat: 50.0923611, lng: 14.4521600 },
+    },
+    {
+        id: "muj_salek_kavy",
+        icon: "🫖",
+        icon_name: "teapot",
+        name: "Můj šálek kávy",
+        url: "https://mujsalekkavy.cz/",
+        locationUrl: "https://www.google.com/maps/search/Muj+salek+kavy,+Krizikova+386%2F105,+Praha+8",
+        coordinates: { lat: 50.0935033, lng: 14.4550928 },
+    },
 ]
 
 const fetchMenus = async (scrapperId?: string): Promise<Menu[]> => {
