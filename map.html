@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Prague Lunch Bot — Map</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        #map {
+            height: 70vh;
+            min-height: 480px;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid rgb(253 230 138);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+        }
+
+        .restaurant-popup .leaflet-popup-content-wrapper {
+            border-radius: 0.75rem;
+            border: 1px solid rgb(253 230 138);
+        }
+
+        .restaurant-popup .leaflet-popup-content {
+            margin: 0.75rem 1rem;
+            min-width: 220px;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-yellow-50 to-amber-100 min-h-screen flex flex-col items-center font-sans text-gray-800">
+
+<header class="bg-white/85 backdrop-blur-md shadow-sm px-5 py-4 flex flex-col gap-3 border-b border-amber-200 w-full max-w-[1600px]">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="flex items-center gap-4 min-w-0">
+            <a href="index.html" aria-label="Prague Lunch Bot home">
+                <img src="avatar.png" alt="Prague Lunch Bot logo" class="w-14 h-14 rounded-full border border-amber-300">
+            </a>
+            <div class="min-w-0">
+                <h1 class="text-2xl md:text-3xl font-extrabold text-amber-700">Prague Lunch Bot</h1>
+                <p class="text-sm text-gray-500" id="subtitle">Restaurants around the office</p>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2 self-start md:self-auto">
+            <a href="index.html" class="inline-flex items-center gap-1 rounded-lg border border-amber-200 bg-white px-3 py-1.5 text-sm font-medium text-amber-700 transition-colors hover:bg-amber-50">
+                <span>📋</span><span>Menus</span>
+            </a>
+
+            <div id="lang-switch" class="flex gap-2 bg-amber-50 rounded-xl p-1 shadow-sm border border-amber-200 w-fit">
+                <button id="btn-cz" data-lang="cz" type="button"
+                        class="lang-btn inline-flex items-center justify-center rounded-lg border border-transparent px-3 py-1.5 text-sm font-medium text-amber-700 transition-colors cursor-pointer">CZ</button>
+                <button id="btn-en" data-lang="en" type="button"
+                        class="lang-btn inline-flex items-center justify-center rounded-lg border border-transparent px-3 py-1.5 text-sm font-medium text-amber-700 transition-colors cursor-pointer">EN</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="w-full max-w-[1600px] mt-6 px-4 md:px-6">
+    <div id="map"></div>
+</main>
+
+<footer class="my-6 text-gray-500 text-sm text-center px-4">
+    <span id="footer-text">Made with heart by</span>
+    <a class="font-semibold text-amber-600" target="_blank" rel="noreferrer" href="https://github.com/JakubSvestka/prague-lunch-bot">Prague Lunch Bot</a>
+</footer>
+
+<script>
+    const MAPY_API_KEY = "dSZRBcsojxe-H3D66DBrihQfCD-5Q6jsceIbmYN6R4k";
+    const RESTAURANTS = [{"id":"diego_pivni_bar","icon":"🎯","icon_name":"dart","name":"Diego pivní bar","url":"http://www.diegopivnibar.cz/cz/","locationUrl":"https://maps.app.goo.gl/WaBWra3W2ebzZ73p8","coordinates":{"lat":50.0947634,"lng":14.4552377}},{"id":"dvorek_karlin","icon":"🏡","icon_name":"house_with_garden","name":"Dvorek Karlín","url":"https://www.dvorekkarlin.com/cs/denni-menu","locationUrl":"https://maps.app.goo.gl/kivSxE9iMU6rgQj78","coordinates":{"lat":50.091655,"lng":14.4507984}},{"id":"fuel_bistro","icon":"☕️","icon_name":"coffee","name":"Fuel Bistro","url":"https://fuelbistro.cz/","locationUrl":"https://maps.app.goo.gl/DhmZ42BbGxaiRXW68","coordinates":{"lat":50.091978,"lng":14.4576017}},{"id":"gastro_karlin","icon":"🍛","icon_name":"curry","name":"Gastro Karlín","url":"https://www.gastrokarlin.cz/","locationUrl":"https://maps.app.goo.gl/Hn9WyxNiLziTtHS37","coordinates":{"lat":50.092543,"lng":14.4507045}},{"id":"jidlovice","icon":"🍽️","icon_name":"knife_fork_plate","name":"Jídlovice","url":"https://www.jidlovice.cz/karlin/","locationUrl":"https://maps.app.goo.gl/fK3T5j2mh5XpfGQS9","coordinates":{"lat":50.0946397,"lng":14.4488777}},{"id":"la_perla_de_karlin","icon":"🥘","icon_name":"paella","name":"La Perla de Karlín","url":"https://laperladekarlin.cz/","locationUrl":"https://www.google.com/maps/search/La+Perla+de+Karlin,+Saldova+9,+Praha+8","coordinates":{"lat":50.0941845,"lng":14.4548702}},{"id":"peters_pub","icon":"🍔","icon_name":"burger","name":"Peter's pub","url":"http://www.peterspub.cz/","locationUrl":"https://maps.app.goo.gl/b6dyMJXK1q8VEG897","coordinates":{"lat":50.0908013,"lng":14.4528336}},{"id":"pivo_karlin","icon":"🍺","icon_name":"beer","name":"Pivo Karlín","url":"https://www.pivokarlin.cz/","locationUrl":"https://maps.app.goo.gl/iWD3jubpzKhbMRFk8","coordinates":{"lat":50.0916851,"lng":14.4575721}},{"id":"proti_proudu","icon":"🌊","icon_name":"ocean","name":"Proti proudu","url":"https://bistroprotiproudu.cz","locationUrl":"https://maps.app.goo.gl/XcSJSeoGYGWhgAio8","coordinates":{"lat":50.0944559,"lng":14.4561641}},{"id":"polevkarna","icon":"🥣","icon_name":"bowl_with_spoon","name":"Polévkárna","url":"http://www.polevkarna.cz/","locationUrl":"https://www.google.com/maps/search/Polevkarna,+Sokolovska+86,+Praha+8","coordinates":{"lat":50.0937871,"lng":14.4507792}},{"id":"u_tunelu","icon":"🛤️","icon_name":"railway_track","name":"U Tunelu","url":"https://www.utunelu.cz/","locationUrl":"https://www.google.com/maps/search/U+Tunelu,+Thamova+1,+Praha+8","coordinates":{"lat":50.0906192,"lng":14.4531312}},{"id":"happy_nuddles","icon":"🍜️","icon_name":"ramen","name":"Happy nuddles","url":"https://www.instagram.com/happysushipraha8","locationUrl":"https://maps.app.goo.gl/y7YttdjPQGrNUXJdA","coordinates":{"lat":50.09376001987864,"lng":14.451839020243082}},{"id":"bowlers","icon":"🥑️","icon_name":"avocado","name":"Bowlers","url":"https://bowlers.choiceqr.com","locationUrl":"https://maps.app.goo.gl/yYFWbjBoHQ2hzJ559","coordinates":{"lat":50.09641554588942,"lng":14.460360533725112}},{"id":"balam_coffee","icon":"🥪","icon_name":"sandwich","name":"BA-LĂM Coffee","url":"https://www.instagram.com/balamcoffee_","locationUrl":"https://maps.app.goo.gl/5PP6T6etaZS3Zsp99","coordinates":{"lat":50.095026475480935,"lng":14.456119808523471}},{"id":"indian_by_nature","icon":"🫓","icon_name":"flatbread","name":"Indian by Nature","url":"https://en.ibn.delivery/","locationUrl":"https://www.google.com/maps/search/Indian+by+Nature,+Pernerova+478%2F1,+Praha+8","coordinates":{"lat":50.0893786,"lng":14.4450473}},{"id":"gemuse_corner_kebab","icon":"🌯","icon_name":"burrito","name":"Gemüse Corner Kebab","url":"https://wolt.com/cs/cze/prague/restaurant/gemuse-corner-kebab-karlin","locationUrl":"https://www.google.com/maps/search/Gemuse+Corner+Kebab,+Sokolovska+79,+Praha+8","coordinates":{"lat":50.0938435,"lng":14.4497467}},{"id":"khomfi","icon":"🥟","icon_name":"dumpling","name":"Khomfi","url":"https://www.khomfi.cz","locationUrl":"https://www.google.com/maps/search/Khomfi,+Vitkova+18,+Praha+8","coordinates":{"lat":50.0913938,"lng":14.4453713}},{"id":"bali_bali","icon":"🍱","icon_name":"bento","name":"Bali Bali","url":"https://bali-bali-karlin.eatbu.com/","locationUrl":"https://www.google.com/maps/search/Bali+Bali,+Thamova+18,+Praha+8","coordinates":{"lat":50.0924153,"lng":14.4525107}},{"id":"sangam","icon":"🌶️","icon_name":"hot_pepper","name":"Sangam Indian Restaurant","url":"https://sangam.cz/","locationUrl":"https://www.google.com/maps/search/Sangam+Indian+Restaurant,+Sokolovska+71,+Praha+8","coordinates":{"lat":50.093588,"lng":14.448627}},{"id":"mcdonalds","icon":"🍟","icon_name":"fries","name":"McDonald's","url":"https://www.mcdonalds.cz/","locationUrl":"https://www.google.com/maps/search/McDonald's,+Thamova+183%2F11,+Praha+8","coordinates":{"lat":50.0923611,"lng":14.45216}},{"id":"muj_salek_kavy","icon":"🫖","icon_name":"teapot","name":"Můj šálek kávy","url":"https://mujsalekkavy.cz/","locationUrl":"https://www.google.com/maps/search/Muj+salek+kavy,+Krizikova+386%2F105,+Praha+8","coordinates":{"lat":50.0935033,"lng":14.4550928}}];
+    const OFFICE = { lat: 50.0919772, lng: 14.4580492, label: "Office (Karlín)" };
+
+    function getPreferredLanguage() {
+        const params = new URLSearchParams(window.location.search);
+        const urlLang = params.get("lang");
+        if (urlLang === "en" || urlLang === "cz") return urlLang;
+        const browserLang = (navigator.languages && navigator.languages.length
+            ? navigator.languages[0]
+            : navigator.language) || "en";
+        return browserLang.toLowerCase().startsWith("cs") ? "cz" : "en";
+    }
+
+    function setLanguageButtons(lang) {
+        const buttons = document.getElementsByClassName("lang-btn");
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove("bg-amber-200", "text-amber-900", "border-amber-300", "shadow-sm");
+            buttons[i].classList.add("hover:bg-amber-100");
+        }
+        const activeButton = document.getElementById(`btn-${lang}`);
+        activeButton.classList.remove("hover:bg-amber-100");
+        activeButton.classList.add("bg-amber-200", "text-amber-900", "border-amber-300", "shadow-sm");
+    }
+
+    function buildPopup(restaurant, hasMenu, lang) {
+        const menuButton = hasMenu ? `
+            <a href="index.html?lang=${lang}#${restaurant.id}"
+               class="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-100 px-3 py-1.5 text-xs font-semibold text-amber-800 hover:bg-amber-200">
+                <span>🍽️</span><span>View today's menu</span>
+            </a>
+        ` : "";
+        return `
+            <div>
+                <h3 class="text-base font-bold text-amber-700 mb-2">${restaurant.icon} ${restaurant.name}</h3>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <a href="${restaurant.url}" target="_blank" rel="noreferrer"
+                       class="inline-flex items-center gap-1 rounded-md border border-amber-200 bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 hover:bg-amber-100">
+                        <span>🌐</span><span>Web</span>
+                    </a>
+                    <a href="${restaurant.locationUrl}" target="_blank" rel="noreferrer"
+                       class="inline-flex items-center gap-1 rounded-md border border-amber-200 bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 hover:bg-amber-100">
+                        <span>📍</span><span>Location</span>
+                    </a>
+                </div>
+                ${menuButton}
+            </div>
+        `;
+    }
+
+    async function loadMap() {
+        const map = L.map("map", { zoomControl: true });
+
+        L.tileLayer(`https://api.mapy.com/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${MAPY_API_KEY}`, {
+            minZoom: 0,
+            maxZoom: 20,
+            attribution: '<a href="https://api.mapy.com/copyright" target="_blank">&copy; Seznam.cz a.s. a další</a>',
+        }).addTo(map);
+
+        const LogoControl = L.Control.extend({
+            options: { position: "bottomleft" },
+            onAdd: function () {
+                const container = L.DomUtil.create("div");
+                const link = L.DomUtil.create("a", "", container);
+                link.setAttribute("href", "http://mapy.com/");
+                link.setAttribute("target", "_blank");
+                link.innerHTML = '<img src="https://api.mapy.com/img/api/logo.svg" />';
+                L.DomEvent.disableClickPropagation(link);
+                return container;
+            },
+        });
+        new LogoControl().addTo(map);
+
+        const officeIcon = L.divIcon({
+            className: "",
+            html: '<div style="background:white;border:3px solid #1f2937;border-radius:9999px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px white, 0 2px 6px rgba(0,0,0,0.4);overflow:hidden;"><img src="sky_logo.png" alt="Sky" style="width:28px;height:28px;object-fit:contain;"></div>',
+            iconSize: [42, 42],
+            iconAnchor: [21, 21],
+        });
+        L.marker([OFFICE.lat, OFFICE.lng], { icon: officeIcon, title: OFFICE.label })
+            .addTo(map)
+            .bindPopup(`<div class="font-semibold text-amber-700">${OFFICE.label}</div>`);
+
+        const lang = getPreferredLanguage();
+        setLanguageButtons(lang);
+
+        let menuIds = new Set();
+        try {
+            const res = await fetch("menus.json?v=6983d9bfd61332e6dbaff313ffd82c5da5d333069c054f46d5674319dc13c18f");
+            const data = await res.json();
+            menuIds = new Set((data.menus[lang] || []).map(m => m.id));
+        } catch (err) {
+            console.error("Failed to load menus:", err);
+        }
+
+        const restaurants = RESTAURANTS.filter(r => r.coordinates);
+        const bounds = L.latLngBounds([[OFFICE.lat, OFFICE.lng]]);
+
+        restaurants.forEach(restaurant => {
+            const icon = L.divIcon({
+                className: "",
+                html: `<div style="background:white;border:3px solid #dc2626;border-radius:9999px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:20px;line-height:1;box-shadow:0 0 0 2px white, 0 3px 8px rgba(0,0,0,0.35);">${restaurant.icon}</div>`,
+                iconSize: [38, 38],
+                iconAnchor: [19, 19],
+                popupAnchor: [0, -19],
+            });
+            const marker = L.marker([restaurant.coordinates.lat, restaurant.coordinates.lng], { icon, title: restaurant.name })
+                .addTo(map)
+                .bindPopup(buildPopup(restaurant, menuIds.has(restaurant.id), lang), { className: "restaurant-popup" });
+            bounds.extend([restaurant.coordinates.lat, restaurant.coordinates.lng]);
+
+            if (window.location.hash === `#${restaurant.id}`) {
+                marker.openPopup();
+            }
+        });
+
+        if (restaurants.length) {
+            map.fitBounds(bounds, { padding: [40, 40], maxZoom: 17 });
+        } else {
+            map.setView([OFFICE.lat, OFFICE.lng], 16);
+        }
+
+        document.getElementById("lang-switch").addEventListener("click", (e) => {
+            const button = e.target.closest("[data-lang]");
+            if (!button) return;
+            const newUrl = new URL(window.location.href);
+            newUrl.searchParams.set("lang", button.dataset.lang);
+            window.location.href = newUrl.toString().split("#")[0];
+        });
+    }
+
+    loadMap();
+</script>
+</body>
+</html>
