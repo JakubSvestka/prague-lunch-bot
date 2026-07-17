@@ -10,14 +10,8 @@ const NO_MENU_TEXT = [
 ]
 
 export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
-    const res = await axios.get(
-        scrapper.scrapeUrl as string,
-        {
-            responseType: 'arraybuffer', // because of windows-1250
-        }
-    )
-    const decoded = iconv.decode(Buffer.from(res.data), "windows-1250")
-    const $ = cheerio.load(decoded)
+    const res = await axios.get(scrapper.scrapeUrl as string)
+    const $ = cheerio.load(res.data)
 
     const items: MenuItem[] = []
 
