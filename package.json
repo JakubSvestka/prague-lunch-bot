@@ -11,22 +11,22 @@
   "license": "ISC",
   "description": "Scrape daily restaurant menus and post them to a specified Slack channel",
   "dependencies": {
-    "axios": "1.16.1",
-    "axios-retry": "4.5.0",
+    "axios": "1.19.0",
+    "axios-retry": "^4.5.0",
     "cheerio": "^1.2.0",
     "crypto": "^1.0.1",
-    "dayjs": "^1.11.20",
+    "dayjs": "^1.11.21",
     "dotenv": "^17.4.2",
-    "iconv-lite": "^0.7.2",
+    "iconv-lite": "^0.7.3",
     "minimist": "^1.2.8",
-    "namedays-cs": "^1.1.1",
-    "openai": "^6.34.0"
+    "namedays-cs": "^1.2.1",
+    "openai": "^7.4.0"
   },
   "devDependencies": {
     "@types/cheerio": "^1.0.0",
     "@types/minimist": "^1.2.5",
-    "@types/node": "^25.6.0",
+    "@types/node": "^26.1.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^7.0.2"
   }
 }
