@@ -184,10 +184,11 @@
                     <li class="border-b border-gray-100 pb-2 last:border-b-0 group">
                       <div class="flex justify-between items-start gap-3">
                         <span class="flex items-start gap-2 font-medium min-w-0 flex-1">
-                          ${(i.isSoup || i.isVegetarian) ? `
+                          ${(i.isSoup || i.isVegetarian || i.isGlutenFree) ? `
                             <span class="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 shrink-0">
                               ${i.isSoup ? '<span class="text-amber-500">🥣</span>' : ''}
                               ${i.isVegetarian ? '<span class="text-green-600">🌿</span>' : ''}
+                              ${i.isGlutenFree ? '<span class="text-amber-700">🌾</span>' : ''}
                             </span>
                           ` : ""}
                           <span class="relative pr-6 text-sm md:text-base leading-5 ${i.description ? 'font-medium' : 'font-normal'}">${i.name}<a href="https://www.google.com/search?udm=2&q=${encodeURIComponent(i.name)}" class="absolute right-0 top-0 opacity-0 transition-opacity group-hover:opacity-100 hover:opacity-100" target="_blank" rel="noreferrer">📷</a></span>

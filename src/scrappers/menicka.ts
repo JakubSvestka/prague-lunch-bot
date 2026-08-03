@@ -2,6 +2,7 @@ import * as cheerio from "cheerio"
 import {Menu, MenuItem, Scrapper} from "../types"
 import dayjs from "../utils/dayjs"
 import axios from "../utils/axios"
+import normalize from "../utils/normalize"
 import iconv from "iconv-lite"
 
 const NO_MENU_TEXT = [
@@ -39,7 +40,7 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
         const priceText = $(el).find(".cena").text().replace(/\s*Kč|,-/g, "").trim()
         const price = parseInt(priceText, 10)
 
-        items.push({ name: name, price: isNaN(price) ? null : price, isSoup: true })
+        items.push({ name: normalize(name), price: isNaN(price) ? null : price, isSoup: true })
     })
 
     // Main meals
@@ -57,15 +58,18 @@ export async function fetchMenicka(scrapper: Scrapper): Promise<Menu> {
 
         const priceText = $(el).find(".cena").text().replace(/\s*Kč|,-/g, "").trim()
         const price = parseInt(priceText, 10)
+        const name = match.groups?.name
         const description = (match.groups?.description ?? "")
             .replaceAll("/", ", ")
 
-        if (match.groups?.name) {
+        if (name) {
             items.push({
-                name: match.groups?.name,
+                name: normalize(name.replaceAll(/,\s*(VEG|VGN|GF)/ig, "")),
                 price: isNaN(price) ? null : price,
-                description: description,
+                description: normalize(description),
                 isSoup: index === 0 && price < 100,
+                isVegetarian: (name.match(/VEG|VGN/ig)?.length ?? 0) > 0,
+                isGlutenFree: (name.match(/GF/ig)?.length ?? 0) > 0,
             })
         }
     })

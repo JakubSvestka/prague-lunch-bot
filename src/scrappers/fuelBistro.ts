@@ -1,6 +1,7 @@
 import * as cheerio from "cheerio"
 import {Menu, MenuItem, Scrapper} from "../types"
 import axios from "../utils/axios"
+import normalize from "../utils/normalize"
 
 export async function fetchFuelBistro(scrapper: Scrapper): Promise<Menu> {
     const res = await axios.get(scrapper.scrapeUrl ?? scrapper.url)
@@ -11,13 +12,11 @@ export async function fetchFuelBistro(scrapper: Scrapper): Promise<Menu> {
         .closest("div.accordion")
         .find("div.block.block-listitem")
         .each((index, el) => {
-            const name = fixCase(
+            const name = normalize(
                 $(el)
                     .find(".listitem-cell")
                     .first()
                     .text()
-                    .replace(/\s+/g, " ")
-                    .trim()
             )
 
             const priceText = $(el)
@@ -55,9 +54,4 @@ export async function fetchFuelBistro(scrapper: Scrapper): Promise<Menu> {
         coordinates: scrapper.coordinates,
         items
     }
-}
-
-function fixCase(str: string): string {
-    const lower = str.toLowerCase().trim()
-    return lower.charAt(0).toUpperCase() + lower.slice(1)
 }

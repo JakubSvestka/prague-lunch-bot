@@ -1,6 +1,7 @@
 import {Menu, MenuItem, Scrapper} from "../types"
 import dayjs from "../utils/dayjs"
 import axios from "../utils/axios"
+import normalize from "../utils/normalize"
 import {JidloviceMenu, Meal} from "../types/jidlovice";
 
 const SOUP_CATEGORY_ID = 1
@@ -27,7 +28,8 @@ export async function fetchJidlovice(scrapper: Scrapper): Promise<Menu> {
             price: item.meal.price,
             isVegetarian: isVegetarian(item.meal),
             isSoup: item.meal.category_id === SOUP_CATEGORY_ID,
-            hideInPresentation: !item.is_from_main_menu
+            hideInPresentation: !item.is_from_main_menu,
+            isGlutenFree: (item.meal.allergens & 0o00000000001) !== 0o00000000001
         })
     }
 
@@ -43,5 +45,4 @@ export async function fetchJidlovice(scrapper: Scrapper): Promise<Menu> {
     }
 }
 
-const normalize = (val: string): string => val.trim().replace(/\s+/g, " ")
 const isVegetarian = (meal: Meal): boolean => meal.tags.some(t => t.tag.name === "vegetarián")

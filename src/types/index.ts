@@ -32,6 +32,7 @@ export type MenuItem = {
     description?: string|null;
     price: number|null;
     isVegetarian?: boolean;
+    isGlutenFree?: boolean;
     isSoup?: boolean;
     hideInPresentation?: boolean;
 };

@@ -2,6 +2,7 @@ import * as cheerio from "cheerio"
 import dayjs from "../utils/dayjs"
 import {Menu, MenuItem, Scrapper} from "../types"
 import axios from "../utils/axios"
+import normalize from "../utils/normalize"
 
 export async function fetchPivokarlin(scrapper: Scrapper): Promise<Menu> {
     const res = await axios.get(scrapper.scrapeUrl as string)
@@ -22,12 +23,13 @@ export async function fetchPivokarlin(scrapper: Scrapper): Promise<Menu> {
             .find(".nectar_food_menu_item")
             .each((index, itemEl) => {
                 const fullName = $(itemEl).find(".item_name h4").text().trim()
-                const name = fullName
-                    .replace("/\*/g", "")
-                    .replace(/\s\*?[0-9]{1,2}[a-z]?([,][0-9]{1,2}[a-z]?)*$/, "")
-                    .replace(/\d+(g|(ks))/, "")
-                    .replace(/VEG\s+/, "")
-                    .trim()
+                const name = normalize(
+                    fullName
+                        .replace("/\*/g", "")
+                        .replace(/\s\*?[0-9]{1,2}[a-z]?([,][0-9]{1,2}[a-z]?)*$/, "")
+                        .replace(/\d+(g|(ks))/, "")
+                        .replace(/VEG\s+/, "")
+                )
                 const priceText = $(itemEl).find(".item_price h4").text().trim().replace(",-", "").trim()
                 const price = parseInt(priceText, 10)
 

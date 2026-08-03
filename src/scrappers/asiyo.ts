@@ -2,6 +2,7 @@ import * as cheerio from "cheerio";
 import {Menu, MenuItem, Scrapper} from "../types";
 import dayjs from "../utils/dayjs";
 import axios from "../utils/axios";
+import normalize from "../utils/normalize";
 
 export async function fetchAsiyo(scrapper: Scrapper): Promise<Menu> {
     const res = await axios.get(scrapper.url);
@@ -39,11 +40,12 @@ export async function fetchAsiyo(scrapper: Scrapper): Promise<Menu> {
             if (match) {
                 const [, name, price] = match
                 const priceInt = parseInt(price)
+                const description = lines[++i]
 
                 weeklyItems.push({
-                    name,
+                    name: normalize(name),
                     price: priceInt,
-                    description: lines[++i] ,
+                    description: description ? normalize(description) : description,
                     isSoup: priceInt < 60
                 });
             }
@@ -53,7 +55,8 @@ export async function fetchAsiyo(scrapper: Scrapper): Promise<Menu> {
 
         if (mode === "daily" && dayMatch) {
             const [, name, price] = dayMatch;
-            items.push({ name, price: parseInt(price), description: lines[++i] });
+            const description = lines[++i]
+            items.push({ name: normalize(name), price: parseInt(price), description: description ? normalize(description) : description });
         }
 
         i++;

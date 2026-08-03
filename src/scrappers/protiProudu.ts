@@ -2,6 +2,7 @@ import * as cheerio from "cheerio"
 import {Menu, MenuItem, Scrapper} from "../types"
 import dayjs from "../utils/dayjs"
 import axios from "../utils/axios"
+import normalize from "../utils/normalize"
 
 export async function fetchProtiProudu(scrapper: Scrapper): Promise<Menu> {
     const res = await axios.get(scrapper.scrapeUrl as string)
@@ -42,7 +43,7 @@ export async function fetchProtiProudu(scrapper: Scrapper): Promise<Menu> {
                     const isSoup = index === 0
 
                     items.push({
-                        name: normalizeName(name),
+                        name: normalize(name),
                         price,
                         isSoup
                     })
@@ -66,6 +67,3 @@ export async function fetchProtiProudu(scrapper: Scrapper): Promise<Menu> {
     }
 }
 
-function normalizeName(name: string): string {
-    return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
-}
