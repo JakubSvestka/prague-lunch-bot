@@ -18,18 +18,19 @@ export default async (menus: Menu[]): Promise<Menu[]> => {
                 role: "system",
                 content: `
                 Normalize the menu items:
-                - do not change meaning
-                - remove allergens from name
-                - add missing description if needed
+                - keep meaning
+                - remove allergens from item.name
                 - if you are 100% sure about that meal is gluten free/vegetarian, set the flag
                 - do not change value of hideInPresentation parameter
                 - only soups have set isSoup=true 
                 - change only values in menu.items
-                - remove item description if does not make sense - description should give meaningful information
-                 - no single letter
-                 - no single word
-                 - keep it short
-                - do not translate it do another language (keep it in Czech)
+                - item.description has to contain meaningful information
+                 - can't contain single letter
+                 - can't contain single word
+                 - keep reasonable length
+                 - do not repeat information from name itself
+                 - do not set description if not needed and a reader knows meaning from name
+                - do not translate it to another language (keep it in Czech)
                 
                 Structure is:
                 export type Menu = {
