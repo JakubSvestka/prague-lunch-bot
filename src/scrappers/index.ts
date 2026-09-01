@@ -6,6 +6,7 @@ import {fetchMenicka} from "./menicka";
 import {fetchJidlovice} from "./jidlovice";
 import dayjs from "../utils/dayjs";
 import {fetchProtiProudu} from "./protiProudu";
+import menuNormalizer from "../utils/menuNormalizer";
 
 const scrappers: Scrapper[] = [
     {
@@ -250,9 +251,9 @@ const fetchMenus = async (scrapperId?: string): Promise<Menu[]> => {
         }
     });
 
-    return results
+    return menuNormalizer(results
         .filter((res): res is PromiseFulfilledResult<Menu> => res.status === 'fulfilled')
-        .map(res => res.value);
+        .map(res => res.value));
 }
 
 const getRestaurants = () => {
