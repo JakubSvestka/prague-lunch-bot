@@ -25,7 +25,10 @@ export default async (menus: Menu[]): Promise<Menu[]> => {
                 - do not change value of hideInPresentation parameter
                 - only soups have set isSoup=true 
                 - change only values in menu.items
-                - remove item description if does not make sense (single letter, single word) - description should give meaningful addition information
+                - remove item description if does not make sense - description should give meaningful information
+                 - no single letter
+                 - no single word
+                 - keep it short
                 - do not translate it do another language (keep it in Czech)
                 
                 Structure is:
