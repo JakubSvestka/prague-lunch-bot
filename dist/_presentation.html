@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico"/>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src=" https://cdn.jsdelivr.net/npm/js-cookie@3.0.8/dist/js.cookie.min.js" defer></script>
 
     <style>
         body {
@@ -110,6 +111,8 @@
     }
 
     function showSlide(index) {
+        Cookies.set('current_slide', index)
+
         slides.forEach((slide, i) => {
             slide.classList.toggle("active-slide", i === index);
         });
@@ -141,7 +144,7 @@
     }
 
     async function loadMenus() {
-        const res = await fetch(`menus.json?v=7f53ddb025cc158e27214058cc0aa32a1ac294ce519acd2d13913ece40b5eca8`);
+        const res = await fetch(`menus.json?v={{HASH}}`);
         const data = await res.json();
 
         document.getElementById("date").textContent = new Date(data.date).toLocaleDateString("en-GB", {
@@ -200,7 +203,8 @@
         });
 
         slides = Array.from(document.getElementsByClassName("slide"));
-        if (slides.length > 0) showSlide(0);
+        let currentSlide = Cookies.get('current_slide');
+        if (slides.length > currentSlide) showSlide(currentSlide);
     }
 
     updateClock();
