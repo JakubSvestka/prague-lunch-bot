@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico"/>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src=" https://cdn.jsdelivr.net/npm/js-cookie@3.0.8/dist/js.cookie.min.js" defer></script>
+    <script src=" https://cdn.jsdelivr.net/npm/js-cookie@3.0.8/dist/js.cookie.min.js"></script>
 
     <style>
         body {
@@ -92,7 +92,7 @@
 
 <!-- JS -->
 <script>
-    let currentSlide = 0;
+    let currentSlide = Cookies.get('current_slide') ?? 0;
     let slides = [];
     const slideDuration = 15; // seconds
     let progressInterval;
@@ -203,8 +203,7 @@
         });
 
         slides = Array.from(document.getElementsByClassName("slide"));
-        let currentSlide = Cookies.get('current_slide');
-        if (slides.length > currentSlide) showSlide(currentSlide);
+        showSlide((currentSlide + 1) % slides.length);
     }
 
     updateClock();
