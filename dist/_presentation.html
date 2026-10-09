@@ -92,7 +92,7 @@
 
 <!-- JS -->
 <script>
-    let currentSlide = Cookies.get('current_slide') ?? 0;
+    let currentSlide = parseInt(Cookies.get('current_slide') ?? 0);
     let slides = [];
     const slideDuration = 15; // seconds
     let progressInterval;
