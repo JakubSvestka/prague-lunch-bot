@@ -1,0 +1,1099 @@
+{
+  "date": "2026-11-06",
+  "menus": {
+    "cz": [
+      {
+        "id": "diego_pivni_bar",
+        "icon": "🎯",
+        "icon_name": "dart",
+        "name": "Diego pivní bar",
+        "url": "http://www.diegopivnibar.cz/cz/",
+        "locationUrl": "https://maps.app.goo.gl/WaBWra3W2ebzZ73p8",
+        "coordinates": {
+          "lat": 50.0947634,
+          "lng": 14.4552377
+        },
+        "items": [
+          {
+            "name": "Polévka z pečené dýně s kokosovým mlékem a trochou chilli",
+            "price": 45,
+            "isSoup": true
+          },
+          {
+            "name": "Quesadilla de puerco tamarindo",
+            "price": 195,
+            "description": "Tortilla plněná vepřovým mase s tamarindovou omáčkou, podávaná s přílohou.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Bbq ribs",
+            "price": 215,
+            "description": "Vepřové žebírka grilovaná na barbecue s omáčkou a přílohou.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Vege larnaca burger",
+            "price": 205,
+            "description": "Chutný burger s grilovanou zeleninou a speciální omáčkou, ideální volba pro vegetariány.",
+            "isVegetarian": true
+          }
+        ]
+      },
+      {
+        "id": "dvorek_karlin",
+        "icon": "🏡",
+        "icon_name": "house_with_garden",
+        "name": "Dvorek Karlín",
+        "url": "https://www.dvorekkarlin.com/cs/denni-menu",
+        "locationUrl": "https://maps.app.goo.gl/kivSxE9iMU6rgQj78",
+        "coordinates": {
+          "lat": 50.091655,
+          "lng": 14.4507984
+        },
+        "items": [
+          {
+            "name": "Hovězí vývar /maso/nudle/zelenina",
+            "price": 70,
+            "isSoup": true
+          },
+          {
+            "name": "Asijský zeleninový krém",
+            "price": 75,
+            "isSoup": true,
+            "description": "Krémová polévka s houbami, paprikou, červenou cibulí a kokosovým mlékem, dochucená zázvorem a česnekem."
+          },
+          {
+            "name": "Kuřecí špíz s čedarem a slaninou",
+            "price": 225,
+            "description": "Grilovaný kuřecí špíz s chutí čedaru a slaniny, servírovaný s hranolky.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Rozlítaný španělský ptáček",
+            "price": 229,
+            "description": "Hovězí maso plněné se zeleninou, podávané s jasmínovou rýží.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Čevabčiči se šťouchanými brambory",
+            "price": 225,
+            "description": "Mleté vepřové a hovězí masové kuličky podávané se šťouchanými bramborami.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Salát niçoise",
+            "price": 219,
+            "description": "Mix salátů s kousky vajec a olivami, podávaný s dressingem.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Smažený sýr gouda",
+            "price": 215,
+            "description": "Klasický smažený sýr s hranolky a salátem.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          }
+        ]
+      },
+      {
+        "id": "fuel_bistro",
+        "icon": "☕️",
+        "icon_name": "coffee",
+        "name": "Fuel Bistro",
+        "url": "https://fuelbistro.cz/",
+        "locationUrl": "https://maps.app.goo.gl/DhmZ42BbGxaiRXW68",
+        "coordinates": {
+          "lat": 50.091978,
+          "lng": 14.4576017
+        },
+        "items": [
+          {
+            "name": "Gulášová polévka",
+            "price": 75,
+            "isSoup": true,
+            "isVegetarian": false
+          },
+          {
+            "name": "Vepřové výpečky s kapustou",
+            "price": 238,
+            "description": "Šťavnaté vepřové maso s dušenou kapustou a bramborovým knedlíkem.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Vepřová kotleta na grilu",
+            "price": 246,
+            "description": "Grilovaná kotleta podávaná s hořčičnou omáčkou a opečenými brambory.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Kuřecí soté se zeleninou",
+            "price": 242,
+            "description": "Kuřecí maso smažené se zeleninou a udon nudlemi, doplněné kořením.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Listový salát se zeleninou",
+            "price": 226,
+            "description": "Čerstvý salát s grilovaným pološtiepokem a brusinkovým dresinkem.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Čočka na kyselo s vejcem",
+            "price": 214,
+            "description": "Kyselá čočka s cibulkou a okurkou, servírovaná s vejcem.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          }
+        ]
+      },
+      {
+        "id": "gastro_karlin",
+        "icon": "🍛",
+        "icon_name": "curry",
+        "name": "Gastro Karlín",
+        "url": "https://www.gastrokarlin.cz/",
+        "locationUrl": "https://maps.app.goo.gl/Hn9WyxNiLziTtHS37",
+        "coordinates": {
+          "lat": 50.092543,
+          "lng": 14.4507045
+        },
+        "items": [
+          {
+            "name": "Frankfurtská",
+            "price": null,
+            "isSoup": true
+          },
+          {
+            "name": "Segedínský guláš",
+            "price": null,
+            "description": "Tradiční česky guláš s houskovým knedlíkem.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Kuřecí prsa, opečený brambor",
+            "price": null,
+            "description": "Grilovaná kuřecí prsa podávaná s opečeným bramborem a salátem coleslaw.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Smažený špíz ze tří druhů sýrů",
+            "price": null,
+            "description": "Smažené špízy z různých druhů sýrů podávané s bramborem a tatarskou omáčkou.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Srbské vepřové rizoto",
+            "price": null,
+            "description": "Vepřové risotto podávané se sýrem a okurkou.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          }
+        ]
+      },
+      {
+        "id": "jidlovice",
+        "icon": "🍽️",
+        "icon_name": "knife_fork_plate",
+        "name": "Jídlovice",
+        "url": "https://www.jidlovice.cz/karlin/",
+        "locationUrl": "https://maps.app.goo.gl/fK3T5j2mh5XpfGQS9",
+        "coordinates": {
+          "lat": 50.0946397,
+          "lng": 14.4488777
+        },
+        "items": [
+          {
+            "name": "Kuřecí vývar s játrovou rýží",
+            "description": "S pečenou zeleninou a libečkem, zasytí vás zdravím.",
+            "price": 59,
+            "isVegetarian": false,
+            "isSoup": true,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Pikantní mexická luštěninová",
+            "description": "Chutná polévka bohatá na luštěniny a koriandr.",
+            "price": 59,
+            "isVegetarian": true,
+            "isSoup": true,
+            "hideInPresentation": true,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Kuřecí řízek",
+            "description": "S naším bramborovým salátem nebo bramborovou kaší, skvélé jídlo pro každého.",
+            "price": 189,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Holandský řízek",
+            "description": "Podávaný s bramborovým salátem nebo kaší, delikátní volba.",
+            "price": 189,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Maďarský guláš",
+            "description": "Hovězí guláš s pečenými paprikami a naším houskovým knedlíkem nebo rýží.",
+            "price": 205,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Hovězí svíčková omáčka",
+            "description": "Servírovaná s brusinkami a smetanou s houskovým knedlíkem.",
+            "price": 209,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Kuřecí steak s mexickou rýží",
+            "description": "Opečený kuřecí steak s guacamole, rajčatovou salsou a koriandrem.",
+            "price": 199,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": true
+          },
+          {
+            "name": "Trhané vepřové ramínko",
+            "description": "Pečené s piri piri omáčkou, podávané s brambory a zeleninou.",
+            "price": 195,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": true
+          },
+          {
+            "name": "Penne s boloňským ragú",
+            "description": "Podávané s hoblinkami sýru grana padano a rukolou.",
+            "price": 195,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Kuře sweet and sour",
+            "description": "S dušenou zeleninou, ananasem a jasmínovou rýží.",
+            "price": 199,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": true
+          },
+          {
+            "name": "Dukátové buchtičky",
+            "description": "Dezert podávaný ve vanilkovém krému s marinovanými rozinkami.",
+            "price": 175,
+            "isVegetarian": true,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Smažený květák",
+            "description": "Podávaný s vařeným bramborem a naším tatarkou.",
+            "price": 189,
+            "isVegetarian": true,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          }
+        ]
+      },
+      {
+        "id": "la_perla_de_karlin",
+        "icon": "🥘",
+        "icon_name": "paella",
+        "name": "La Perla de Karlín",
+        "url": "https://laperladekarlin.cz/",
+        "locationUrl": "https://www.google.com/maps/search/La+Perla+de+Karlin,+Saldova+9,+Praha+8",
+        "coordinates": {
+          "lat": 50.0941845,
+          "lng": 14.4548702
+        },
+        "items": [
+          {
+            "name": "Guiso del día",
+            "price": 145,
+            "isSoup": true,
+            "description": "Tradiční dušený pokrm dne v husté omáčce, servírovaný s přílohou."
+          },
+          {
+            "name": "Paella mixta",
+            "price": 245,
+            "description": "Tradiční španělské jídlo s mořskými plody a kuřecím masem, podávané s bylinkami.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Filete de secreto ibérico",
+            "price": 285,
+            "description": "Šťavnaté filé z iberského vepřového masa, pečené do dokonalosti.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Brocheta de pollo",
+            "price": 250,
+            "description": "Grilovaný kuřecí špíz s marinádou, servírovaný s přílohou.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Albóndigas",
+            "price": 195,
+            "description": "Masové kuličky připravené podle tradiční receptury, podávané s omáčkou.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Pisto manchego con huevo",
+            "price": 185,
+            "description": "Dušená zelenina s vejcem, servírovaná s chlebem.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Postre del día",
+            "price": 95,
+            "description": "Sladký dezert dne, připravený z čerstvých ingrediencí.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          }
+        ]
+      },
+      {
+        "id": "pivo_karlin",
+        "icon": "🍺",
+        "icon_name": "beer",
+        "name": "Pivo Karlín",
+        "url": "https://www.pivokarlin.cz/",
+        "locationUrl": "https://maps.app.goo.gl/iWD3jubpzKhbMRFk8",
+        "coordinates": {
+          "lat": 50.0916851,
+          "lng": 14.4575721
+        },
+        "items": [
+          {
+            "name": "Frankfurtská polévka s párkem",
+            "price": 59,
+            "isSoup": true,
+            "isVegetarian": false
+          },
+          {
+            "name": "Philly cheesesteak",
+            "price": 275,
+            "description": "S naší domácí bulky, monterey jack sýrem, smaženým zelím a hranolky.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Krůtí játra na cibulce",
+            "price": 204,
+            "description": "Podávané se slaninovou remuládou a jasmínovou rýží.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Kaše ze žlutého hrachu",
+            "price": 204,
+            "description": "Tradicionalní kaše s vídeňskými párky, kyselou okurkou a cibulovým konfit."
+          },
+          {
+            "name": "Pikantní vepřové a kuřecí nudličky",
+            "price": 205,
+            "description": "Smažené nudličky z masa s pikantní směsí zeleniny a sýrem.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Krémová fregola s pečenou dýní",
+            "price": 203,
+            "description": "Pasta fregola s dýní, cherry rajčaty a rukolou, ideální pro vegetariány.",
+            "isVegetarian": true
+          },
+          {
+            "name": "Cizrnový falafel",
+            "price": 199,
+            "description": "Podávaný s rajčatovým salátem, sezamovým jogurtem a pita chlebem.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Beleše se zakysanou smetanou",
+            "price": 59,
+            "description": "Tradiční dezert s povidly a mákem, vhodný pro milovníky sladkého.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Zelný salát s křenem",
+            "price": 49,
+            "description": "Čerstvý zelný salát s křenovou omáčkou, ideální jako příloha.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          }
+        ]
+      },
+      {
+        "id": "polevkarna",
+        "icon": "🥣",
+        "icon_name": "bowl_with_spoon",
+        "name": "Polévkárna",
+        "url": "http://www.polevkarna.cz/",
+        "locationUrl": "https://www.google.com/maps/search/Polevkarna,+Sokolovska+86,+Praha+8",
+        "coordinates": {
+          "lat": 50.0937871,
+          "lng": 14.4507792
+        },
+        "items": [
+          {
+            "name": "Hovězí boršč",
+            "price": null,
+            "isSoup": true
+          },
+          {
+            "name": "Dýňový krém",
+            "price": null,
+            "isSoup": true,
+            "description": "Hustý krém s dýní, připravený bez živočišných produktů."
+          },
+          {
+            "name": "Nebo naše zavařené polévky",
+            "price": null,
+            "isSoup": true,
+            "description": "Vyberte si z naší nabídky zavařených polévek jako boršč nebo tomatový krém."
+          },
+          {
+            "name": "Kuřecí s estragonem",
+            "price": null,
+            "description": "Pokrm z kuřecího masa, připravený s estragonovou omáčkou.",
+            "isVegetarian": false,
+            "isSoup": false,
+            "isGlutenFree": true
+          },
+          {
+            "name": "Černá čočka s batáty",
+            "price": null,
+            "description": "Pokrm plný živin s přírodními ingrediencemi.",
+            "isVegetarian": true,
+            "isSoup": false,
+            "isGlutenFree": true
+          },
+          {
+            "name": "Chačapuri",
+            "price": null,
+            "description": "Tradiční gruzínské pečivo, které oceníte jako přílohu nebo hlavní jídlo.",
+            "isVegetarian": true,
+            "isSoup": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Se sýrem",
+            "price": null,
+            "description": "Pečivo plněné sýrem, ideální pro milovníky sýrů.",
+            "isVegetarian": false,
+            "isSoup": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Chačapuri s hovězím masem",
+            "price": null,
+            "description": "Tradiční pečivo plněné mletým hovězím, oblíbené v gruzínské kuchyni.",
+            "isVegetarian": false,
+            "isSoup": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Focaccia s mořskou solí a rozmarýnem",
+            "price": null,
+            "description": "Chutné pečivo jistě zaujme svou vůní a chutí.",
+            "isVegetarian": false,
+            "isSoup": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Šáteček brambory a chilli",
+            "price": null,
+            "description": "Pečivo plněné bramborovou směsí s příchutí chilli.",
+            "isVegetarian": false,
+            "isSoup": false,
+            "isGlutenFree": false
+          }
+        ]
+      }
+    ],
+    "en": [
+      {
+        "id": "diego_pivni_bar",
+        "icon": "🎯",
+        "icon_name": "dart",
+        "name": "Diego Beer Bar",
+        "url": "http://www.diegopivnibar.cz/cz/",
+        "locationUrl": "https://maps.app.goo.gl/WaBWra3W2ebzZ73p8",
+        "coordinates": {
+          "lat": 50.0947634,
+          "lng": 14.4552377
+        },
+        "items": [
+          {
+            "name": "Roasted Pumpkin Soup with Coconut Milk and a Hint of Chili",
+            "price": 45,
+            "isSoup": true
+          },
+          {
+            "name": "Pork Tamarind Quesadilla",
+            "price": 195,
+            "description": "Tortilla filled with pork meat and tamarind sauce, served with a side.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Bbq Ribs",
+            "price": 215,
+            "description": "Pork ribs grilled on barbecue with sauce and a side.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Vege Larnaca Burger",
+            "price": 205,
+            "description": "Tasty burger with grilled vegetables and special sauce, ideal choice for vegetarians.",
+            "isVegetarian": true
+          }
+        ]
+      },
+      {
+        "id": "dvorek_karlin",
+        "icon": "🏡",
+        "icon_name": "house_with_garden",
+        "name": "Dvorek Karlín",
+        "url": "https://www.dvorekkarlin.com/cs/denni-menu",
+        "locationUrl": "https://maps.app.goo.gl/kivSxE9iMU6rgQj78",
+        "coordinates": {
+          "lat": 50.091655,
+          "lng": 14.4507984
+        },
+        "items": [
+          {
+            "name": "Beef Broth /meat/noodles/vegetables",
+            "price": 70,
+            "isSoup": true
+          },
+          {
+            "name": "Asian Vegetable Cream",
+            "price": 75,
+            "isSoup": true,
+            "description": "Creamy soup with mushrooms, bell peppers, red onion, and coconut milk, flavored with ginger and garlic."
+          },
+          {
+            "name": "Chicken Skewers with Cheddar and Bacon",
+            "price": 225,
+            "description": "Grilled chicken skewers with cheddar and bacon flavor, served with fries.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Spaniel Bird",
+            "price": 229,
+            "description": "Beef meat stuffed with vegetables, served with jasmine rice.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Ćevapčiči with Mashed Potatoes",
+            "price": 225,
+            "description": "Ground pork and beef meatballs served with mashed potatoes.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Niçoise Salad",
+            "price": 219,
+            "description": "Mix of salad with pieces of eggs and olives, served with dressing.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Fried Gouda Cheese",
+            "price": 215,
+            "description": "Classic fried cheese with fries and salad.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          }
+        ]
+      },
+      {
+        "id": "fuel_bistro",
+        "icon": "☕️",
+        "icon_name": "coffee",
+        "name": "Fuel Bistro",
+        "url": "https://fuelbistro.cz/",
+        "locationUrl": "https://maps.app.goo.gl/DhmZ42BbGxaiRXW68",
+        "coordinates": {
+          "lat": 50.091978,
+          "lng": 14.4576017
+        },
+        "items": [
+          {
+            "name": "Goulash Soup",
+            "price": 75,
+            "isSoup": true,
+            "isVegetarian": false
+          },
+          {
+            "name": "Pork Cracklings with Cabbage",
+            "price": 238,
+            "description": "Juicy pork meat with stewed cabbage and potato dumpling.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Grilled Pork Chop",
+            "price": 246,
+            "description": "Grilled chop served with mustard sauce and roasted potatoes.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Chicken Stir-Fry with Vegetables",
+            "price": 242,
+            "description": "Chicken meat fried with vegetables and udon noodles, seasoned with spices.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Leaf Salad with Vegetables",
+            "price": 226,
+            "description": "Fresh salad with grilled semi-soft cheese and cranberry dressing.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Sour Lentils with Egg",
+            "price": 214,
+            "description": "Sour lentils with onions and cucumber, served with egg.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          }
+        ]
+      },
+      {
+        "id": "gastro_karlin",
+        "icon": "🍛",
+        "icon_name": "curry",
+        "name": "Gastro Karlín",
+        "url": "https://www.gastrokarlin.cz/",
+        "locationUrl": "https://maps.app.goo.gl/Hn9WyxNiLziTtHS37",
+        "coordinates": {
+          "lat": 50.092543,
+          "lng": 14.4507045
+        },
+        "items": [
+          {
+            "name": "Frankfurt",
+            "price": null,
+            "isSoup": true
+          },
+          {
+            "name": "Segedin Goulash",
+            "price": null,
+            "description": "Traditional Czech goulash with bread dumpling.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Grilled Chicken Breasts, Roasted Potato",
+            "price": null,
+            "description": "Grilled chicken breasts served with roasted potatoes and coleslaw salad.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Fried Skewers of Three Types of Cheese",
+            "price": null,
+            "description": "Fried skewers made from different types of cheese served with potatoes and tartar sauce.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Serbian Pork Risotto",
+            "price": null,
+            "description": "Pork risotto served with cheese and cucumber.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          }
+        ]
+      },
+      {
+        "id": "jidlovice",
+        "icon": "🍽️",
+        "icon_name": "knife_fork_plate",
+        "name": "Jídlovice",
+        "url": "https://www.jidlovice.cz/karlin/",
+        "locationUrl": "https://maps.app.goo.gl/fK3T5j2mh5XpfGQS9",
+        "coordinates": {
+          "lat": 50.0946397,
+          "lng": 14.4488777
+        },
+        "items": [
+          {
+            "name": "Chicken Broth with Liver Rice",
+            "description": "With roasted vegetables and lovage, will satisfy you with health.",
+            "price": 59,
+            "isVegetarian": false,
+            "isSoup": true,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Spicy Mexican Lentil",
+            "description": "Tasty soup rich in lentils and cilantro.",
+            "price": 59,
+            "isVegetarian": true,
+            "isSoup": true,
+            "hideInPresentation": true,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Chicken Schnitzel",
+            "description": "With our potato salad or mashed potatoes, a great dish for everyone.",
+            "price": 189,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Dutch Schnitzel",
+            "description": "Served with potato salad or mash, a delicate choice.",
+            "price": 189,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Hungarian Goulash",
+            "description": "Beef goulash with roasted peppers and our bread dumpling or rice.",
+            "price": 205,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Beef Cream Sauce",
+            "description": "Served with cranberries and cream with bread dumpling.",
+            "price": 209,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Chicken Steak with Mexican Rice",
+            "description": "Fried chicken steak with guacamole, tomato salsa, and cilantro.",
+            "price": 199,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": true
+          },
+          {
+            "name": "Pulled Pork Shoulder",
+            "description": "Baked with piri piri sauce, served with potatoes and vegetables.",
+            "price": 195,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": true
+          },
+          {
+            "name": "Penne with Bolognese Ragout",
+            "description": "Served with shavings of grana padano cheese and arugula.",
+            "price": 195,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Sweet and Sour Chicken",
+            "description": "With steamed vegetables, pineapple, and jasmine rice.",
+            "price": 199,
+            "isVegetarian": false,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": true
+          },
+          {
+            "name": "Dukátové Buchtičky",
+            "description": "Dessert served in vanilla cream with marinated raisins.",
+            "price": 175,
+            "isVegetarian": true,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Fried Cauliflower",
+            "description": "Served with boiled potatoes and our tartar sauce.",
+            "price": 189,
+            "isVegetarian": true,
+            "isSoup": false,
+            "hideInPresentation": false,
+            "isGlutenFree": false
+          }
+        ]
+      },
+      {
+        "id": "la_perla_de_karlin",
+        "icon": "🥘",
+        "icon_name": "paella",
+        "name": "La Perla de Karlín",
+        "url": "https://laperladekarlin.cz/",
+        "locationUrl": "https://www.google.com/maps/search/La+Perla+de+Karlin,+Saldova+9,+Praha+8",
+        "coordinates": {
+          "lat": 50.0941845,
+          "lng": 14.4548702
+        },
+        "items": [
+          {
+            "name": "Dish of the Day",
+            "price": 145,
+            "isSoup": true,
+            "description": "Traditional braised dish of the day in thick sauce, served with a side."
+          },
+          {
+            "name": "Mixed Paella",
+            "price": 245,
+            "description": "Traditional Spanish dish with seafood and chicken, served with herbs.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Iberian Secret Fillet",
+            "price": 285,
+            "description": "Juicy fillet of Iberian pork, baked to perfection.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Chicken Skewers",
+            "price": 250,
+            "description": "Grilled chicken skewers with marinade, served with a side.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Meatballs",
+            "price": 195,
+            "description": "Meatballs prepared according to traditional recipe, served with sauce.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Pisto Manchego with Egg",
+            "price": 185,
+            "description": "Stewed vegetables with egg, served with bread.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Dessert of the Day",
+            "price": 95,
+            "description": "Sweet dessert of the day, made from fresh ingredients.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          }
+        ]
+      },
+      {
+        "id": "pivo_karlin",
+        "icon": "🍺",
+        "icon_name": "beer",
+        "name": "Pivo Karlín",
+        "url": "https://www.pivokarlin.cz/",
+        "locationUrl": "https://maps.app.goo.gl/iWD3jubpzKhbMRFk8",
+        "coordinates": {
+          "lat": 50.0916851,
+          "lng": 14.4575721
+        },
+        "items": [
+          {
+            "name": "Frankfurt Soup with Sausage",
+            "price": 59,
+            "isSoup": true,
+            "isVegetarian": false
+          },
+          {
+            "name": "Philly Cheesesteak",
+            "price": 275,
+            "description": "With our homemade bun, monterey jack cheese, fried cabbage, and fries.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Turkey Livers with Onions",
+            "price": 204,
+            "description": "Served with bacon remoulade and jasmine rice.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Yellow Pea Mash",
+            "price": 204,
+            "description": "Traditional mash with Vienna sausages, sour cucumber, and onion confit."
+          },
+          {
+            "name": "Spicy Pork and Chicken Strips",
+            "price": 205,
+            "description": "Fried meat strips with a spicy mixture of vegetables and cheese.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Creamy Fregola with Roasted Pumpkin",
+            "price": 203,
+            "description": "Fregola pasta with pumpkin, cherry tomatoes, and arugula, ideal for vegetarians.",
+            "isVegetarian": true
+          },
+          {
+            "name": "Chickpea Falafel",
+            "price": 199,
+            "description": "Served with tomato salad, sesame yogurt, and pita bread.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Beleše with Sour Cream",
+            "price": 59,
+            "description": "Traditional dessert with jam and poppy seeds, suitable for lovers of sweets.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Cabbage Salad with Horseradish",
+            "price": 49,
+            "description": "Fresh cabbage salad with horseradish sauce, ideal as a side.",
+            "isVegetarian": false,
+            "isGlutenFree": false
+          }
+        ]
+      },
+      {
+        "id": "polevkarna",
+        "icon": "🥣",
+        "icon_name": "bowl_with_spoon",
+        "name": "Soup House",
+        "url": "http://www.polevkarna.cz/",
+        "locationUrl": "https://www.google.com/maps/search/Polevkarna,+Sokolovska+86,+Praha+8",
+        "coordinates": {
+          "lat": 50.0937871,
+          "lng": 14.4507792
+        },
+        "items": [
+          {
+            "name": "Beef Borscht",
+            "price": null,
+            "isSoup": true
+          },
+          {
+            "name": "Pumpkin Cream",
+            "price": null,
+            "isSoup": true,
+            "description": "Thick cream with pumpkin, prepared without animal products."
+          },
+          {
+            "name": "Or Our Preserved Soups",
+            "price": null,
+            "isSoup": true,
+            "description": "Choose from our range of preserved soups like borscht or tomato cream."
+          },
+          {
+            "name": "Chicken with Tarragon",
+            "price": null,
+            "description": "Dish made from chicken meat, prepared with tarragon sauce.",
+            "isVegetarian": false,
+            "isSoup": false,
+            "isGlutenFree": true
+          },
+          {
+            "name": "Black Lentils with Sweet Potatoes",
+            "price": null,
+            "description": "Nutrient-rich dish with natural ingredients.",
+            "isVegetarian": true,
+            "isSoup": false,
+            "isGlutenFree": true
+          },
+          {
+            "name": "Khachapuri",
+            "price": null,
+            "description": "Traditional Georgian bread, appreciated as a side or main dish.",
+            "isVegetarian": true,
+            "isSoup": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "With Cheese",
+            "price": null,
+            "description": "Bread filled with cheese, ideal for cheese lovers.",
+            "isVegetarian": false,
+            "isSoup": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Khachapuri with Beef",
+            "price": null,
+            "description": "Traditional bread filled with ground beef, popular in Georgian cuisine.",
+            "isVegetarian": false,
+            "isSoup": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Focaccia with Sea Salt and Rosemary",
+            "price": null,
+            "description": "Delicious bread will surely impress with its aroma and taste.",
+            "isVegetarian": false,
+            "isSoup": false,
+            "isGlutenFree": false
+          },
+          {
+            "name": "Potato and Chili Pastry",
+            "price": null,
+            "description": "Bread filled with potato mixture flavored with chili.",
+            "isVegetarian": false,
+            "isSoup": false,
+            "isGlutenFree": false
+          }
+        ]
+      }
+    ]
+  }
+}
